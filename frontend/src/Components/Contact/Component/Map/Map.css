@@ -1,0 +1,43 @@
+.atoopro-contact .google-map {
+    width: 100%;
+    z-index:0 !important
+  }
+
+  .atoopro-contact .google-map .map-marker{
+      color:var(--link-primary);
+      font-size:45px !important
+  }
+  .atoopro-contact .google-map .leaflet-control-attribution{
+    display:none !important;
+}
+
+.atoopro-contact .google-map .leaflet-popup .leaflet-popup-content p{
+    font-size:14px !important;
+}
+
+.atoopro-contact .google-map .leaflet-popup .leaflet-popup-content{
+    font-family: Inter;
+}
+
+.atoopro-contact .google-map .tool-tip-marker{
+    box-shadow: none;
+    font-weight: bolder !important;
+    font-family:Inter;
+    height:35px !important;
+    color:#0f425a;
+    font-weight:1000 !important;
+    margin-top:19px;
+    font-size:16px;
+    margin-left:38px;
+    background:transparent;
+    border:none;
+}
+
+.atoopro-contact .google-map .leaflet-div-icon{
+    background-color: transparent;
+    border:none;
+}
+
+.atoopro-contact .google-map .tool-tip-marker::before{
+    display: none;
+}

@@ -1,0 +1,24 @@
+.card-join .head{
+    display: flex !important;
+    padding:12px 0;
+    align-items: center;
+}
+
+.card-join{
+    margin:25px auto;
+    padding:12px
+}
+
+.card-join .head .head-icn{
+    margin-right:8px;
+}
+
+.card-join .head .head-icn *{
+    font-weight: lighter !important;
+}
+
+.card-join .head .head-title h3{
+    font-size: 20px;
+    font-weight:600 !important;
+    margin:0 !important
+}

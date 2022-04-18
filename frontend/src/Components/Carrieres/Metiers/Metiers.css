@@ -1,0 +1,24 @@
+.metiers .all-metiers{
+    margin-bottom: 100px !important;
+}
+
+body.body-dark .all-metiers *{
+    color:#d2d7da !important;
+}
+
+.metiers .ant-collpse .ant-collapse-header .header-collapse{
+    font-size:20px !important;
+    font-weight: bolder !important;
+    display: block;
+}
+
+.metiers .banner-metiers{
+    text-align: center;
+    margin:100px auto;
+}
+@media all and (min-width:768px){
+    .metiers .banner-metiers h1{
+        font-size: 50px;
+        font-weight: 700;
+    }
+}

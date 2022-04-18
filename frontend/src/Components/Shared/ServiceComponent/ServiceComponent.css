@@ -1,0 +1,75 @@
+.service-cmp section.other-services .service .more::before{
+    position:absolute;
+    top:0;
+    left:-1px;
+    right:-1px;
+    bottom:0;
+    display: block;
+    content: '';
+    background-color: #dfeff7;
+    width:0;
+    transition: .5s;
+}
+
+body.body-dark .service-cmp section.other-services .service .more::before{
+    background-color: #71a2fc4f !important;
+}
+
+.service-cmp section.other-services .service .more:hover:before{
+    width:101%;
+    right:-2px
+}
+
+.service-cmp section.other-services .service h2{
+    font-weight:700;
+    font-size: 25px;
+}
+
+.service-cmp section.other-services .service .more{
+    position:relative
+
+}
+.service-cmp section.other-services .service.service-hebergement.right,
+.service-cmp section.other-services .service.service-communications.image-left {
+    display: flex;
+}
+
+.service-cmp section.other-services .service.service-hebergement.right .service-image,
+.service-cmp section.other-services .service.service-communications.image-left .service-content{
+    order:2 !important
+}
+.service-cmp section.other-services .service.service-hebergement.right .service-content,
+.service-cmp section.other-services .service.service-communications.image-left .service-image{
+    order:1 !important;
+}
+
+@media all and (max-width:768px){
+
+    .service-cmp section.other-services .service.service-hebergement.right .service-image{
+        order:1 !important
+    }
+    .service-cmp section.other-services .service.service-hebergement.right .service-content{
+        order:2 !important;
+    }
+
+    .service-cmp .banner,
+    .service-cmp section.other-services .service{
+        display: flex;
+    }
+    .service-cmp .banner .banner-image,
+    .service-cmp section.other-services .service.left .service-image{
+        order:1 !important;
+        margin-bottom:50px !important;
+        margin-left:auto !important;
+        margin-right:auto !important
+    }
+
+    .service-cmp .banner .banner-content,
+    .service-cmp section.other-services .service.left .service-content{
+        order:2 !important;
+        margin:auto !important
+    }
+    .service-cmp .service-description {
+        width:100% !important;
+    }
+}

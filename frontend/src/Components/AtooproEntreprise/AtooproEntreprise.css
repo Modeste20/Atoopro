@@ -1,0 +1,245 @@
+/*
+    #Banner
+*/
+
+.atoopro-entreprise .banner{
+    height:auto;
+    margin-bottom:50px;
+}
+
+.atoopro-alternances .banner .banner-section-image{
+    margin:auto
+}
+
+/*
+.atoopro-entreprise .banner::before{
+    position: absolute;
+    content: '';
+    display: block;
+    top:-300px;
+    z-index:-2;
+    left:-100px;
+    bottom:0;
+    right:-100px;
+    width:150%;
+    background:url(../../File/images/banner.jpg);
+    background-size: cover;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+}
+*/
+@media all and (max-width:280px){
+    /*.atoopro-entreprise .banner::before{
+        top:-300px;
+        left:-100px;
+        bottom:0;
+        right:-300px;
+        width:500%;
+    }
+
+    .atoopro-entreprise .banner::after{
+        top:-300px;
+        left:-100px;
+        bottom:0;
+        right:-300px;
+        width:500% !important;
+    }*/
+}
+/*
+.atoopro-entreprise .banner::after{
+    position: absolute;
+    content: '';
+    display: block;
+    top:-300px;
+    z-index:-1;
+    left:-100px;
+    bottom:0;
+    right:-100px;
+    width:150%;
+    background:rgba(0, 0, 0, .65);
+}*/
+
+.atoopro-entreprise .banner .banner-section .banner-section-image img{
+    margin-top: 50px;
+}
+
+.atoopro-entreprise .banner .banner-section{
+    display: flex;
+    align-items: center;
+}
+
+@media all and (max-width:768px){
+    .atoopro-entreprise .banner .banner-section{
+        display: flex;
+    }
+
+    .atoopro-entreprise .banner .banner-section .banner-section-image{
+        order:1 !important
+    }
+
+    .atoopro-entreprise .banner .banner-section .banner-section-content{
+        order:2 !important
+    }
+}
+
+/**/
+
+
+
+.history-atoopro h2{
+    text-align:center;
+}
+
+.history-atoopro{
+    margin-bottom: 60px;
+}
+
+
+.history{
+    position:relative;
+    height:auto;
+    margin:auto;
+    text-align:center !important
+}
+
+.history-atoopro .css-16u30nb-TimelineControlContainer{
+    display: none;
+}
+
+.history-atoopro .timeline-card-content{
+    padding-top:25px;
+    background: transparent;
+}
+.history-atoopro .timeline-card-content .css-euihtl-TriangleIconWrapper,.history-atoopro .timeline-card-content .css-kbhk7b-TriangleIconWrapper{
+    display: none;
+}
+
+
+
+
+.history-atoopro .timeline-card-content .card-description p{
+    font-size:14px !important;
+}
+
+.history-atoopro .left .timeline-card-content header p{
+    text-align:right !important;
+}
+
+.history-atoopro .left .css-7hrvm8-Circle.active,.history-atoopro .right .css-7hrvm8-Circle.active{
+    background: transparent;
+}
+
+.history-atoopro .left .css-7hrvm8-Circle.active::after,.history-atoopro .right .css-7hrvm8-Circle.active::after{
+    background: #1a52bb;
+}
+
+
+/*
+    atoopro-def
+*/
+
+.atoopro-entreprise .atoopro-def,.atoopro-entreprise .atoopro-mission{
+    padding:25px 0;
+    margin-bottom: 25px;
+}
+
+.atoopro-entreprise .atoopro-def .atoopro-def-content h2,
+.atoopro-entreprise .atoopro-mission .atoopro-mission-content h2,
+.atoopro-entreprise .atoopro-engagement h2,
+.atoopro-entreprise .history-atoopro h2{
+    font-size: 22px;
+    font-weight:700;
+}
+
+.atoopro-entreprise .atoopro-def .atoopro-def-content,
+.atoopro-entreprise .atoopro-mission .atoopro-mission-content{
+    padding-top:5px ;
+}
+
+.atoopro-entreprise .atoopro-def .atoopro-def-image{
+    padding-right:50px ;
+    justify-self: flex-end;
+}
+.atoopro-entreprise .atoopro-mission .atoopro-mission-image{
+    padding-left:50px ;
+    justify-self: flex-end;
+    text-align: right;
+}
+
+.atoopro-entreprise .atoopro-def .atoopro-def-content p,
+.atoopro-entreprise .atoopro-mission .atoopro-mission-content p{
+    font-size: 15px;
+}
+
+@media all and (max-width:1056px){
+    .atoopro-entreprise .atoopro-def .atoopro-def-image img,
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-image img{
+        width:100% !important;
+    }   
+    .atoopro-entreprise .atoopro-def .atoopro-def-content,
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-content{
+        padding-top:0 !important ;
+    }
+
+    .atoopro-entreprise .atoopro-def .atoopro-def-image
+    {
+        padding-right:20px !important;
+    }
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-image{
+        padding-left:20px !important;
+    }
+}
+
+@media all and (max-width:767px){
+    .atoopro-entreprise .atoopro-def .atoopro-def-content,
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-content{
+        padding-top:30px !important ;
+    }
+
+    .atoopro-entreprise .atoopro-def .atoopro-def-image{
+        padding-right:0px !important;
+    }
+
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-image{
+        padding-left:0px !important;
+    }
+
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-image{
+        order: 1 !important;
+    }
+
+    .atoopro-entreprise .atoopro-mission .atoopro-mission-content{
+        order: 2 !important;
+    }
+}
+/*Mission section*/
+
+.atoopro-entreprise .atoopro-mission{
+    margin-bottom: 80px !important;
+}
+
+/*Engagement*/
+.atoopro-entreprise .atoopro-engagement .ant-card-head-title{
+    padding-bottom:10px !important;
+}
+
+body.body-dark .atoopro-entreprise .atoopro-engagement .ant-card-head-title{
+    color:#d2d7da !important;
+}
+
+.atoopro-entreprise .atoopro-engagement .ant-card-head-title p{
+    margin:0;
+}
+
+.atoopro-entreprise .atoopro-engagement .ant-card{
+    background: transparent !important;
+}
+
+ body.body-dark .atoopro-entreprise .atoopro-engagement .ant-card{
+    color:#d2d7da !important;
+}
+
+.atoopro-entreprise .atoopro-engagement h2{
+    text-align: center !important;
+    margin:45px 0;
+}

@@ -1,0 +1,67 @@
+.service .service-card .image-round {
+    width:180px !important;
+    margin:25px auto ;
+}
+
+.service{
+    margin:25px auto;
+}
+
+.service .service-card{
+    width:100% !important;
+}
+
+
+.service .service-card .content-service-card{
+    padding:0 15px;
+}
+
+.service .service-card .content-service-card .p{
+    font-size:14px !important;
+}
+
+@media all and (min-width:1200px){
+    .service .service-card .content-service-card .p{
+        font-size:13px !important;
+    }
+    .service .service-card .image-round {
+        width:150px !important;
+    }
+}
+
+.service .service-card .content-service-card h3{
+   text-align: center;
+   margin-bottom: 16px;
+   font-weight:700;
+}
+
+.service .service-card .content-service-card h3 a:hover{
+    transform: scale(1.1) !important;
+ }
+
+body.body-dark .service .service-card .content-service-card h3.title-card a{
+    color:#89cae6 !important;
+    transition:.5s;
+    display:inline-block
+}
+
+.service .service-card .content-service-card h3.title-card a{
+    color:#2b6179 !important;
+    transition:.5s;
+    display:inline-block
+}
+
+.service .service-card .content-service-card p{
+    font-size:14px !important;
+}
+
+.service .service-card .image-round img{
+    width:100% !important;
+}
+
+@media all and (min-width:600px) and (max-width:767px){
+    .service .service-card .content-service-card p{
+        width:80%;
+        margin:auto;
+    }
+}

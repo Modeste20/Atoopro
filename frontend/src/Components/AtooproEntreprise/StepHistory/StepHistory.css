@@ -1,0 +1,136 @@
+.icn-timeline{
+    
+    /*transform:translatex(20px) !important;*/
+    color: red !important;
+    box-shadow: none !important;
+    position:relative;
+    background:transparent !important;
+}
+
+
+.icn-timeline::before{
+    position: absolute;
+    content: '';
+    display: block;
+    width:30px ;
+    height:30px;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,50%);
+    background-color: red;
+    border-radius: 50%;
+    background-color:#fff;
+    border:5px solid #25A8E0;
+    transition: .3s;
+}
+
+body.body-dark .icn-timeline::before{
+    border:5px solid #1a52bb;
+    background-color:#1A202C;
+}
+
+.vertical-timeline .vertical-timeline-element--work.active .icn-timeline::before{
+    background-color: #97d6f1 !important;
+}
+
+body.body-dark .vertical-timeline .vertical-timeline-element--work.active .icn-timeline::before{
+    background-color: #76a4fa!important;
+}
+
+
+
+    .vertical-timeline  .vertical-timeline-element--work.right .vertical-timeline-element-content .vertical-timeline-element-title,
+    .vertical-timeline  .vertical-timeline-element--work.right .vertical-timeline-element-content .vertical-timeline-element-subtitle,
+    .vertical-timeline  .vertical-timeline-element--work.right,
+    .vertical-timeline  .vertical-timeline-element--work.right p{
+        text-align: left;
+    }
+
+    .vertical-timeline  .vertical-timeline-element--work.left .vertical-timeline-element-content .vertical-timeline-element-title,
+    .vertical-timeline  .vertical-timeline-element--work.left .vertical-timeline-element-content .vertical-timeline-element-subtitle,
+    .vertical-timeline  .vertical-timeline-element--work.left,
+    .vertical-timeline  .vertical-timeline-element--work.left p{
+        text-align:right;
+    }
+
+    @media all and (max-width:500px){
+    .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-title{
+            font-size:30px !important;
+        }
+        .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{
+            font-size:16px !important;
+            font-weight: 200;
+        }
+    
+        .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content p{
+            font-size:12px !important;
+        }
+        .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content{
+            margin:15px 0 15px 35px !important
+        }
+    }
+
+
+@media all and (max-width:1170px){
+    .icn-timeline {
+    }
+
+    .vertical-timeline  .vertical-timeline-element--work.left .vertical-timeline-element-content .vertical-timeline-element-title,
+    .vertical-timeline  .vertical-timeline-element--work.left .vertical-timeline-element-content .vertical-timeline-element-subtitle,
+    .vertical-timeline  .vertical-timeline-element--work.left,
+    .vertical-timeline  .vertical-timeline-element--work.left p,
+    .vertical-timeline  .vertical-timeline-element--work.right .vertical-timeline-element-content .vertical-timeline-element-title,
+    .vertical-timeline  .vertical-timeline-element--work.right .vertical-timeline-element-content .vertical-timeline-element-subtitle,
+    .vertical-timeline  .vertical-timeline-element--work.right,
+    .vertical-timeline  .vertical-timeline-element--work.right p{
+        text-align: left;
+    }
+
+    .vertical-timeline .parallax-effect{
+        will-change:unset !important;
+        transform:scale(1) !important
+    }
+
+}
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-content-arrow{
+    display:none;
+}
+
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-title{
+    font-size:60px;
+    font-family: Lato;
+    font-weight: 800;
+    margin:0;
+}
+
+
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{
+    font-size:18px;
+    font-family: Lato;
+    font-weight: 600;
+    margin:10px 0;
+}
+
+
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content p{
+    font-size:14px;
+    color:#020f25ec;
+}
+
+body.body-dark .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content p{
+    color:#d2d7da !important;
+}
+
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-title{
+    color:#076a94f8 !important
+}
+
+.vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{
+    color:#7c9eda !important
+}

@@ -1,0 +1,38 @@
+.admin-connexion .login-container h2,
+.admin-inscription .register-container h2{
+    margin:20px 0;
+    font-size:25px;
+    font-weight:800;
+}
+
+.admin-connexion .login-form .login-container,
+.admin-inscription .register-form .register-container{
+    margin:25px auto;
+    padding:45px 0;
+}
+
+.admin-connexion .login-form .login-container #form .ant-row,
+.admin-inscription .register-form .register-container #form .ant-row{
+    justify-content: flex-start !important;
+    display: flex;
+}
+
+.admin-connexion .login-form .login-container #form,
+.admin-inscription .register-form .register-container #form{
+    margin-top: 35px;
+}
+
+.admin-connexion .login-form .login-container #form .submit,
+.admin-inscription .register-form .register-container #form .submit{
+    width:120px;
+    height:40px;
+    margin:15px auto !important;
+    text-align: center;
+}
+
+@media all and (max-width:550px){
+    .admin-connexion .login-container h2,
+    .admin-inscription .register-container h2{
+        font-size:22px;
+    }
+}

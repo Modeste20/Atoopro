@@ -1,0 +1,39 @@
+body.body-dark .section-404 svg.svg-404 g{
+     color: red !important;
+}
+body.body-dark .section-404 svg.svg-404 g *{
+    color: red !important;
+    color:inherit !important
+}
+
+.section-404 h1{
+    font-family: Lato !important;
+    font-weight:1000;
+    font-size: 100px !important;
+    margin:0 !important;
+    color:rgba(0, 0, 0, .78) !important
+}
+
+.section-404{
+    padding:60px 0 60px 0 !important
+}
+
+.section-404 .svg-astronaute ,.section-404 .content,.section-404 .svg-astronaute svg{
+    margin:auto !important;
+    display: block !important;
+}
+
+
+
+
+.section-404 h3{
+    font-family: Lato !important;
+    font-weight:700;
+    font-size: 20px !important;
+    margin-top:-15px !important;
+    color:rgba(0, 0, 0, .78) !important
+}
+
+body.body-dark .section-404 h3{
+    color: inherit !important;
+}

@@ -1,0 +1,199 @@
+body.body-dark .atoopro-home h2.section-title , .atoopro-home h2.section-title{
+    font-size: 25px;
+    font-weight: 600 !important;
+}
+
+body.body-dark .atoopro-home h2.section-title{
+    color:#d2d7da !important;
+}
+
+.atoopro-home h2.section-title.faq-title{
+    text-align: center;
+}
+.atoopro-home .banner-home .banner-text{
+    padding-top:60px !important;
+    padding-bottom: 0 !important;
+    /*color:#d2d7da !important;*/
+}
+
+.atoopro-home .banner-home{
+    background-size: cover;
+    position: relative;
+    padding-bottom:70px;
+}
+
+.atoopro-home{
+    padding-top:60px !important;
+}
+
+@keyframes imageAnimation {
+    from {
+        transform: translateY(-30px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
+
+.atoopro-home .banner-home .banner-image .img img{
+    display: block;
+    animation: imageAnimation 2s infinite ease-in-out alternate-reverse;
+}
+
+.atoopro-home{
+    padding-top:25px;
+}
+
+@media all and (min-width:1245px){
+    .atoopro-home .banner-home{
+        height:71.3vh !important;
+    }
+}
+
+/*Atoopro statistic*/
+
+
+.atoopro-home .statistics{
+    margin-top: 45px;
+    margin-bottom:45px
+}
+
+.atoopro-home .statistics .statistic{
+    text-align: center;
+    margin:0;
+}
+
+.atoopro-home .statistics .statistic .st{
+    text-align: center;
+    border-radius: 50%;
+    width:160px !important;
+    height:160px !important;
+    margin: auto;
+    padding-top:50px
+}
+
+.atoopro-home .statistics .statistic .st span{
+    font-size: 50px;
+    font-weight:700
+}
+
+.atoopro-home .statistics .statistic .st p{
+    font-size: 15px;
+}
+
+.atoopro-home .statistics h2,.atoopro-home .services h2,.atoopro-home .partenaires h2{
+    text-align: center;
+    margin:35px 0 0px 0;
+}
+
+/*Services*/
+
+.atoopro-home .services {
+    margin-top:100px !important; 
+    margin-bottom:100px !important; 
+}
+
+.atoopro-home .faq{
+    position:relative
+}
+
+.atoopro-home .faq .svg{
+    position:absolute;
+    width:350px;
+    top:30%;
+}
+
+.atoopro-home .faq .svg img{
+    display: block;
+    width:100%;
+}
+
+.atoopro-home .faq .svg-1{
+    left:-80px;
+}
+
+@media all and (max-width:1050px){
+    .atoopro-home .faq .svg{
+        display: none;
+    }
+}
+
+@media all and (max-width:1268px){
+    .atoopro-home .faq .svg-1{
+        left:-200px;
+    }
+    .atoopro-home .faq .svg-2{
+        right:-200px !important;
+    }
+}
+
+
+
+
+.atoopro-home .faq .svg-2{
+    right:-80px;
+}
+
+body.body-dark .atoopro-home .faq *{
+    color:#d2d7da !important;
+}
+
+@media all and (max-width:430px){
+    .atoopro-home .banner-home .banner-image .img{
+        width:280px !important;
+    }
+}
+
+@media all and (max-width:300px){
+    .atoopro-home .banner-home .banner-image .img{
+        width:200px !important;
+    }
+}
+
+@media all and (max-width:769px){
+    .atoopro-home .banner-home{
+        display: flex;
+    }
+    .atoopro-home .banner-home .banner-image{
+        order:0 !important;
+    }
+
+    .atoopro-home .banner-image .img{
+        width:400px !important;
+        margin:auto !important;
+        text-align: center;
+    }
+
+
+    .atoopro-home .banner-home .banner-text{
+        order:1 !important;
+    }
+
+    /*Atoopro statistic*/
+
+
+    .atoopro-home .statistics{
+        margin-top: 145px;
+    }
+}
+.ant-popover .ant-popover-inner{
+    border-radius: 8px;
+}
+
+/*partenaires*/
+
+.atoopro-home .partenaires h2{
+    font-size:22px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding-top:25px;
+    letter-spacing: 2px;
+}
+
+body.body-dark .atoopro-home .partenaires h2{
+    color: #d2d7da !important;
+}
+
+.atoopro-home .partenaires {
+    height:430px;
+}

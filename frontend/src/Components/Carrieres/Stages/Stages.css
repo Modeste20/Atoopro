@@ -1,0 +1,109 @@
+
+.atoopro-alternances .banner{
+    height:auto;
+    position:relative;
+    margin-bottom:50px;
+}
+.atoopro-alternances .banner .banner-section .banner-section-image img{
+    margin-top: 50px;
+}
+
+.atoopro-alternances .banner .banner-section{
+    display: flex;
+    align-items: center;
+}
+
+.atoopro-alternances .banner .banner-section-image{
+    margin:auto
+}
+
+@media all and (max-width:768px){
+    .atoopro-alternances .banner .banner-section{
+        display: flex;
+    }
+
+    .atoopro-alternances .banner .banner-section .banner-section-image{
+        order:1 !important
+    }
+
+    .atoopro-alternances .banner .banner-section .banner-section-content{
+        order:2 !important
+    }
+}
+
+/*atoopro def*/
+
+.atoopro-alternances .atoopro-def,.atoopro-alternances .atoopro-mission{
+    padding:25px 0;
+    margin-bottom: 25px;
+}
+
+.atoopro-alternances .atoopro-def .atoopro-def-content h2,
+.atoopro-alternances .atoopro-mission .atoopro-mission-content h2,
+.atoopro-alternances .atoopro-engagement h2,
+.atoopro-alternances .history-atoopro h2{
+    font-size: 22px;
+    font-weight:700;
+}
+
+.atoopro-alternances .atoopro-def .atoopro-def-content,
+.atoopro-alternances .atoopro-mission .atoopro-mission-content{
+    padding-top:5px ;
+}
+
+.atoopro-alternances .atoopro-def .atoopro-def-image{
+    padding-right:50px ;
+    justify-self: flex-end;
+}
+.atoopro-alternances .atoopro-mission .atoopro-mission-image{
+    padding-left:50px ;
+    justify-self: flex-end;
+    text-align: right;
+}
+
+.atoopro-alternances .atoopro-def .atoopro-def-content p,
+.atoopro-alternances .atoopro-mission .atoopro-mission-content p{
+    font-size: 15px;
+}
+
+@media all and (max-width:1056px){
+    .atoopro-alternances .atoopro-def .atoopro-def-image img,
+    .atoopro-alternances .atoopro-mission .atoopro-mission-image img{
+        width:100% !important;
+    }   
+    .atoopro-alternances .atoopro-def .atoopro-def-content,
+    .atoopro-alternances .atoopro-mission .atoopro-mission-content{
+        padding-top:0 !important ;
+    }
+
+    .atoopro-alternances .atoopro-def .atoopro-def-image
+    {
+        padding-right:20px !important;
+    }
+    .atoopro-alternances .atoopro-mission .atoopro-mission-image{
+        padding-left:20px !important;
+    }
+}
+
+@media all and (max-width:767px){
+    .atoopro-alternances .atoopro-def .atoopro-def-content,
+    .atoopro-alternances .atoopro-mission .atoopro-mission-content{
+        padding-top:30px !important ;
+    }
+
+    .atoopro-alternances .atoopro-def .atoopro-def-image{
+        padding-right:0px !important;
+    }
+
+    .atoopro-alternances .atoopro-mission .atoopro-mission-image{
+        padding-left:0px !important;
+    }
+
+    .atoopro-alternances .atoopro-mission .atoopro-mission-image{
+        order: 1 !important;
+    }
+
+    .atoopro-alternances .atoopro-mission .atoopro-mission-content{
+        order: 2 !important;
+    }
+}

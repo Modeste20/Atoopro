@@ -1,0 +1,26 @@
+.atoopro-home .faq .ant-collapse-header{ 
+    font-weight:800;
+    font-size:16px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid  rgba(0,0,0,.1);
+}
+
+.atoopro-home .faq .ant-collapse-header .icn{ 
+    display: block;
+    width:30px !important;
+    height:30px !important;
+    background:#abd7eb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.atoopro-home .faq .ant-collapse-header .icn.icn-dark{ 
+    background:#1a52bb !important;
+}
+
+.atoopro-home .faq{
+    margin-bottom: 60px;
+}

@@ -1,0 +1,25 @@
+body.body-dark .recaptcha , body.body-dark .recaptcha svg{
+    color:#d2d7da;
+}
+
+body.body-dark .recaptcha .ant-radio-group label {
+    border: 2px solid #d2d7da !important;
+    border-radius:5px
+}
+
+.recaptcha .ant-radio-group label {
+    border: 2px solid rgba(0,0,0,.2) !important;
+    border-radius:5px
+}
+
+.recaptcha .ant-radio-group label::before {
+    display: none;
+}
+
+body.body-dark .recaptcha .ant-radio-group .ant-radio-button-wrapper-checked *{
+    color:#1a52bb;
+}
+
+body.body-dark .recaptcha .ant-radio-group .ant-radio-button-wrapper-checked{
+    border: 2px solid #1a52bb !important;
+}
