@@ -1,5 +1,5 @@
 const {userSchema,loginUserSchema} = require('../Schema/users.schema')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Router = require('express').Router()
 
