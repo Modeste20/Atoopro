@@ -23,6 +23,8 @@ Router.get('/',isAdmin,(req,res) => {
                     const dateNow= moment()
                     const date = moment(value.date)
                     const days = dateNow.diff(date,'days')
+
+                    console.log(days)
     
                     if(days>=2){
                         db_connect

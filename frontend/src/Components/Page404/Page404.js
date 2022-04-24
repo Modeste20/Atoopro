@@ -5,6 +5,7 @@ import { ThemeContext } from '../Shared/Context/ThemeContext/ThemeContext'
 import { ReactComponent as Astronaute } from './astronaute.svg';
 import { ReactComponent as AstronauteDark } from './astronaute-dark.svg';
 import { Link, useHistory } from 'react-router-dom'
+import Helmet from 'react-helmet'
 
 
 const Page404 = () => {
@@ -22,6 +23,12 @@ const Page404 = () => {
     })
     return (
         <Row justify='space-around' style={{height:'100%'}} className='section-404'>
+        <Helmet>
+            <title>Page 404</title>
+            <meta name="description" content="Page d'accueil de Atoo pro" />
+            <meta name="robots" content="noindex" />
+            <meta name="googlebot" content="noindex" />
+        </Helmet>
             <Col xs={24} sm={20} md={12} lg={10} className='svg-astronaute'>
                 {
                     theme === 'light' ? <Astronaute /> : <AstronauteDark />

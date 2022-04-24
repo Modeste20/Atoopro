@@ -257,7 +257,7 @@ const FormAdmin = ({ inscription }) => {
             </Form.Item>
             {
                 !inscription && <p>
-                Vous n'avez pas encore de compte administrateur ,<Link to='/'> Inscrivez-vous ! </Link>
+                Vous n'avez pas encore de compte administrateur ,<Link to='/' className='link'> Inscrivez-vous ! </Link>
             </p>
             }
             

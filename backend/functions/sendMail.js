@@ -19,7 +19,7 @@ const mailConfigurations = {
 
     attachments:file ? [
         {   
-            path: './backend/File/CV/'+file.filename
+            path: './File/CV/'+file.filename
         },
     ] : null,
     

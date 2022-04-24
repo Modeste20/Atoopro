@@ -5,6 +5,24 @@
     font-weight:800;
 }
 
+/*Style oeil caché devant ant-input-password*/
+
+.ant-input-password input{
+    background-color: transparent !important;
+}
+
+.body-dark .ant-input-password input + span svg{
+    color:#d2d7da !important;
+}
+
+.admin-connexion .login-form p,
+.admin-connexion .login-form label,
+.admin-inscription .register-form p,
+.admin-inscription .register-form label
+{
+    color:#d2d7da !important;
+}
+
 .admin-connexion .login-form .login-container,
 .admin-inscription .register-form .register-container{
     margin:25px auto;

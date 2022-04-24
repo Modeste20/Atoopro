@@ -14,8 +14,9 @@ body.body-dark .ant-popover-inner-content a{
   color:#d2d7da !important;
 }
 
-body.body-dark .ant-popover-arrow .ant-popover-arrow-content{
-  background: #1A202C !important;
+body.body-dark .ant-popover-arrow .ant-popover-arrow-content,
+body.body-dark .ant-popover-arrow{
+  background-color: #1A202C !important;
 }
 
 body.body-dark .header-navbar a.links-popover{

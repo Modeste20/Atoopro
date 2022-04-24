@@ -11,8 +11,10 @@ import { FadeComponent } from '../Shared/FadeComponent/FadeComponent'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import AnimateNumber from './Components/AnimateNumber/AnimateNumber'
 import { AdminContext } from '../Shared/Context/AdminContext/AdminContext'
+import {Helmet} from 'react-helmet'
+import {withTranslation} from 'react-i18next'
 
-const Home = () => {
+const Home = ({t}) => {
 
     const ref = useRef(null)
 
@@ -25,15 +27,18 @@ const Home = () => {
 
     return (
         <div className="atoopro-home">
-        Lorem
+        <Helmet>
+            <title>Page d'accueil du site d'atoopro | Atoopro</title>
+            <meta name="description" content="Page d'accueil de Atoo pro" />
+        </Helmet>
             <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center' }}>
                 <Row justify='space-between' className='banner-home'>
                     <Col xs={24} md={12} lg={12} xxl={8} className='banner-text'>
                         <FadeComponent left>
-                            <h1 className='pb-2'>Titre du texte</h1>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias eius doloribus, nobis tempore maxime natus sed accusamus totam non repellendus magnam blanditiis quae debitis ducimus sint ab quod numquam consectetur?</p>
+                            <h1 className='pb-2'>{t('banner.title','Bienvenue sur Atoo pro')}</h1>
+                            <p>{t('banner.paragraphe')}</p>
                             <div style={{ display: 'flex' , alignItems:'center' }}>
-                                <Link className='banner-button-contact btn-link-primary' to='/contactez-nous' style={{ marginTop: 25, height: 45, width: 150, borderRadius: 5 }}>Contactez-nous</Link>
+                                <Link className='banner-button-contact btn-link-primary' to='/contactez-nous' style={{ marginTop: 25, height: 45, padding:'0 15px !important',borderRadius: 5 }}>{t('banner.button')}</Link>
                                 {
                                     isAdmin && <Link style={{marginLeft:15}} to='/admin'>Admin account</Link>
                                 }
@@ -139,4 +144,4 @@ const Home = () => {
 }
 
 
-export default Home
+export default withTranslation('home')(Home)

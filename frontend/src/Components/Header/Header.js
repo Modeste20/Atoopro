@@ -8,34 +8,39 @@ import {ReactComponent as AnyDesk} from './../../File/images/AnyDesk/anydesk.svg
 import {ReactComponent as AnyDeskDark} from './../../File/images/AnyDesk/anydesk-dark.svg'
 import { useContext } from 'react'
 import { ThemeContext } from '../Shared/Context/ThemeContext/ThemeContext'
+import i18n from './../../i18n'
+import { LangContext } from '../Shared/Context/LangContext/LangContext'
 
 
 
-const Meenu = ({lang,setLang,setVisible}) => {
+const Meenu = ({lang,setLang}) => {
 
+    console.log('lang',lang)
 
     // Function to change language
 
-    const changeLanguage = ({domEvent}, status) => {
-        domEvent.preventDefault();
-        setLang(status)
+    const changeLanguage = (e,language) => {
+        e.domEvent.preventDefault()
+        if(lang !== language){
+            i18n.changeLanguage(language)
+            setLang(language)
+            localStorage.setItem('lang',language)
+        }
     }
 
-    const onClick = (e,state) => {
-        changeLanguage(e,state);
-        setVisible(false)
-    }
+
+   
 
     return (
         <Menu>
-            <Menu.Item key={'france'} onClick={(e) => onClick(e,'fr')} className={lang === 'fr' && 'active-menu'}>
+            <Menu.Item key={'france'} onClick={(e) => changeLanguage(e,'fr')} className={lang === 'fr' ? 'active-menu' : ''}>
                 <a href='#' className='flag-link' style={{display:'flex',alignItems:'center'}}>
                     <Flags.FR  title={'Français'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
                     <span style={{ paddingLeft: 8 }}>Français</span>
                 </a>
             </Menu.Item>
             <Menu.Divider />
-            <Menu.Item key={'anglais'} onClick={(e) => onClick(e,'en')}  className={lang === 'en' && 'active-menu'}>
+            <Menu.Item key={'anglais'} onClick={(e) => changeLanguage(e,'en')}  className={lang === 'en' ? 'active-menu' : ''}>
                 <a href='#' className='flag-link' style={{display:'flex',alignItems:'center'}}>
                     <Flags.GB  title={'Anglais'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
                     <span style={{ paddingLeft: 8 }}>Anglais</span>
@@ -49,10 +54,9 @@ const Meenu = ({lang,setLang,setVisible}) => {
 
 const Header = () => {
 
-    //choose Language
-    const [lang, setLang] = useState('fr')
 
-    const {pathname} = useLocation()
+    const {lang,setLang} = useContext(LangContext)
+
 
     const [className,setClassName] = useState('')
     const [colorLangLink,setColorLangLink] = useState('')
@@ -82,7 +86,7 @@ const Header = () => {
                     </a>
                 </div>
                 <div className='change-langue'>
-                    <Popover placement="bottom" visible={visible} onVisibleChange={onVisibleChange} content={<Meenu setVisible={setVisible} lang={lang} setLang={setLang} />}>
+                    <Popover placement="bottom" visible={visible} onVisibleChange={onVisibleChange} content={<Meenu lang={lang} setLang={setLang} />}>
                     {
                             lang === 'en' ? <span  className='pb-2' style={{cursor:'pointer',display:'flex',alignItems:'center'}}>
                                 <Flags.GB title={'Anglais'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />

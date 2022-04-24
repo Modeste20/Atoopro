@@ -55,7 +55,7 @@ body.body-dark .vertical-timeline .vertical-timeline-element--work.active .icn-t
 
     @media all and (max-width:500px){
     .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-title{
-            font-size:30px !important;
+            font-size:25px !important;
         }
         .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{
             font-size:16px !important;
@@ -128,7 +128,8 @@ body.body-dark .vertical-timeline  .vertical-timeline-element--work .vertical-ti
 }
 
 .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-title{
-    color:#076a94f8 !important
+    color:#076a94f8 !important;
+    font-size:30px !important
 }
 
 .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{

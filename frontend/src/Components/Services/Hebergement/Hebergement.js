@@ -1,6 +1,7 @@
 import React from 'react'
 import ServiceComponent from '../../Shared/ServiceComponent/ServiceComponent'
 import Hebergemente from './../../../File/images/hebergement.svg'
+import {Helmet} from 'react-helmet'
 
 const banniere = {
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sequi laudantium pariatur mollitia, blanditiis quasi necessitatibus nesciunt, velit nisi placeat hic quidem aut itaque! Voluptatem suscipit non laudantium inventore provident?",
@@ -23,6 +24,10 @@ const Hebergement = () => {
         <ServiceComponent banniere={banniere} title='Hébergement' className={'hebergement'} 
         content={content}
         >
+            <Helmet>
+                <title>Hébergement | Atoopro</title>
+                <meta name="description" content="Contenu de la page hébergement" />
+            </Helmet>
         </ServiceComponent>
     )
 }

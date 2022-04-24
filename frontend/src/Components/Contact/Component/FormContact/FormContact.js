@@ -83,9 +83,14 @@ const FormContact = ({props}) => {
             } else{
                 window.scrollTo(0,0)
                 setSuccess(true)
+                const elmt = document.querySelector('.recaptcha .ant-radio-group .ant-radio-button-wrapper-checked')
+                if(elmt){
+                    elmt.classList.remove('ant-radio-button-wrapper-checked')
+                }
                 setKey(() => Math.round(Math.random() * 2))
                 setValue('')
                 setChecked(false)
+                setSelectValue('demo1')
                 form.setFieldsValue({
                     name:'',
                     societe:'',
@@ -298,13 +303,13 @@ const FormContact = ({props}) => {
                         })
                     ]}
                 >
-                    <Recpatcha setValue={setValue} elmt={key ? recaptchaData[key]['label'] : recaptchaData[Math.round(Math.random() * 2)]['label']} />
+                    <Recpatcha setValue={setValue} value={value} elmt={key ? recaptchaData[key]['label'] : recaptchaData[Math.round(Math.random() * 2)]['label']} />
                 </Form.Item>
             </FadeComponent>
 
             <FadeComponent left delay={200}>
                 <Form.Item wrapperCol={{ span: 10 }}>
-                    <Button type="primary" htmlType="submit" disabled={loading} style={{ margin: '15px 0', width: 130, height: 40 , pointerEvents:loading ? 'none' : '' }}>
+                    <Button type="primary" htmlType="submit" style={{ margin: '15px 0', width: 130, height: 40 , pointerEvents:loading ? 'none' : '' }}>
                     {
                         loading ? 'Loading ...' : 'Envoyer'
                     }

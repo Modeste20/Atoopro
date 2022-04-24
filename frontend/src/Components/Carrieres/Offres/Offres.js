@@ -1,18 +1,23 @@
 import { Col, Row } from 'antd'
 import React from 'react'
 import { FadeComponent } from '../../Shared/FadeComponent/FadeComponent'
-import MetiersCard from '../Metiers/MetiersCard/MetiersCard'
 import OffresData from './Offres.data'
 import './Offres.css'
 import JoinCard from './Join/JoinCard'
-import {FaShoppingBasket} from 'react-icons/fa'
+import { FaShoppingBasket } from 'react-icons/fa'
+import {Helmet} from 'react-helmet'
+import MetiersCard from './OffresCard'
 
 const Offres = () => {
-  return (
-    <div className="atoopro-jobs">
+    return (
+        <div className="atoopro-jobs">
+            <Helmet>
+                <title>Nos métiers | Atoopro</title>
+                <meta name="description" content="Contenu de la page des métiers" />
+            </Helmet>
             <Col xs={24} sm={20} md={16} className='banner-jobs'>
                 <FadeComponent top>
-                    <h1>Nos Offres d'emplois</h1>
+                    <h1>Nos métiers</h1>
                 </FadeComponent>
                 <FadeComponent bottom delay={200}>
                     <p>
@@ -22,7 +27,7 @@ const Offres = () => {
             </Col>
 
             <section className='all-jobs'>
-                
+
                 <Row justify='space-between' gutter={[20, 50]}>
                     {
                         OffresData.map(offres => <MetiersCard  {...offres} key={offres.key} />)
@@ -54,7 +59,7 @@ const Offres = () => {
                 </Row>
             </section>
         </div>
-  )
+    )
 }
 
 export default Offres

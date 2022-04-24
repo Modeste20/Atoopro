@@ -22,7 +22,7 @@ function Footer(props) {
                 <div className='footer-row'>
                     <div className="atoopro-footer atoopro-foot">
                         <div>
-                            <h2>ATOOPRO</h2>
+                            <h3>ATOOPRO</h3>
                             <p style={{ paddingTop: 14 }}>
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque atque dolores adipisci velit fugit distinctio odit est ut architecto deserunt consectetur quasi, voluptatem.
                             </p>
@@ -69,14 +69,14 @@ function Footer(props) {
 
                     <div className="atoopro-footer">
                         <div>
-                            <h2>Notre société</h2>
+                            <h3>Notre société</h3>
                             <AtooproLinks footer />
                         </div>
                     </div>
 
                     <div className="atoopro-footer">
                         <div>
-                            <h2>Nos services</h2>
+                            <h3>Nos services</h3>
                             <ServiceLinks footer />
                         </div>
 
@@ -84,7 +84,7 @@ function Footer(props) {
 
                     <div className="atoopro-footer">
                         <div>
-                            <h2>Carriéres</h2>
+                            <h3>Carriéres</h3>
                             <CarriereLinks footer />
                         </div>
 

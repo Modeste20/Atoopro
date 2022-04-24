@@ -11,7 +11,7 @@ body.body-dark .atoopro-home h2.section-title{
     text-align: center;
 }
 .atoopro-home .banner-home .banner-text{
-    padding-top:60px !important;
+    padding-top:10px !important;
     padding-bottom: 0 !important;
     /*color:#d2d7da !important;*/
 }
@@ -28,10 +28,10 @@ body.body-dark .atoopro-home h2.section-title{
 
 @keyframes imageAnimation {
     from {
-        transform: translateY(-30px);
+        transform: translateY(-50px);
     }
     to {
-        transform: translateY(0px);
+        transform: translateY(-30px);
     }
 }
 

@@ -34,6 +34,37 @@ Routes.get('/isAdmin',isAdmin,function (req, res) {
 
 //Gestiond de la route pour l'envoi des messages de contactes
 
+Routes.get('/verify-cv',isAdmin,(req,res) => {
+    const directory = './File/CV';
+    fs.readdir(directory, (err, files) => {
+        if (err) throw err;
+        console.log('files',files)
+        if(files.length){
+            return res.json(true)
+        } else{
+            res.json(false)
+        }
+      });
+})
+
+Routes.delete('/cv',isAdmin,(req,res) => {
+    console.log('ok')
+    const directory = './File/CV';
+    fs.readdir(directory, (err, files) => {
+        if (err) throw err;
+        console.log('files',files)
+        if(files.length){
+                for (const file of files) {
+                    fs.unlink(path.join(directory, file), err => {
+                      if (err) throw err;
+                    });
+                }
+        }
+        
+      });
+      return res.json('right !')
+})
+
 Routes.post('/contact',multerConfig.single('file'),(req,res) => {
     console.log(req.body)
     delete req.body.recaptcha
@@ -55,6 +86,8 @@ Routes.post('/contact',multerConfig.single('file'),(req,res) => {
                 //const unique_name = value.name.toLowerCase()+ uuidv4().toString() ;
 
                 // Download pdf
+
+                console.log('pdf')
 
             if(value && value.file && value.objet === 'cv' && req.file){
                 if(req.file.mimetype !== 'application/pdf'){

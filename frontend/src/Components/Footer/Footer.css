@@ -11,7 +11,7 @@ footer {
     }
 }
 
-body.body-dark footer h2,body.body-dark footer .ant-menu,body.body-dark footer .ant-menu a:not(.link),body.body-dark footer a:not(.link){
+body.body-dark footer h3,body.body-dark footer .ant-menu,body.body-dark footer .ant-menu a:not(.link),body.body-dark footer a:not(.link){
     color:#d2d7da !important;
 }
 
@@ -266,9 +266,9 @@ footer .copyright-and-others ul li{
 
 
 
-footer .atoopro-footer h2{
-    font-size:18px;
-    font-weight: bold;
+footer .atoopro-footer h3{
+    font-size:15px !important;
+    font-weight:600 !important;
 }
 
 footer .atoopro-footer a:hover , body.body-dark footer .atoopro-footer a:hover {

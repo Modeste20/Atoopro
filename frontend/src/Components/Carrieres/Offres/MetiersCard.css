@@ -1,0 +1,18 @@
+.metier-card{
+    background: #abd7eb27;
+    border-radius:30px;
+    margin:15px auto !important
+}
+
+.metier-card .ant-card{
+    background-color: transparent !important;
+}
+
+.metier-card .ant-card .ant-card-head-title{
+    padding-top: 0 !important;
+}
+
+.metier-card .ant-card .ant-card-head-title h3{
+    font-size:20px;
+    margin:0 !important;
+}

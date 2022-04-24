@@ -1,5 +1,4 @@
 import React from 'react'
-import Banner from './../../../File/images/banner.jpg'
 import Offres1Content from './Offres1/Offres1'
 
 const OffresData = [

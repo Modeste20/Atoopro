@@ -6,11 +6,26 @@
 
 @font-face {
     font-family: Inter;
-    src: url("./font/inter/Inter-Regular.ttf") format("truetype"),
+    src: url("font/inter/Inter-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: InterHead1;
+    src: url("font/inter/Inter-Bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: InterHead2;
+    src: url("font/inter/Inter-Medium.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: Lato;
+    src: url("font/Lato/Lato-Regular.ttf") format("truetype");
 }
 /* change global style*/
 
-.ant-input,.ant-select .ant-select-selector{
+.ant-input,.ant-select .ant-select-selector,.ant-input-password{
     background: #53c9fc0a !important;
     padding:7px 4px;
     border-radius:5px !important;
@@ -48,7 +63,7 @@
   font-weight: 500;
 }
 
-body.body-dark .ant-input,body.body-dark .ant-select .ant-select-selector{
+body.body-dark .ant-input,body.body-dark .ant-select .ant-select-selector,.body-dark .ant-input-password{
     border-color:rgba(255, 255, 255, 0.4);
     color:#d2d7da !important;
 }
@@ -63,6 +78,15 @@ body.body-dark .ant-input,body.body-dark .ant-select .ant-select-selector{
 /*select arrow*/
 body.body-dark .ant-select-arrow{
     color:#d2d7da;
+}
+
+h1,h2{
+    font-family: InterHead1 !important;
+}
+
+h3,h4{
+    font-family: InterHead2 !important;
+    font-size:19px !important;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -138,6 +162,7 @@ body.body-dark{
 h1{
     font-size: 35px;
     font-weight: 900 !important;
+    line-height:1.26;
 }
 
 .ant-card-meta-title{
@@ -159,9 +184,9 @@ body.body-dark h1{
 body,html{
     /*background:rgb(40,122,180);
     color:#25a8e0;*/
-    font-family:Inter , Helvetica, sans-serif !important;
+    font-family:Inter,serif !important;
     font-weight:300 !important;
-    font-size:15px !important;
+    font-size:14px !important;
     font-style: normal;
     color: #020f25ec !important;
     height:auto;

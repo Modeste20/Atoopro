@@ -25,8 +25,8 @@ const StepHistory = () => {
                     contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
                     iconStyle={{ background: 'rgb(33, 150, 243)', color: '#fff' }}
                 >
-                    <h2 className="vertical-timeline-element-title">2022</h2>
-                    <h3 className="vertical-timeline-element-subtitle">Miami Creative Direction</h3>
+                    <h3 className="vertical-timeline-element-title">2022</h3>
+                    <h4 className="vertical-timeline-element-subtitle">Miami Creative Direction</h4>
                     <p>
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat recusandae a magni illum incidunt dolores provident iste! Sequi esse aperiam iusto dolorem repellat! Eligendi est vitae illum explicabo laudantium nostrum.
                     </p>

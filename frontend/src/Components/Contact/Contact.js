@@ -1,44 +1,41 @@
-import { Button, Col, Divider, Menu, Row } from 'antd';
-import React, { useContext, useEffect, useState } from 'react';
+import { Col, Row } from 'antd';
+import React, { useContext, useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { ThemeContext } from '../Shared/Context/ThemeContext/ThemeContext';
-import { FadeComponent, ZoomComponent } from '../Shared/FadeComponent/FadeComponent';
-import useQuery from '../Shared/useQuery/useQuery';
+import { FadeComponent, } from '../Shared/FadeComponent/FadeComponent';
 import FormContact from './Component/FormContact/FormContact';
 import Map from './Component/Map/Map';
-import queryString from 'query-string'
+import {Helmet} from 'react-helmet'
+import { withTranslation } from 'react-i18next';
 import './Contact.css'
 
-const location = {
-    address: '1600 Amphitheatre Parkway, Mountain View, california.',
-    lat: 37.42216,
-    lng: -122.08427,
-}
 
-const Contact = () => {
+
+const Contact = ({t}) => {
 
     const { theme } = useContext(ThemeContext)
 
-    const query = useQuery()
-    const {search} = useLocation()
-    const [selectDevis,setSelectDevis] = useState(false)
+    const [selectDevis, setSelectDevis] = useState(false)
 
 
-    console.log('sele',selectDevis)
+    console.log('sele', selectDevis)
 
-    const {push} = useHistory()
 
     return (
         <div className="atoopro-contact">
 
+            <Helmet>
+                <title>Contactez-nous | Atoopro</title>
+                <meta name="description" content="Contenu de la page de contact" />
+            </Helmet>
 
             <Row justify='space-between' className='form-map'>
                 <Col xs={24} md={15} lg={12} className='form-contact'>
                     <div className="contact-head">
                         <FadeComponent left duration={1000}>
                             <h1>
-                                Contactez-nous
+                                {t('title')}
                             </h1>
                         </FadeComponent>
                         <FadeComponent bottom delay={300}>
@@ -99,7 +96,7 @@ const Contact = () => {
                     </Col>
                     <Col xs={24} sm={9} md={5} className='btn-postuler' style={{ textAlign: 'right' }}>
                         <FadeComponent right>
-                            <Link className='btn-link-primary' style={{ width: 150, height: 50, borderRadius: 4, fontWeight: '600 !important', fontSize: 16 }} to='/carrieres/nos-offres-demplois'>Postuler <FaIcons.FaArrowRight style={{ marginLeft: 5 }} /></Link>
+                            <Link className='btn-link-primary' style={{ width: 150, height: 50, borderRadius: 4, fontWeight: '600 !important', fontSize: 16 }} to='/carrieres/nos-metiers'>Postuler <FaIcons.FaArrowRight style={{ marginLeft: 5 }} /></Link>
                         </FadeComponent>
                     </Col>
                     <div className="divider" style={{ height: 2, width: '100%', margin: '15px 0 25px 0', background: theme === 'dark' ? '#087cad' : '#25A8E0' }}></div>
@@ -117,4 +114,4 @@ const Contact = () => {
 
 };
 
-export default Contact;
+export default withTranslation('contact')(Contact);

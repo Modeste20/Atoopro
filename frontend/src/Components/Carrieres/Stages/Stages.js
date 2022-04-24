@@ -4,11 +4,16 @@ import { FadeComponent } from '../../Shared/FadeComponent/FadeComponent'
 import ImageHomeBannerPc from './../../../File/images/home-banner-pc.svg'
 import AtooProImage from './../../../File/images/banner.jpg'
 import SectionContact from '../../Shared/SectionContact/SectionContact'
+import {Helmet} from 'react-helmet'
 import './Stages.css'
 
 const Stages = () => {
     return (
         <div className="atoopro-alternances">
+            <Helmet>
+                <title>Stages et Alternaces | Atoopro</title>
+                <meta name="description" content="Contenu de la page de stages et alternances" />
+            </Helmet>
             <div className="banner">
                 <Row gutter={[15, 30]} justify='space-between' align='center' className="banner-section">
                     <Col xs={24} md={12} lg={12} className='banner-section-content'>

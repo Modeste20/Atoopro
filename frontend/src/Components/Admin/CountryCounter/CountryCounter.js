@@ -1,4 +1,4 @@
-import { Menu } from 'antd';
+import { List, Menu } from 'antd';
 import React from 'react'
 
 const CountryCounter = ({countryArray,data}) => {
@@ -15,11 +15,11 @@ const CountryCounter = ({countryArray,data}) => {
     <div className="country_counter">
         <h2>Statistique des pays</h2>
         <div className="list">
-            <Menu>
+            <List>
                 {
-                   table.map(c => <Menu.Item key={c.country}>{c.country} <b>x{c.times}</b></Menu.Item> )
+                   table.map(c => <List.Item key={c.country}>{c.country} <b>x{c.times}</b></List.Item> )
                 }
-            </Menu>
+            </List>
         </div>
     </div>
   )

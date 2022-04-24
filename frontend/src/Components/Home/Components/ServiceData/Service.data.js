@@ -14,6 +14,7 @@ const InfogerenceContent = <p className='p'>
 const  ServiceTable = [
     {
         className:'hebergement',
+        url:'/services/hebergement',
         image:InfogerenceImage,
         title:'Hébergement',
         children:InfogerenceContent,
@@ -22,6 +23,7 @@ const  ServiceTable = [
     {
         className:'assistance',
         image:SolutionImage,
+        url:'/services/assistance',
         title:'Assistance',
         children:InfogerenceContent,
         alt:"Assistance"
@@ -29,6 +31,7 @@ const  ServiceTable = [
     {
         className:'developpement',
         image:CloudImage,
+        url:'/services/developpement',
         title:'Développement',
         children:InfogerenceContent,
         alt:"developpement"
@@ -36,6 +39,7 @@ const  ServiceTable = [
     {
         className:'communications-unifiees',
         image:InfogerenceImage,
+        url:'/services/communications-unifiees',
         title:'Communications unifiées',
         children:InfogerenceContent,
         alt:"communications-unifiees"
