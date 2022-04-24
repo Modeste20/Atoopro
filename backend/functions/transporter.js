@@ -7,10 +7,10 @@ const transport = nodemailer.createTransport(
             pass: process.env.PASSWORD*/
             type: "OAuth2",
             user: process.env.EMAIL,
-            accessToken:process.env.ACCESS_TOKEN,
-            clientId: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN
+            accessToken:process.env.ACCESSTOKEN,
+            clientId: process.env.CLIENTID,
+            clientSecret: process.env.CLIENTSECRET,
+            refreshToken: process.env.REFRESHTOKEN
         }
     }
 )

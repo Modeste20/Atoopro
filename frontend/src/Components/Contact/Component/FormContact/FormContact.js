@@ -70,7 +70,7 @@ const FormContact = ({props}) => {
         }
         console.log(formdata)
         try {
-            const res = await fetch(`http://localhost:5000/contact`, {
+            const res = await fetch(process.env.BACKEND+`contact`, {
                 method: "POST",
                 body: formdata
             });

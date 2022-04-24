@@ -39,7 +39,7 @@ Router.post('/login',(req,res) => {
                                     console.log('right!')
                                     jwt.sign({
                                         mail:value.mail
-                                      },process.env.SECRET_TOKEN, { expiresIn: '2h' },(err,token) => {
+                                      },process.env.SECRETTOKEN, { expiresIn: '2h' },(err,token) => {
                                           if(err) throw err
                                           if(token){
                                               return res.json({

@@ -27,6 +27,11 @@ const isAdmin = require("../Middleware/isAdmin");
 
 //Vérification s'il s'agit d'un admin
 
+
+Routes.get('/',(req,res) => {
+    return res.json({api:'ok'})
+})
+
 Routes.get('/isAdmin',isAdmin,function (req, res) {
   console.log('right !',req.mail)
   if(req.mail) return res.json('ok')

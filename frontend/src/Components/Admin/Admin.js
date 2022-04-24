@@ -34,7 +34,7 @@ const Admin = () => {
     useEffect(async () => {
         if (isAdmin && token) {
 
-            const { data } = await axios.get('http://localhost:5000/verify-cv', {
+            const { data } = await axios.get(process.env.BACKEND+'verify-cv', {
                 headers: {
                     token: token
                 }
@@ -53,7 +53,7 @@ const Admin = () => {
 
             setLoading(true)
 
-            const { data } = await axios.get('http://localhost:5000/visitor', {
+            const { data } = await axios.get(process.env.BACKEND+'visitor', {
                 headers: {
                     token: token
                 }
@@ -75,7 +75,7 @@ const Admin = () => {
     const deleteCVFolder = async (e) => {
         e.preventDefault();
         if (token && isAdmin) {
-            const res = await fetch('http://localhost:5000/cv', {
+            const res = await fetch(process.env.BACKEND+'cv', {
                 method: 'delete',
                 headers: {
                     token: token
