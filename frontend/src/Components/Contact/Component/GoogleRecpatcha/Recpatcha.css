@@ -1,9 +1,9 @@
 body.body-dark .recaptcha , body.body-dark .recaptcha svg{
-    color:#d2d7da;
+    color:#f0e8f6d0;
 }
 
 body.body-dark .recaptcha .ant-radio-group label {
-    border: 2px solid #d2d7da !important;
+    border: 2px solid #f0e8f6d0 !important;
     border-radius:5px
 }
 

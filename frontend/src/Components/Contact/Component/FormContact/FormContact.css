@@ -1,3 +1,4 @@
-body.body-dark .atoopro-contact .checkbox label{
-    color:#d2d7da !important;
+body.body-dark .atoopro-contact .checkbox label,
+body.body-dark .atoopro-contact .ant-radio-group .ant-radio-wrapper{
+    color:#f0e8f6d0 !important;
 }

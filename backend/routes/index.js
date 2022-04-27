@@ -37,7 +37,7 @@ Routes.get('/isAdmin',isAdmin,function (req, res) {
   if(req.mail) return res.json('ok')
 });
 
-//Gestiond de la route pour l'envoi des messages de contactes
+//Gestiond de la route pour l'envoi des messages de contact
 
 Routes.get('/verify-cv',isAdmin,(req,res) => {
     const directory = './File/CV';
@@ -81,6 +81,15 @@ Routes.post('/contact',multerConfig.single('file'),(req,res) => {
         if(!validator.isMobilePhone(req.body.tel)){
             return res.json({error:'Numero de téléphone invalide'})
         } else{
+            console.log('right !',value)
+            if(value.status !== 'emploi'){
+                delete value.file
+                if(req.file){
+                    deleteFile(req.file.filename)
+                }
+            } else{
+                delete value.societe
+            }
             /*
                 S'il es nécessaire de stocker les informations dans une bd
                 const date = new Date();
@@ -109,60 +118,6 @@ Routes.post('/contact',multerConfig.single('file'),(req,res) => {
             } else{
                 sendMail(value,req.file,res)
             }
-
-            //Send Mail
-
-                /*const transport = nodemailer.createTransport(
-                        {
-                            service: 'gmail',
-                            auth: {
-                            user: process.env.EMAIL,
-                            pass: process.env.PASSWORD
-                            }
-                        }
-                )
-
-                const mailConfigurations = {
-        
-                    // It should be a string of sender email
-                    from:`${value.name} <${value.email}>` ,
-                    
-                    // Comma Separated list of mails
-                    to: process.env.EMAIL,
-                
-                    // Subject of Email
-                    subject: "Message de contact depuis atoopro.fr",
-
-                    attachments:req.file ? [
-                        {   
-                            path: './backend/File/CV/'+req.file.filename
-                        },
-                    ] : null,
-                    
-                    // This would be the text of email body
-                    html: `<h1 style='color:#365561'>${'Contenu du message'}</h1>
-                    <p style='font-size:18px'>${value.message}<br /> <br />
-                    Par <b style='color:#365561'>${value.name} </b> , <span style='color:#25A8E0'> ${value.email} </span> ${value.societe ? 'de la société <b style="color:#365561">' + value.societe +'</b>' : ''}</h4>
-                    </p>
-                    `
-                };
-
-                console.log(process.env.EMAIL)
-
-                transport.sendMail(mailConfigurations, function(error, info){
-                    if (error) throw Error(error);
-                    console.log('Email Sent Successfully');
-                    console.log(info);
-                    if(info.messageId && info.accepted.includes(process.env.EMAIL)){
-                        if(req.file && req.file.filename){
-                            fs.unlink('./backend/File/CV/'+req.file.filename,(err) => {
-                                if(err) return res.json({error:true})
-                                return res.json({error:false})
-                            })
-                        }
-                        return res.json({error:false})
-                    }
-                });*/
         }
     }
 })

@@ -71,7 +71,7 @@ const Header = () => {
 
     /*useEffect(() => {
         setClassName(() => ['/','/atoopro'].indexOf(pathname) !==-1 ? 'header--white' : '')
-        setColorLangLink(() => ['/','/atoopro'].indexOf(pathname) !== -1 ? '#d2d7da' : '' )
+        setColorLangLink(() => ['/','/atoopro'].indexOf(pathname) !== -1 ? '#f0e8f6d0' : '' )
     },[pathname])*/
 
     return (

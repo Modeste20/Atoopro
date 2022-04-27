@@ -23,7 +23,7 @@ const App = () => {
         const { data } = await axios.get('http://ip-api.com/json/?fields=query,country')
 
         if (data && data.country && data.query) {
-            const res = axios.post(process.env.BACKEND+'visitor', {
+            const res = axios.post('http://localhost:5000/'+'visitor', {
                 ip: data.query,
                 country: data.country
             })

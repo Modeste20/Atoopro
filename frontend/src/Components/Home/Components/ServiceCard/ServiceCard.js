@@ -1,6 +1,5 @@
 import { Col } from 'antd'
 import React from 'react'
-import Fade from 'react-reveal/Fade'
 import { Link } from 'react-router-dom'
 import { FadeComponent } from '../../../Shared/FadeComponent/FadeComponent'
 import './ServiceCard.css'

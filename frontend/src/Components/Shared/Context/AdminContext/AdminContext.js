@@ -13,7 +13,7 @@ export const AdminProvider = ({children}) => {
     useEffect(async () => {
         try{
             if(token){
-                const res = await fetch(process.env.BACKEND+'isAdmin',{
+                const res = await fetch('http://localhost:5000/'+'isAdmin',{
                     method:'get',
                     headers:{
                         'token':token

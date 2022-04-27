@@ -4,6 +4,13 @@
     margin:15px auto !important
 }
 
+.metier-card .card-content{
+    font-weight:500 !important;
+    font-size:14px !important;
+    font-style: normal;
+    color: #051124f3 !important;
+}
+
 .metier-card .ant-card{
     background-color: transparent !important;
 }

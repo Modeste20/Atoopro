@@ -1,4 +1,4 @@
-import { Alert, Button, Checkbox, Col, Form, Input, Row, Select } from 'antd';
+import { Alert, Button, Checkbox, Col, Form, Input, Radio, Row, Select } from 'antd';
 import React, { useCallback, useMemo } from 'react';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
@@ -32,6 +32,9 @@ const FormContact = ({props}) => {
     const [checked, setChecked] = useState(false)
     const [selectValue, setSelectValue] = useState('')
 
+    //Gestion du status radio
+    const [statut,setStatut] = useState('entreprise')
+
     //Loading
 
     const [loading,setLoading] = useState(false)
@@ -61,6 +64,17 @@ const FormContact = ({props}) => {
         setSuccess(false)
         delete values.check;
         delete values.recpatcha;
+        if(values.status === undefined){
+            values.status = 'entreprise'
+        }
+        console.log('values',values)
+        if(values.status !== 'emploi'){
+            //Supprimer la valeur du champ file lorsque l'utilisateur ne cherche pas un emploi
+            delete values.file
+        }else{
+            //Supprimer la valeur du champ societe lorsque l'utilisateur cherche pas un emploi
+            delete values.societe
+        }
         setLoading(true)
         const formElement = document.querySelector('.atoopro-contact form.contact-form')
         console.log('Success:', values);
@@ -70,7 +84,7 @@ const FormContact = ({props}) => {
         }
         console.log(formdata)
         try {
-            const res = await fetch(process.env.BACKEND+`contact`, {
+            const res = await fetch('http://localhost:5000/'+`contact`, {
                 method: "POST",
                 body: formdata
             });
@@ -147,8 +161,6 @@ const FormContact = ({props}) => {
         }
     }, [search])
 
-    console.log('objet', objet)
-
     return (
         <Form
             name="contact-form"
@@ -172,15 +184,57 @@ const FormContact = ({props}) => {
             }
             <FadeComponent right distance='10px'>
                 <Row justify='space-between' style={{ margin: error || success ? '25px 0' : '12px 0' }}>
+                <Col>
+                    <Form.Item
+                        name='status'
+                        rules={[({ }) => ({
+                                validator(_, value) {
+                                    console.log('tel', value)
+
+                                    setStatut(value)
+
+                                    if(value === 'entreprise' && form.getFieldValue('objet') === 'cv'){
+                                        form.setFieldsValue({objet:'demo1'})
+                                        setSelectValue('demo1')
+                                    }
+                                    
+                                        if(value && !['emploi','entreprise'].includes(value)){
+                                            return Promise.reject("Veuillez choisir l'un des statuts proposés")
+                                        } else{
+                                            return Promise.resolve()
+                                        }
+                                }
+                            })]}
+                    >
+                        <Radio.Group defaultValue={'entreprise'}>
+                            <Radio value='entreprise'>Avez-vous une entreprise ?</Radio>
+                            <Radio style={{margin:'15px 0 0 0'}} value='emploi'>Recherchez-vous un emploi ?</Radio>
+                        </Radio.Group>
+                    </Form.Item>
+                </Col>
                     <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
                             name="name"
-                            rules={[{ required: true, message: 'Veuillez entrer votre nom !' }]}
+                            rules={[({ }) => ({
+                                validator(_, value) {
+                                    console.log('name', form.getFieldValue('status'))
+                                    if (!value) {
+                                        return Promise.reject('Veuillez entrer votre nom')
+                                    } else {
+                                        if(value.toString().match(/^[0-9]/)){
+                                            return Promise.reject(' Votre nom doit commencer par une lettre ')
+                                        } else{
+                                            return Promise.resolve()
+                                        }
+                                    }
+                                }
+                            })]}
                         >
                             <Input placeholder='Votre nom' />
                         </Form.Item>
                     </Col>
-                    <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
+                    {
+                        statut === 'entreprise' && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
                             name="societe"
                             rules={[{ required: true, message: 'Veuillez entrer votre nom de société !' }]}
@@ -188,6 +242,8 @@ const FormContact = ({props}) => {
                             <Input placeholder='Votre société' />
                         </Form.Item>
                     </Col>
+                    }
+                    
                 </Row>
 
                 <Row justify='space-between' style={{ margin: '12px 0' }}>
@@ -217,7 +273,7 @@ const FormContact = ({props}) => {
                                 }
                             })]}
                         >
-                            <Input type='tel' placeholder='Votre numero de téléphone' />
+                            <Input type='tel' placeholder='Tel (+XXXXXXXXX)' />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -227,13 +283,15 @@ const FormContact = ({props}) => {
                             <Select placeholder='Veuillez sélectionner une option' value={selectValue} onChange={(value) => setSelectValue(value)} className='select-objet'>
                                 <Select.Option value="demo1">Demo</Select.Option>
                                 <Select.Option value="devis">Obtenez un devis</Select.Option>
-                                <Select.Option value="cv">Déposez votre CV</Select.Option>
+                                {
+                                    statut === 'emploi' ? <Select.Option value="cv">Déposez votre CV</Select.Option> : null
+                                }
                                 <Select.Option value="demo">Demo 345</Select.Option>
                             </Select>
                         </Form.Item>
                     </Col>
                     {
-                        selectValue === 'cv' && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }} >
+                        selectValue === 'cv' && statut === 'emploi' && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }} >
                             <Form.Item name={'file'} rules={[({ }) => ({
                                 validator(_, value) {
                                     console.log('tel', value)

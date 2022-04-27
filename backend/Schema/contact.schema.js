@@ -8,7 +8,8 @@ const contactSchema = joi.object({
     objet:joi.string().valid('cv','demo1','devis'),
     file:joi.string(),
     message:joi.string().required(),
-    date:joi.date()
+    date:joi.date(),
+    status:joi.string().valid('entreprise','emploi')
 })
 
 module.exports = contactSchema;

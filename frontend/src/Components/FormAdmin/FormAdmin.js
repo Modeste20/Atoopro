@@ -6,7 +6,7 @@ import { useForm } from 'antd/lib/form/Form';
 const inscriptionFetch = async (values,setError,setLoading,form) => {
 
     try {
-        const res = await fetch(process.env.BACKEND+'users',{
+        const res = await fetch('http://localhost:5000/'+'users',{
             method:'post',
             body:JSON.stringify(values),
             headers:{
@@ -56,7 +56,7 @@ const inscriptionFetch = async (values,setError,setLoading,form) => {
 const ConnexionFetch = async (values,setError,setLoading)=>{
 
     try {
-        const res = await fetch(process.env.BACKEND+'/users/login',{
+        const res = await fetch('http://localhost:5000'+'/users/login',{
             method:'post',
             body:JSON.stringify(values),
             headers:{

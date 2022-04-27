@@ -3,30 +3,30 @@
 }
 
 body.body-dark .admin .panel-admin h5{
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }
 
 body.body-dark .admin .ant-table,body.body-dark .admin .ant-table table thead{
     background-color:  transparent !important;
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }
 
 
 body.body-dark .admin .ant-table .ant-table-cell.ant-table-cell-row-hover{
     background-color:  transparent !important;
-    color:#d2d7da !important;
-    border-color:#d2d7da !important
+    color:#f0e8f6d0 !important;
+    border-color:#f0e8f6d0 !important
 }
 
 body.body-dark .admin .ant-table .ant-table-row{
-    border-bottom: 2px solid #d2d7da !important;
+    border-bottom: 2px solid #f0e8f6d0 !important;
 }
 
 body.body-dark .admin .country_counter *,body.body-dark .admin .ant-tabs-tab h3,body.body-dark .admin .ant-table-pagination li{
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }
 
 body.body-dark .admin .ant-table-pagination *{
     background-color:  transparent !important;
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }

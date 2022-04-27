@@ -12,7 +12,7 @@ footer {
 }
 
 body.body-dark footer h3,body.body-dark footer .ant-menu,body.body-dark footer .ant-menu a:not(.link),body.body-dark footer a:not(.link){
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }
 
 
@@ -142,7 +142,7 @@ footer .copyright-and-others .links-footer-atoopro ul li:last-child .top{
     width:40px;
     height:40px;
     background-color: #020f25d0;
-    color:#d2d7da;
+    color:#f0e8f6d0;
     border-radius:50%;
     cursor:pointer;
 
@@ -159,7 +159,7 @@ footer .copyright-and-others .links-footer-atoopro ul li:last-child .top.visible
 
 body.body-dark footer .copyright-and-others .links-footer-atoopro ul li:last-child .top{
     color: #020f25ec;
-    background-color:#d2d7da;
+    background-color:#f0e8f6d0;
 }
 body.body-dark footer .copyright-and-others .links-footer-atoopro a:hover ,footer .copyright-and-others .links-footer-atoopro a:hover{
     color: var(--link-primary) !important;

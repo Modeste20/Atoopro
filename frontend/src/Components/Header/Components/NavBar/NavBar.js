@@ -77,7 +77,7 @@ const NavBar = () => {
                 <div className="bars" onClick={showDrawer}>
                     <FaBars className='fa-bars' />
                 </div>
-                <Drawer width={mobile ? '100%' : 300}  headerStyle={{background:theme === 'dark' && '#1A202C',color:theme === 'dark' && '#d2d7da !important'}} bodyStyle={
+                <Drawer width={mobile ? '100%' : 300}  headerStyle={{background:theme === 'dark' && '#1A202C',color:theme === 'dark' && '#f0e8f6d0 !important'}} bodyStyle={
                     {
                         background:theme === 'dark' && '#1A202C',
                         color:theme === 'dark' && 'red'

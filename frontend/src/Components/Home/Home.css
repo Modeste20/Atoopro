@@ -4,7 +4,7 @@ body.body-dark .atoopro-home h2.section-title , .atoopro-home h2.section-title{
 }
 
 body.body-dark .atoopro-home h2.section-title{
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }
 
 .atoopro-home h2.section-title.faq-title{
@@ -13,13 +13,18 @@ body.body-dark .atoopro-home h2.section-title{
 .atoopro-home .banner-home .banner-text{
     padding-top:10px !important;
     padding-bottom: 0 !important;
-    /*color:#d2d7da !important;*/
+    /*color:#f0e8f6d0 !important;*/
+}
+
+.atoopro-home .banner-home .banner-text h1{
+    margin-top:15px;
 }
 
 .atoopro-home .banner-home{
     background-size: cover;
     position: relative;
     padding-bottom:70px;
+    padding-top:30px;
 }
 
 .atoopro-home{
@@ -38,6 +43,10 @@ body.body-dark .atoopro-home h2.section-title{
 .atoopro-home .banner-home .banner-image .img img{
     display: block;
     animation: imageAnimation 2s infinite ease-in-out alternate-reverse;
+}
+
+.atoopro-home .banner-home .banner-image{
+    align-self:flex-start !important
 }
 
 .atoopro-home{
@@ -97,6 +106,10 @@ body.body-dark .atoopro-home h2.section-title{
     position:relative
 }
 
+body.body-dark .atoopro-home .faq *{
+    color:#f0e8f6ff !important;
+}
+
 .atoopro-home .faq .svg{
     position:absolute;
     width:350px;
@@ -135,7 +148,7 @@ body.body-dark .atoopro-home h2.section-title{
 }
 
 body.body-dark .atoopro-home .faq *{
-    color:#d2d7da !important;
+    color:#f0e8f6d0 !important;
 }
 
 @media all and (max-width:430px){
@@ -191,7 +204,7 @@ body.body-dark .atoopro-home .faq *{
 }
 
 body.body-dark .atoopro-home .partenaires h2{
-    color: #d2d7da !important;
+    color: #f0e8f6d0 !important;
 }
 
 .atoopro-home .partenaires {
