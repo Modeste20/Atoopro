@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import React, { useContext, useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
-import { Link, useHistory } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { ThemeContext } from '../Shared/Context/ThemeContext/ThemeContext';
 import { FadeComponent, } from '../Shared/FadeComponent/FadeComponent';
 import FormContact from './Component/FormContact/FormContact';
@@ -13,6 +13,8 @@ import './Contact.css'
 
 
 const Contact = ({t}) => {
+
+    //Récupérer le thème courant
 
     const { theme } = useContext(ThemeContext)
 
@@ -42,49 +44,16 @@ const Contact = ({t}) => {
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam deleniti eveniet iusto omnis, veritatis placeat doloremque vero autem vitae tenetur nemo ad quisquam aliquam excepturi suscipit cumque, laudantium unde pariatur?</p>
                         </FadeComponent>
                     </div>
+                    {/* Form contact */}
                     <FormContact selectDevis={selectDevis} />
                 </Col>
+                {/* Map */}
                 <Col xs={24} md={9} lg={12} className='map' id='google-map'>
-                    <Map /*location={location} zoomLevel={17}*/ />
+                    <Map />
                 </Col>
             </Row>
 
-            {/*<Row align='space-between' className='others-contact-infos'>
-                <Col xs={24} sm={8} className='other-info'>
-                    <div className="icns">
-                        <FaIcons.FaMapMarker className='map-icn icn' />
-                    </div>
-                    <div className="content-icns">
-                        <span className='adress'>198 West 21th Street, Suite 721 New York NY 10016</span>
-                    </div>
-                </Col>
-
-                <Col xs={24} sm={8} className='other-info'>
-                    <div className="icns">
-                        <FaIcons.FaPhone className='phone-icn icn' />
-                    </div>
-                    <div className="content-icns">
-                        <span className='adress'>
-                            <a href='tel:+33 1258755' className='link' style={{ fontFamily: 'Lato' }}>+33 125875548 </a>
-                        </span>
-                    </div>
-                </Col>
-
-                <Col xs={24} sm={8} className='other-info'>
-                    <div className="icns">
-                        <FaIcons.FaEnvelope className='mail-icn icn' />
-                    </div>
-                    <div className="content-icns">
-                        <span className='adress'>
-                            <a href='mailto:jojomodeste52@gmail.com' className='link'>Jojomodeste52@gmail.com</a>
-                        </span>
-                    </div>
-                </Col>
-
-            </Row>*/}
-
-
-            <div className="recrutement">
+            <section className="recrutement">
                 <FadeComponent top>
                     <h3 >RECRUTEMENT</h3>
                 </FadeComponent>
@@ -106,7 +75,7 @@ const Contact = ({t}) => {
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed fugit vel placeat perspiciatis tenetur quam ab id, dolorem, impedit amet ex nihil laboriosam pariatur expedita, obcaecati quisquam magni consectetur beatae.</p>
                     </FadeComponent>
                 </Col>
-            </div>
+            </section>
 
 
         </div>

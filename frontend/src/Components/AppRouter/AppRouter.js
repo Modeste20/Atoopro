@@ -12,31 +12,47 @@ import Admin from '../Admin/Admin'
 
 const AppRouter = () => {
 
+    //Savoir si le visiteur courant est un administrateur
+
     const isAdmin = useContext(AdminContext)
 
     console.log('isadmin',isAdmin)
 
     return (
         <Switch>
+            {/* Page d'accueil */}
             <Route path='/' exact>
                 <Home />
             </Route>
 
+            {/* Page de contact */}
             <Route path='/contactez-nous'>
                 <Contact />
             </Route>
+
+
+            {/* Page des services */}
 
             <Route path='/services'>
                 <Services />
             </Route>
 
+
+            {/* Page de carrières */}
+
             <Route path='/carrieres'>
                 <Carrieres />
             </Route>
 
+
+            {/* Page de l'entreprise*/}
+
             <Route path='/qui-sommes-nous'>
                 <AtooproEntreprise />
             </Route>
+
+
+            {/* Page de l'administrateur (si le visiteur courant l'est) */}
 
             <Route path='/admin'>
                 {
@@ -44,6 +60,9 @@ const AppRouter = () => {
                 }
                 
             </Route>
+
+
+            {/* Page 404 */}
 
             <Route path='*'>
                 <Page404 />

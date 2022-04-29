@@ -91,6 +91,10 @@ const ConnexionFetch = async (values,setError,setLoading)=>{
     }
 }
 
+//inscription = false : connexion form
+//inscription = truee : inscriptionion form
+
+
 const FormAdmin = ({ inscription }) => {
 
     const [form] = useForm()

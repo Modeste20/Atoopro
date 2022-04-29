@@ -34,7 +34,7 @@ const mailConfigurations = {
 console.log(process.env.EMAIL)
 
 transport.sendMail(mailConfigurations, function(error, info){
-    if (error) throw Error(error);
+    if (error) res.json({error:'error'});
 
     console.log('Email Sent Successfully');
     console.log(info);

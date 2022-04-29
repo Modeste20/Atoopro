@@ -7,8 +7,20 @@ import { FadeComponent } from '../../../Shared/FadeComponent/FadeComponent';
 import Recpatcha from '../GoogleRecpatcha/recpatcha';
 import { ThemeContext } from './../../../Shared/Context/ThemeContext/ThemeContext'
 import queryString from 'query-string'
-import validator from 'validator'
+import { withTranslation } from 'react-i18next';
 import './FormContact.css'
+
+//Les différentes erreures possibles dans le formulaire de contact à utiliser si la traduction n'a pas pu être faite
+
+const errorDefault = {
+    form: 'Veuillez bien remplir le formulaire de contact',
+    numero: 'Numero de téléphone invalide',
+    pdf: 'Veuillez télécharger un fichier pdf',
+    'size-file': 'La taille maximale de votre document pdf doit être inférieure 10Mo',
+    error: " Une erreur s'est produite , veuillez réessayer ultérieurement "
+}
+
+/* Données du recpatcha */
 
 const recaptchaData = [{
     key: 'key',
@@ -24,22 +36,59 @@ const recaptchaData = [{
 },
 ]
 
-const FormContact = ({props}) => {
+/* Composant formulaire de contact */
+
+const FormContact = ({ t }) => {
+
+    //Changer le radio du recpatcha
+
+    const changeRecpatchaRadio = (e) => {
+        setValue(e.target.value)
+        if (key && e.target.value === recaptchaData[key]['label']) {
+            setReloadRecpatchakey(true)
+        }
+    }
+
+    //Actualiser la clé de recpatcha après 10sec lorsque le visiteur a bien choisi le recpatcha
 
 
+    const [reloadRecpatchakey, setReloadRecpatchakey] = useState(false)
+
+    useEffect(() => {
+        if (reloadRecpatchakey) {
+            console.log('key1')
+            setTimeout(() => {
+                setKey(() => Math.round(Math.random() * 2))
+                setReloadRecpatchakey(false)
+            }, 10000)
+        }
+    }, [reloadRecpatchakey])
+
+    // States 
+
+    //Valeur du champ radio choisi pour le recaptcha
     const [value, setValue] = useState('')
+
+    //La clé pour changer si nécessaire l'élément à choir par l'utilisateur au niveau du recptacha
     const [key, setKey] = useState(null)
+
+    //valeur du checkbox du formulaire
     const [checked, setChecked] = useState(false)
+
+    //Valeur du select : objet du message de l'utilisateur
     const [selectValue, setSelectValue] = useState('')
 
+
     //Gestion du status radio
-    const [statut,setStatut] = useState('entreprise')
+    const [statut, setStatut] = useState('entreprise')
 
     //Loading
 
-    const [loading,setLoading] = useState(false)
-    const [error,setError] = useState(null)
-    const [success,setSuccess] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    //Etat pour les erreures lors de la requête asynchrone de l'envoi des infos sur le serveur
+    const [error, setError] = useState(null)
+    const [success, setSuccess] = useState(false)
 
 
     //form
@@ -48,93 +97,111 @@ const FormContact = ({props}) => {
 
 
 
-
+    //Onchange pour le checkbox
     const changeCheckbox = (e) => {
         setChecked(e.target.checked)
     }
 
 
+    //Une clé aléatoire lorsque le composant est monté : pour le recaptcha
     useEffect(() => {
         setKey(() => Math.round(Math.random() * 2))
         return () => setKey(null)
     }, [])
 
 
+    //Soumission du formulaire 
     const onFinish = async (values) => {
         setSuccess(false)
         delete values.check;
         delete values.recpatcha;
-        if(values.status === undefined){
+
+        //Si l'utilisateur est en recherche d'emploi pas besoin d'entrer le nom de société
+        //Si l'utilisateur a une entreprise pas besoin de choisir un cv
+
+        if (values.status === undefined) {
             values.status = 'entreprise'
         }
-        console.log('values',values)
-        if(values.status !== 'emploi'){
+        console.log('values', values)
+        if (values.status !== 'emploi') {
             //Supprimer la valeur du champ file lorsque l'utilisateur ne cherche pas un emploi
             delete values.file
-        }else{
+        } else {
             //Supprimer la valeur du champ societe lorsque l'utilisateur cherche pas un emploi
             delete values.societe
         }
+
+        //Lancer le chargement
         setLoading(true)
+
+        //Utilisation de formdata parcequ'il y a possibilité d'envoi de fichier sur le serveur
         const formElement = document.querySelector('.atoopro-contact form.contact-form')
         console.log('Success:', values);
-        const formdata =new FormData(formElement)
-        for (const i in values){
-            formdata.append(i,values[i])
+        const formdata = new FormData(formElement)
+        for (const i in values) {
+            formdata.append(i, values[i])
         }
         console.log(formdata)
         try {
-            const res = await fetch('http://localhost:5000/'+`contact`, {
+            //Envoi de la requête sur le serveur
+            const res = await fetch('http://localhost:5000/' + `contact`, {
                 method: "POST",
                 body: formdata
             });
             const data = await res.json()
+
             setLoading(false)
-            console.log('data',data)
-            if(data.error){
-                window.scrollTo(0,0)
+            console.log('data', data)
+            if (data.error) {
+                //S'il y a une erreure on retourne l'erreur dans l'état des erreurs
+                setStatut(values.status)
+                window.scrollTo(0, 0)
                 setError(data.error)
-            } else{
-                window.scrollTo(0,0)
+            } else {
+                //Si tout s'est bien passé lors de l'envoi du message
+                window.scrollTo(0, 0)
                 setSuccess(true)
                 const elmt = document.querySelector('.recaptcha .ant-radio-group .ant-radio-button-wrapper-checked')
-                if(elmt){
+                if (elmt) {
                     elmt.classList.remove('ant-radio-button-wrapper-checked')
                 }
-                setKey(() => Math.round(Math.random() * 2))
+
+                //Réinitialiser les informations du formulaire
                 setValue('')
                 setChecked(false)
                 setSelectValue('demo1')
                 form.setFieldsValue({
-                    name:'',
-                    societe:'',
-                    email:'',
-                    tel:'',
-                    message:'',
-                    objet:'demo1',
-                    file:'',
-                  });
+                    name: '',
+                    status: 'entreprise',
+                    societe: '',
+                    email: '',
+                    tel: '',
+                    message: '',
+                    objet: 'demo1',
+                    file: '',
+                });
             }
-        } catch(error){
-            console.log(error,error.message)
+        } catch (error) {
+            console.log(error, error.message)
             setLoading(false)
-            window.scrollTo(0,0)
+            window.scrollTo(0, 0)
             setKey(() => Math.round(Math.random() * 2))
-            setError(" Une erreur s'est produite , veuillez réessayer ultérieurement ")
+            setError('error')
         }
-        
+
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
+    //Courant thème
+
     const { theme } = useContext(ThemeContext)
 
-    //dynamic select value
+    //dynamic select value lorsqu'on a options=devis
 
     const { search } = useLocation()
-
 
 
     useEffect(() => {
@@ -170,48 +237,55 @@ const FormContact = ({props}) => {
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
             autoComplete="on"
-            enctype="multipart/form-data"
+            encType="multipart/form-data"
             className='contact-form'
             form={form}
             id={(theme === 'light' ? 'form-contact-light' : 'form-contact-dark')}
             style={{ marginTop: 35 }}
         >
             {
-              !success &&  error && <Alert style={{marginBottom:"10px !important"}} message={error} type="error" />
+                /* Message d'erreur et de succès */
             }
             {
-                success && <Alert style={{marginBottom:"10px !important"}} message={"Votre message a été envoyé avec succès"} type="success" />
+                !success && error && <Alert style={{ marginBottom: "10px !important" }} message={t('error.' + error, errorDefault[error])} type="error" />
+            }
+            {
+                success && <Alert style={{ marginBottom: "10px !important" }} message={"Votre message a été envoyé avec succès"} type="success" />
             }
             <FadeComponent right distance='10px'>
                 <Row justify='space-between' style={{ margin: error || success ? '25px 0' : '12px 0' }}>
-                <Col>
-                    <Form.Item
-                        name='status'
-                        rules={[({ }) => ({
+                    <Col>
+
+                    {/* Status du visiteur , recherche d'emploi ou a une entreprise */}
+                        <Form.Item
+                            name='status'
+                            rules={[({ }) => ({
                                 validator(_, value) {
                                     console.log('tel', value)
 
                                     setStatut(value)
 
-                                    if(value === 'entreprise' && form.getFieldValue('objet') === 'cv'){
-                                        form.setFieldsValue({objet:'demo1'})
+                                    if (value === 'entreprise' && form.getFieldValue('objet') === 'cv') {
+                                        form.setFieldsValue({ objet: 'demo1' })
                                         setSelectValue('demo1')
                                     }
-                                    
-                                        if(value && !['emploi','entreprise'].includes(value)){
-                                            return Promise.reject("Veuillez choisir l'un des statuts proposés")
-                                        } else{
-                                            return Promise.resolve()
-                                        }
+
+                                    if (value && !['emploi', 'entreprise'].includes(value)) {
+                                        return Promise.reject("Veuillez choisir l'un des statuts proposés")
+                                    } else {
+                                        return Promise.resolve()
+                                    }
                                 }
                             })]}
-                    >
-                        <Radio.Group defaultValue={'entreprise'}>
-                            <Radio value='entreprise'>Avez-vous une entreprise ?</Radio>
-                            <Radio style={{margin:'15px 0 0 0'}} value='emploi'>Recherchez-vous un emploi ?</Radio>
-                        </Radio.Group>
-                    </Form.Item>
-                </Col>
+                        >
+                            <Radio.Group defaultValue={'entreprise'}>
+                                <Radio value='entreprise'>Avez-vous une entreprise ?</Radio>
+                                <Radio style={{ margin: '15px 0 0 0' }} value='emploi'>Recherchez-vous un emploi ?</Radio>
+                            </Radio.Group>
+                        </Form.Item>
+                    </Col>
+
+                    {/* Nom de l'utilisateur */}
                     <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
                             name="name"
@@ -221,9 +295,9 @@ const FormContact = ({props}) => {
                                     if (!value) {
                                         return Promise.reject('Veuillez entrer votre nom')
                                     } else {
-                                        if(value.toString().match(/^[0-9]/)){
+                                        if (value.toString().match(/^[0-9]/)) {
                                             return Promise.reject(' Votre nom doit commencer par une lettre ')
-                                        } else{
+                                        } else {
                                             return Promise.resolve()
                                         }
                                     }
@@ -233,19 +307,25 @@ const FormContact = ({props}) => {
                             <Input placeholder='Votre nom' />
                         </Form.Item>
                     </Col>
+
+                    {/* Societe si le visiteur travaille dans une entreprise */}
                     {
                         statut === 'entreprise' && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
-                        <Form.Item
-                            name="societe"
-                            rules={[{ required: true, message: 'Veuillez entrer votre nom de société !' }]}
-                        >
-                            <Input placeholder='Votre société' />
-                        </Form.Item>
-                    </Col>
+                            <Form.Item
+                                name="societe"
+                                rules={[{ required: true, message: 'Veuillez entrer votre nom de société !' }]}
+                            >
+                                <Input placeholder='Votre société' />
+                            </Form.Item>
+                        </Col>
                     }
-                    
+
                 </Row>
 
+
+{
+    /* Email et téléphone champ */
+}
                 <Row justify='space-between' style={{ margin: '12px 0' }}>
                     <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
@@ -264,19 +344,26 @@ const FormContact = ({props}) => {
                                     if (!value) {
                                         return Promise.reject('Veuillez entrer votre numero de téléphone')
                                     } else {
-                                        if(!validator.isMobilePhone(value)){
+                                        if (!value.match(/^\+[0-9]{1,4} [0-9]{6,10}$/)) {
                                             return Promise.reject('Numero de téléphone invalide')
-                                        } else{
+                                        } else {
+                                            if (isNaN(value.replace('+', '').replace(' ', ''))) {
+                                                return Promise.reject('Numero de téléphone invalide')
+                                            }
                                             return Promise.resolve()
                                         }
                                     }
                                 }
                             })]}
                         >
-                            <Input type='tel' placeholder='Tel (+XXXXXXXXX)' />
+                            <Input type='tel' placeholder='Tel (+xxxx xxxxxxx)' />
                         </Form.Item>
                     </Col>
                 </Row>
+
+                {
+                    /* Objet du message et téléchargement de cv s'il s'agit d'un visiteur en quête d'emploi */
+                }
                 <Row style={{ margin: '12px 0' }}>
                     <Col xs={24} sm={selectValue === 'cv' ? 12 : 24} lg={24} xl={selectValue === 'cv' ? 12 : 24} style={{ padding: '0 5px' }} >
                         <Form.Item name={'objet'} rules={[{ required: true, message: "Quel est l'objet de votre message ?" }]}>
@@ -298,9 +385,9 @@ const FormContact = ({props}) => {
                                     if (!value) {
                                         return Promise.reject(' Veuillez télécharger un document pdf ')
                                     } else {
-                                        if(!value.trim().endsWith('.pdf')){
+                                        if (!value.trim().endsWith('.pdf')) {
                                             return Promise.reject(' Veuillez télécharger un document pdf ')
-                                        } else{
+                                        } else {
                                             return Promise.resolve()
                                         }
                                     }
@@ -312,6 +399,9 @@ const FormContact = ({props}) => {
                     }
                 </Row>
 
+{
+    /* Textarea et button de soumission du formulaire */
+}
                 <Row style={{ margin: '12px 0' }}>
                     <Col xs={24} sm={24} lg={24} xl={24} style={{ padding: '0 5px' }} >
                         <Form.Item name={'message'} rules={[{ required: true, message: "Veuillez entrer votre message !" }]}>
@@ -337,6 +427,8 @@ const FormContact = ({props}) => {
                 </Form.Item>
             </FadeComponent>
 
+            {/* Gestion du recpatcha */}
+
             <FadeComponent right>
                 <Form.Item
                     style={{ marginTop: 8 }}
@@ -346,14 +438,15 @@ const FormContact = ({props}) => {
                             validator(_) {
                                 console.log(value)
                                 if (!value) {
-                                    setKey(() => Math.round(Math.random() * 2))
+                                    setReloadRecpatchakey(false)
                                     return Promise.reject('Recpatha error')
                                 } else {
                                     if (value !== recaptchaData[key]['key']) {
+                                        setReloadRecpatchakey(false)
                                         setKey(() => Math.round(Math.random() * 2))
                                         return Promise.reject('Recpatha error')
                                     } else {
-                                        setKey(() => Math.round(Math.random() * 2))
+                                        setReloadRecpatchakey(true)
                                         return Promise.resolve()
                                     }
                                 }
@@ -361,16 +454,16 @@ const FormContact = ({props}) => {
                         })
                     ]}
                 >
-                    <Recpatcha setValue={setValue} value={value} elmt={key ? recaptchaData[key]['label'] : recaptchaData[Math.round(Math.random() * 2)]['label']} />
+                    <Recpatcha onChange={changeRecpatchaRadio} value={value} elmt={key ? recaptchaData[key]['label'] : recaptchaData[Math.round(Math.random() * 2)]['label']} />
                 </Form.Item>
             </FadeComponent>
 
             <FadeComponent left delay={200}>
                 <Form.Item wrapperCol={{ span: 10 }}>
-                    <Button type="primary" htmlType="submit" style={{ margin: '15px 0', width: 130, height: 40 , pointerEvents:loading ? 'none' : '' }}>
-                    {
-                        loading ? 'Loading ...' : 'Envoyer'
-                    }
+                    <Button type="primary" htmlType="submit" style={{ margin: '15px 0', width: 130, height: 40, pointerEvents: loading ? 'none' : '' }}>
+                        {
+                            loading ? 'Patienter ...' : 'Envoyer'
+                        }
                     </Button>
                 </Form.Item>
             </FadeComponent>
@@ -379,4 +472,4 @@ const FormContact = ({props}) => {
     )
 };
 
-export default FormContact;
+export default withTranslation('contact')(FormContact);

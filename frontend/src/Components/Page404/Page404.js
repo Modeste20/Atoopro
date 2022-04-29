@@ -8,13 +8,14 @@ import { Link, useHistory } from 'react-router-dom'
 import Helmet from 'react-helmet'
 
 
+//Page 404
+
 const Page404 = () => {
-    const {theme} = useContext(ThemeContext)
-    const {push} = useHistory()
+    const { theme } = useContext(ThemeContext)
     useEffect(() => {
         const topElement = document.querySelector('footer')
         console.log(topElement)
-        if(topElement){
+        if (topElement) {
             topElement.style.display = 'none'
         }
         return () => {
@@ -22,13 +23,13 @@ const Page404 = () => {
         }
     })
     return (
-        <Row justify='space-around' style={{height:'100%'}} className='section-404'>
-        <Helmet>
-            <title>Page 404</title>
-            <meta name="description" content="Page d'accueil de Atoo pro" />
-            <meta name="robots" content="noindex" />
-            <meta name="googlebot" content="noindex" />
-        </Helmet>
+        <Row justify='space-around' style={{ height: '100%' }} className='section-404'>
+            <Helmet>
+                <title>Page 404</title>
+                <meta name="description" content="Page d'accueil de Atoo pro" />
+                <meta name="robots" content="noindex" />
+                <meta name="googlebot" content="noindex" />
+            </Helmet>
             <Col xs={24} sm={20} md={12} lg={10} className='svg-astronaute'>
                 {
                     theme === 'light' ? <Astronaute /> : <AstronauteDark />
@@ -39,7 +40,7 @@ const Page404 = () => {
                 <h3>
                     Désolé la page que vous demandez est introuvable
                 </h3>
-                <Link to='/' className='btn-link-primary' style={{height:42,marginTop:15}}>Retour à l'acceuil</Link>
+                <Link to='/' className='btn-link-primary' style={{ height: 42, marginTop: 15 }}>Retour à l'acceuil</Link>
             </Col>
         </Row>
     )

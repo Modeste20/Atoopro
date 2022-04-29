@@ -4,15 +4,14 @@ import { Link, useHistory } from 'react-router-dom'
 import { FadeComponent } from '../FadeComponent/FadeComponent'
 import './SectionContact.css'
 
+/* Composant templates pour les sections de contact sur le site */
+
 const SectionContact = ({title,children,option}) => {
 
   return (
     <section className="section-contact">
       <FadeComponent top>
         <h3>
-        {/*
-          isServicePage ? "Avez-vous des points d'ombres ? des préoccupations?" : "Avez-vous un projet ?"
-        */}
           {title}
         </h3>
       </FadeComponent>

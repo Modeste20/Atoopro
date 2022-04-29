@@ -76,10 +76,10 @@ Routes.post('/contact',multerConfig.single('file'),(req,res) => {
     const {error,value} = contactSchema.validate(req.body)
     console.log(error)
     if(error && error.details.length){
-        return  res.json({error:'Veuillez bien remplir le formulaire'})
+        return  res.json({error:'form'})
     } else{
-        if(!validator.isMobilePhone(req.body.tel)){
-            return res.json({error:'Numero de téléphone invalide'})
+        if(!req.body.tel.match(/^\+[0-9]{1,4} [0-9]{6,10}$/)){
+            return res.json({error:'numero'})
         } else{
             console.log('right !',value)
             if(value.status !== 'emploi'){
@@ -106,12 +106,12 @@ Routes.post('/contact',multerConfig.single('file'),(req,res) => {
             if(value && value.file && value.objet === 'cv' && req.file){
                 if(req.file.mimetype !== 'application/pdf'){
                     deleteFile(req.file.filename)
-                    return res.json({error:'Veuillez télécharger un document pdf'})
+                    return res.json({error:'pdf'})
                 } else{
                     console.log('okay !',req.file)
                     if(req.file.size>10485760) {
                         deleteFile(req.file.filename)
-                        return res.json({error:'La taille maximale de votre document pdf doit être inférieure 10Mo'})
+                        return res.json({error:'size-file'})
                     }
                     sendMail(value,req.file,res)
                 }

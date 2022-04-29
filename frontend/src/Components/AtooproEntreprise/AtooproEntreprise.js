@@ -42,6 +42,8 @@ const AtooproEntreprise = () => {
         </Row>
 
       </div>
+
+
       <section className="atoopro-def">
         <Row justify='center'>
           <Col xs={24} sm={22} md={12} className='atoopro-def-image'>
@@ -61,6 +63,8 @@ const AtooproEntreprise = () => {
           </Col>
         </Row>
       </section>
+
+
 
       <section className="atoopro-mission">
         <Row justify='center'>
@@ -83,6 +87,8 @@ const AtooproEntreprise = () => {
 
         </Row>
       </section>
+
+
 
       <section className='atoopro-engagement'>
         <FadeComponent bottom>

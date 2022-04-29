@@ -4,19 +4,17 @@ import Footer from '../Components/Footer/Footer'
 import Header from '../Components/Header/Header'
 import { ThemeContext } from '../Components/Shared/Context/ThemeContext/ThemeContext'
 import { ConfigProvider} from "antd";
-import { Route, Switch, useLocation } from 'react-router-dom'
-import Home from '../Components/Home/Home'
-import Contact from '../Components/Contact/Contact'
-import { AdminContext } from '../Components/Shared/Context/AdminContext/AdminContext'
-import axios from 'axios'
+import {useLocation } from 'react-router-dom'
 
 
 const Atoopro = () => {
 
-    
+    //Connaitre le thème courant
 
     const themeValue = useContext(ThemeContext);
    
+
+    //Configuration antd : changer la couleur principale selon le thème actuel
 
     ConfigProvider.config({
         theme: {
@@ -24,6 +22,9 @@ const Atoopro = () => {
         },
     
     });
+
+    //Ajout d'un classe body-dark lorsque le thème est sombre
+    //Permettant de styliser les composants plus simplement 
 
     useEffect(() => {
         if(themeValue.theme  === 'dark'){

@@ -5,6 +5,9 @@ import { FadeComponent } from '../../../Shared/FadeComponent/FadeComponent'
 import './ServiceCard.css'
 
 const ServiceCard = ({ className, image, title, children, alt,url='/',...rest }) => {
+
+    //Composant de carte pour les services
+    
     return (
         <Col {...rest} xs={24} md={12} xl={6} className={'service ' + (className ? className : '')}>
             <div className="service-card">

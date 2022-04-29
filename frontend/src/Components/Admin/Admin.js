@@ -21,11 +21,17 @@ const Admin = () => {
 
     const isAdmin = useContext(AdminContext);
 
+    /* états  */
+
+    /* Visiteurs en ligne sur le site  */
     const [visitors, setVisitors] = useState([])
     const [countryArray, setCountryArray] = useState([])
+
+    /* Visiteurs connectés sur le site  les deux derniers jours */
     const [lastVisitors, setLastVisitors] = useState([])
     const [loading, setLoading] = useState(false)
 
+    //Vérification si le dossier des cv sur le serveur est vide ou pas , si non on affiche un bouton pour supprimer les fichiers de ce dossier
     const [canDeleteCVFolder, setCanDeleteCVFolder] = useState(false)
 
     const token = sessionStorage.getItem('token');
@@ -45,7 +51,7 @@ const Admin = () => {
         }
     })
 
-
+    //Requêtes pour connaître les visiteurs du site et le tableau des pays des visiteurs
 
     useEffect(async () => {
         console.log('admine', isAdmin)
@@ -71,6 +77,7 @@ const Admin = () => {
 
     console.log('country', countryArray)
 
+    // Supprimer les fichiers dans le dossier cv sur le serveur
 
     const deleteCVFolder = async (e) => {
         e.preventDefault();

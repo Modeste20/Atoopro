@@ -1,20 +1,21 @@
-import { Button, Col, Row } from 'antd'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import { Col, Row } from 'antd'
+import React, { useContext, useRef} from 'react'
 import ImageHomeBannerPc from './../../File/images/home-banner-pc.png'
-import FaqSvg1 from './../../File/images/faq.svg'
 import Accordeon from './Components/Accordeon/Accordeon'
 import Partenaires from './Components/Partenaires/Partenaires'
 import ServiceCard from './Components/ServiceCard/ServiceCard'
 import ServiceTable from './Components/ServiceData/Service.data'
 import './Home.css'
 import { FadeComponent } from '../Shared/FadeComponent/FadeComponent'
-import { Link, useHistory, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import AnimateNumber from './Components/AnimateNumber/AnimateNumber'
 import { AdminContext } from '../Shared/Context/AdminContext/AdminContext'
 import {Helmet} from 'react-helmet'
 import {withTranslation} from 'react-i18next'
 
 const Home = ({t}) => {
+
+    // t  pour la translation
 
     const ref = useRef(null)
 
@@ -24,6 +25,8 @@ const Home = ({t}) => {
 
     const isAdmin = useContext(AdminContext)
 
+    //FadeComponent pour l'animation
+
 
     return (
         <div className="atoopro-home">
@@ -31,6 +34,9 @@ const Home = ({t}) => {
             <title>Page d'accueil du site d'atoopro | Atoopro</title>
             <meta name="description" content="Page d'accueil de Atoo pro" />
         </Helmet>
+
+        {/* Bannière */}
+
             <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center' }}>
                 <Row justify='space-between' className='banner-home'>
                     <Col xs={24} md={12} lg={12} xxl={8} className='banner-text'>
@@ -56,6 +62,9 @@ const Home = ({t}) => {
                     </Col>
                 </Row>
             </div>
+
+            {/* Section des statistics */}
+
             <section className="statistics">
                 <FadeComponent top>
                     <h2 className='section-title'>Nos statistiques</h2>
@@ -63,6 +72,8 @@ const Home = ({t}) => {
                 <Row className='row-statistics'>
                     <Col xs={24} sm={12} md={6} className='statistic'>
                         <div className='st'>
+
+                        {/* AnimateNumber pour animer les nombres sur l'accueil */}
 
                             <AnimateNumber end={5} />
 
@@ -105,6 +116,8 @@ const Home = ({t}) => {
                 </Row>
             </section>
 
+            {/* Section des services */}
+
             <section className="services">
                 <FadeComponent top delay={500}>
                     <h2 className='section-title'>Nos services</h2>
@@ -116,6 +129,8 @@ const Home = ({t}) => {
                 </Row>
             </section>
 
+            {/* Section des partenaires */}
+
             <section className='partenaires' id='partenaires' ref={ref}>
                 <FadeComponent top>
                     <h2 className='title'>Nos partenaires</h2>
@@ -124,9 +139,6 @@ const Home = ({t}) => {
             </section>
 
             <section className="faq">
-                {/*<div className="svg svg-1">
-                    <img src={FaqSvg1} alt="" />
-                </div>*/}
                 <Row justify='center'>
                     <Col xs={24} md={19} lg={15} xl={12}>
                         <FadeComponent top>
@@ -135,13 +147,11 @@ const Home = ({t}) => {
                         <Accordeon />
                     </Col>
                 </Row>
-                {/*<div className="svg svg-2">
-                    <img src={FaqSvg1} alt="" />
-                </div>*/}
             </section>
         </div>
     )
 }
 
+//withTranslation : composant d'ordre supérieur permettant de prendre en charge le props t pour la traduction
 
 export default withTranslation('home')(Home)

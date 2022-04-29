@@ -8,7 +8,7 @@ import './Recpatcha.css'
 
 
 
-const Recpatcha = ({ elmt, value , setValue }) => {
+const Recpatcha = ({ elmt, value, onChange }) => {
 
     const { theme } = useContext(ThemeContext)
 
@@ -24,18 +24,21 @@ const Recpatcha = ({ elmt, value , setValue }) => {
             <p>
                 Veuillez prouver que vous êtes un humain en sélectionnant : <b>' {elmt} '</b>
             </p>
-            <Radio.Group size="large" name='recaptcha' className='recaptcha-radio-group' onChange={(e) => setValue(e.target.value)}>
-                <RadioButton value={'heart'}  checked={value === 'heart'}>
-                    <FaHeart style={{ fontSize: 18 }} />
+            <Radio.Group size="large" name='recaptcha' className='recaptcha-radio-group' onChange={onChange}>
+
+                <RadioButton value={'key'} checked={value === 'key'}>
+                    <FaKey style={{ fontSize: 18 }} />
                 </RadioButton>
+
 
                 <RadioButton value={'airplane'} checked={value === 'airplane'}>
                     <FaPlane style={{ fontSize: 18 }} />
                 </RadioButton>
 
-                <RadioButton value={'key'} checked={value === 'key'}>
-                    <FaKey style={{ fontSize: 18 }} />
+                <RadioButton value={'heart'} checked={value === 'heart'}>
+                    <FaHeart style={{ fontSize: 18 }} />
                 </RadioButton>
+
             </Radio.Group>
         </div>
 
@@ -43,7 +46,7 @@ const Recpatcha = ({ elmt, value , setValue }) => {
 }
 
 
-const RadioButton = ({value,checked,children}) => {
+const RadioButton = ({ value, checked, children }) => {
 
 
     return (

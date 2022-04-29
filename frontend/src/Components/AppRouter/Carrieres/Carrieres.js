@@ -17,6 +17,9 @@ const Carrieres = () => {
         <Route path={path+'/stages-et-alternances'}>
             <Stages />
         </Route>
+        {
+            /* Page 404 */
+        }
         <Route path='*'>
                 <Page404 />
             </Route>

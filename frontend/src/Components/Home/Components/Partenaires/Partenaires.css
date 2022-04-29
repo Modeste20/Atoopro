@@ -24,7 +24,7 @@
     cursor:pointer
 }
 
-.caroussel .ok{
+.caroussel .images{
     width:100% !important;
     display: flex;
     justify-content: space-around;
@@ -91,17 +91,17 @@ body.body-dark .atoopro-home .partenaires::before{
 }
 
 @media all and (max-width:580px){
-    .caroussel .ok img{
+    .caroussel .images img{
         width:120px
     }
 
-    .caroussel .ok{
+    .caroussel .images{
         justify-content: space-between;
     }
 }
 
 @media all and (max-width:380px){
-    .caroussel .ok img{
+    .caroussel .images img{
         width:95px
     }
 }

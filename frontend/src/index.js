@@ -20,6 +20,9 @@ const App = () => {
 
     useEffect(async () => {
         console.log('app')
+
+        // requête pour reçevoir l'adresse ip du présent visiteur
+
         const { data } = await axios.get('http://ip-api.com/json/?fields=query,country')
 
         if (data && data.country && data.query) {
@@ -32,6 +35,9 @@ const App = () => {
 
     }, [])
 
+    //Contexte de Langue LangProvider
+    //Contexte de Admin 
+    //Contexte de thème
 
 
     return (

@@ -1,4 +1,4 @@
-import { Button, Carousel, Row, Col } from 'antd'
+import {Carousel} from 'antd'
 import React from 'react'
 import { useRef } from 'react';
 import * as FaIcons from 'react-icons/fa'
@@ -11,9 +11,7 @@ import './Partenaires.css'
 
 const Partenaires = () => {
 
-    function onChange(a, b, c) {
-        console.log(a, b);
-    }
+    // Ref pour comander les botons next et prev du caroussel
 
     const slider = useRef()
 
@@ -24,12 +22,14 @@ const Partenaires = () => {
                 <FaIcons.FaArrowLeft />
             </div>
 
-            <Carousel dots={false} afterChange={onChange} autoplay ref={ref => {
+            {/* Composants carousel antd */}
+
+            <Carousel dots={false} autoplay ref={ref => {
                 console.log(ref)
                 slider.current = ref
             }}>
                 <div>
-                    <div className='ok'>
+                    <div className='images'>
                         <div>
                             <img src={Google} alt='' width={'160px'} />
                         </div>
@@ -40,7 +40,7 @@ const Partenaires = () => {
                 </div>
 
                 <div>
-                    <div className='ok'>
+                    <div className='images'>
                         <div>
                             <img src={Microsoft} alt='' width={'160px'} />
                         </div>
@@ -51,7 +51,7 @@ const Partenaires = () => {
                 </div>
 
                 <div>
-                    <div className='ok'>
+                    <div className='images'>
                         <div>
                             <img src={Veeam} alt='' width={'160px'} />
                         </div>
