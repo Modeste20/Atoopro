@@ -1,3 +1,16 @@
 body.body-dark .menu-mobile *{
     color:#f0e8f6d0 !important;
 }
+
+.menu-admin .ant-btn-link{
+    padding:0 !important;
+    color:inherit !important
+}
+
+.ant-popover-content .ant-btn-link{
+    color:inherit 
+}
+
+.ant-popover-content .ant-btn-link::hover{
+    color:var(--link-primary) !important
+}

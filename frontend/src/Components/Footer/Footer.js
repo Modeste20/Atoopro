@@ -30,6 +30,7 @@ function Footer(props) {
                         </div>
                         <div className="footer-contact-link">
                             <Menu className='footer-contact-menu'>
+                            {/*}
                                 <Menu.Item key={'map-link'}>
                                     <Link to='/' title={'21 Revolution StreetParis France'} className='icn-link'>
                                         <span className='icn'>
@@ -53,7 +54,7 @@ function Footer(props) {
                                         </span>
                                     </Link>
                                 </Menu.Item>
-
+*/}
                                 <Menu.Item key={'linkedin'} >
                                     <a href='http://www.linkedin.com' title={"Linkedin"} className='icn-link'>
                                         <span className='icn'>

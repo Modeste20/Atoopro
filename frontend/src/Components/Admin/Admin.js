@@ -105,7 +105,7 @@ const Admin = () => {
                 <meta name='robots' content='noindex,nofollow' />
                 <meta name='googlebot' content='noindex,nofollow' />
             </Helmet>
-            <h2>
+            <h2 style={{marginTop:25}}>
                 Bienvenue sur votre compte Admin
             </h2>
             <div className="panel-admin">
@@ -137,15 +137,6 @@ const Admin = () => {
                 {canDeleteCVFolder && <div className="delete-cv-folder" style={{ margin: '15px 10px' }}>
                     <button onClick={deleteCVFolder} className='btn-link-primary' to='/' style={{ marginTop: 25, height: 45, width: 150, borderRadius: 5 }}>Supprimer les cv </button>
                 </div>}
-
-                <div className="log-out" style={{ margin: '15px 10px' }}>
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        sessionStorage.removeItem('token');
-                        window.location.reload()
-                    }} className='btn-link-primary' to='/' style={{ marginTop: 25, height: 45, width: 150, borderRadius: 5 }}>Se déconnecter</button>
-
-                </div>
 
             </div>
         </div>

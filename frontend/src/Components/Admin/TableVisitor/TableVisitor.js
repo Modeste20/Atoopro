@@ -5,22 +5,17 @@ import React from 'react'
 import { useState } from "react";
 
 const columns = (filters) => [
-  {
-    title:'ip',
-    dataIndex:'ip',
-    width:'30%'
-  },
     {
       title: 'Country',
       dataIndex: 'country',
       key:'country',
       filters:filters,
-      width: '30%',
+      width: '50%',
     },
     {
       title: 'Date',
       dataIndex: 'date',
-      width: '30%',
+      width: '50%',
       render: date => <p>{moment(date).fromNow()}</p>
     },
   ];

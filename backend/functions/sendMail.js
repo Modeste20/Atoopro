@@ -17,6 +17,8 @@ const mailConfigurations = {
     // Subject of Email
     subject: "Message de contact depuis atoopro.fr",
 
+    //Fichier à envoyer
+
     attachments:file ? [
         {   
             path: './File/CV/'+file.filename
@@ -40,6 +42,7 @@ transport.sendMail(mailConfigurations, function(error, info){
     console.log(info);
     if(info.messageId && info.accepted.includes(process.env.EMAIL)){
         if(file && file.filename){
+            //Supprimer du cv joint lorsque le message est envoyé avec succès
             fs.unlink('./backend/File/CV/'+file.filename,(err) => {
                 if(err) return res.json({error:''})
                 return res.json({error:''})

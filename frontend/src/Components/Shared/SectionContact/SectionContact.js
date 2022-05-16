@@ -1,4 +1,3 @@
-import { Button } from 'antd'
 import React from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { FadeComponent } from '../FadeComponent/FadeComponent'

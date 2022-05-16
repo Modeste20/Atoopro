@@ -18,6 +18,8 @@ const dbo = require("../db/connexion");
 // This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
 
+//utilisation de modules nodejs
+
 const multerConfig = require('./../Middleware/multer');
 const sendMail = require("../functions/sendMail");
 const deleteFile = require("../functions/deleteFile");
@@ -28,36 +30,39 @@ const isAdmin = require("../Middleware/isAdmin");
 //Vérification s'il s'agit d'un admin
 
 
-Routes.get('/',(req,res) => {
-    return res.json({api:'ok'})
-})
-
 Routes.get('/isAdmin',isAdmin,function (req, res) {
   console.log('right !',req.mail)
   if(req.mail) return res.json('ok')
 });
 
-//Gestiond de la route pour l'envoi des messages de contact
+//Vérifier si le dossier contient un fichier ou pas
 
 Routes.get('/verify-cv',isAdmin,(req,res) => {
     const directory = './File/CV';
     fs.readdir(directory, (err, files) => {
         if (err) throw err;
         console.log('files',files)
+
+        //Si le répertoire contient des fichiers
+
         if(files.length){
             return res.json(true)
         } else{
-            res.json(false)
+           return res.json(false)
         }
       });
 })
 
+//Supprimer le dossier CV sur le server si jamais il contient de fichiers
 Routes.delete('/cv',isAdmin,(req,res) => {
     console.log('ok')
     const directory = './File/CV';
     fs.readdir(directory, (err, files) => {
         if (err) throw err;
         console.log('files',files)
+
+        //Si le répertoire contient des fichiers
+
         if(files.length){
                 for (const file of files) {
                     fs.unlink(path.join(directory, file), err => {
@@ -70,18 +75,28 @@ Routes.delete('/cv',isAdmin,(req,res) => {
       return res.json('right !')
 })
 
+//Gestion de la route pour l'envoi des messages de contact
+
+
 Routes.post('/contact',multerConfig.single('file'),(req,res) => {
     console.log(req.body)
     delete req.body.recaptcha
+    //Validons req.body 
     const {error,value} = contactSchema.validate(req.body)
     console.log(error)
     if(error && error.details.length){
         return  res.json({error:'form'})
     } else{
+        // S'il n'y a pas d'erreur 
+
+        //Vérification du numero de téléphone
         if(!req.body.tel.match(/^\+[0-9]{1,4} [0-9]{6,10}$/)){
             return res.json({error:'numero'})
         } else{
             console.log('right !',value)
+            //Si l'utilisateur est en quête d'emploi , il ne peut pas choisir une societe
+            //Si l'utilisateur travaille dans une entreprise , il peut pas déposer un cv
+
             if(value.status !== 'emploi'){
                 delete value.file
                 if(req.file){
@@ -95,27 +110,29 @@ Routes.post('/contact',multerConfig.single('file'),(req,res) => {
                 const date = new Date();
             */
 
-                // nom unique du fichier 
-
-                //const unique_name = value.name.toLowerCase()+ uuidv4().toString() ;
-
-                // Download pdf
 
                 console.log('pdf')
 
+                //Y a t'il téléchargement de cv ?
+
             if(value && value.file && value.objet === 'cv' && req.file){
+                // Si oui , vérification si le fichier téléchargé est un pdf 
                 if(req.file.mimetype !== 'application/pdf'){
+                    // si non , retourner une erreur au client après avoir supprimer le fichier sur le serveur
                     deleteFile(req.file.filename)
                     return res.json({error:'pdf'})
                 } else{
+                    //Si oui , vérifier si sa taille est inférieure à 10Mo
                     console.log('okay !',req.file)
                     if(req.file.size>10485760) {
                         deleteFile(req.file.filename)
                         return res.json({error:'size-file'})
                     }
+                    //si oui , envoyer le mail
                     sendMail(value,req.file,res)
                 }
             } else{
+                //S'il n'y a pas téléchargement de cv , envoyer directement le mail
                 sendMail(value,req.file,res)
             }
         }

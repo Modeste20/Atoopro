@@ -15,10 +15,10 @@
     color:#f0e8f6d0 !important;
 }
 
-.admin-connexion .login-form p,
-.admin-connexion .login-form label,
-.admin-inscription .register-form p,
-.admin-inscription .register-form label
+body.body-dark .admin-connexion .login-form p,
+body.body-dark .admin-connexion .login-form label,
+body.body-dark .admin-inscription .register-form p,
+body.body-dark .admin-inscription .register-form label
 {
     color:#f0e8f6d0 !important;
 }

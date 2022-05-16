@@ -1,5 +1,7 @@
 const path = require('path')
 
+//Configuration de multer pour prendre en charge le téléchargement de cv par l'utilisateur
+
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 

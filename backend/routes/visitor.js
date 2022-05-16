@@ -7,6 +7,9 @@ const moment = require('moment')
 const isAdmin = require('../Middleware/isAdmin')
 const { text } = require('express')
 
+// gestion des visiteurs du sites
+
+//Récupérer les visiteurs du sites
 
 Router.get('/',isAdmin,(req,res) => {
     let db_connect = dbo.getDb();
@@ -17,6 +20,8 @@ Router.get('/',isAdmin,(req,res) => {
         .toArray(function (err, result) {
             if (err) throw err;
             if(result && Array.isArray(result)){
+
+                // Si l'utilisateur est connecté il y a deux jours , on le supprime de la base de donnée
 
                 result.forEach((value,i) => {
                     console.log()
@@ -35,6 +40,10 @@ Router.get('/',isAdmin,(req,res) => {
             }
             
         })
+
+        // Envoi au client des visteurs actuels (visiteurs connectés il y a moins de 5minutes)
+
+        // des pays des utilisateurs
 
         db_connect
         .collection("visitor")
@@ -65,6 +74,7 @@ Router.get('/',isAdmin,(req,res) => {
         });
 })
 
+//Post des visiteurs , visiteurs uniques par ip
 
 Router.post('/',(req,res) => {
     console.log(req.body)

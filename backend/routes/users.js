@@ -6,6 +6,7 @@ const Router = require('express').Router()
 const dbo = require('./../db/connexion')
 
 
+// Récupérer tous les utilisateurs
 
 Router.get('/',(req,res) => {
     let db_connect = dbo.getDb();
@@ -18,6 +19,7 @@ Router.get('/',(req,res) => {
     });
 })
 
+//Login de l'administrateur
 
 Router.post('/login',(req,res) => {
     console.log(req.body)
@@ -64,7 +66,7 @@ Router.post('/login',(req,res) => {
 
 
 
-
+//Connexion  admin
 
 Router.post('/',/*authUser*/(req,res) => {
     console.log(req.body)
