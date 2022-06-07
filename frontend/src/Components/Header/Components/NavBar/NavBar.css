@@ -71,6 +71,15 @@ body.body-dark .header-navbar a.links-popover{
     z-index:3 ;
 }
 
+/*Grands écrans*/
+@media all and (min-width:1550px){
+  .header-navbar.header-glass{
+    background: initial !important;
+    border:0;
+    box-shadow: none;
+  }
+}
+
 body.body-dark .header-navbar.header-glass {
   background: rgba(52, 69, 78, 0.5);
 }

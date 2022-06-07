@@ -1,12 +1,13 @@
-.card-join .head{
-    display: flex !important;
-    padding:12px 0;
-    align-items: center;
-}
 
 .card-join{
     margin:25px auto;
     padding:12px
+}
+
+.card-join .head{
+    display: flex !important;
+    padding:12px 0;
+    align-items: center;
 }
 
 .card-join .head .head-icn{

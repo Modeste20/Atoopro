@@ -5,6 +5,7 @@ import * as FaIcons from 'react-icons/fa'
 import { SpaceContext } from 'antd/lib/space'
 import { FadeComponent } from '../../../Shared/FadeComponent/FadeComponent'
 import { ThemeContext } from '../../../Shared/Context/ThemeContext/ThemeContext'
+import data from './Accordeon.data'
 
 const Accordeon = () => {
 
@@ -23,19 +24,13 @@ const Accordeon = () => {
 
     return (
         <Collapse ghost expandIcon={(b) => b.isActive ? <FadeComponent  left><div className={'icn '+(theme==='light' ?'':'icn-dark' )}><FaIcons.FaMinus  /></div></FadeComponent> : <FadeComponent  left ><div className={'icn '+(theme==='light' ?'':'icn-dark' )}><FaIcons.FaPlus /></div></FadeComponent>}>
-            <Panel header={<FadeComponent top delay={600} distance={'8px'}>This is panel header 1</FadeComponent>} key="1">
-                <p>{text}</p>
-            </Panel>
-            <Panel header={<FadeComponent top delay={700} distance={'8px'}>This is panel header 1</FadeComponent>} key="2">
-                <p>{text}</p>
-            </Panel>
-            <Panel header={<FadeComponent top delay={800} distance={'8px'}>This is panel header 1</FadeComponent>} key="3">
-                <p>{text}</p>
-            </Panel>
-
-            <Panel header={<FadeComponent top delay={900} distance={'8px'}>This is panel header 1</FadeComponent>} key="4">
-                <p>{text}</p>
-            </Panel>
+            {
+                data.map(({id,header,content}) => (
+                    <Panel header={<FadeComponent top delay={id} distance={'8px'}>{header}</FadeComponent>} key={id}>
+                        <p className='accordeon-content'>{content}</p>
+                    </Panel>
+                ))
+            }
         </Collapse>
     )
 }

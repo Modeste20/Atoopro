@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd'
 import React, { useContext, useRef} from 'react'
-import ImageHomeBannerPc from './../../File/images/home-banner-pc.png'
+import {ReactComponent as ImageHomeBannerPc } from './../../File/images/home-banner-pc.svg'
 import Accordeon from './Components/Accordeon/Accordeon'
 import Partenaires from './Components/Partenaires/Partenaires'
 import ServiceCard from './Components/ServiceCard/ServiceCard'
@@ -37,12 +37,18 @@ const Home = ({t}) => {
 
         {/* Bannière */}
 
-            <div style={{ display: 'flex', justifyContent: "center", alignItems: 'center' }}>
                 <Row justify='space-between' className='banner-home'>
-                    <Col xs={24} md={12} lg={12} xxl={8} className='banner-text'>
+                    <Col xs={24} md={12} lg={12} xxl={14} className='banner-text'>
                         <FadeComponent left>
+
                             <h1 className='pb-2'>{t('banner.title','Bienvenue sur Atoo pro')}</h1>
+
                             <p>{t('banner.paragraphe')}</p>
+
+                            <p>
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae minima rerum nemo provident laborum veritatis, vel necessitatibus magnam ipsam omnis numquam quam totam iusto earum incidunt ipsum quasi! Deserunt, mollitia.
+                            </p>
+
                             <div style={{ display: 'flex' , alignItems:'center' }}>
                                 <Link className='banner-button-contact btn-link-primary' to='/contactez-nous' style={{ marginTop: 25, height: 45, padding:'0 15px !important',borderRadius: 5 }}>{t('banner.button')}</Link>
                                 {
@@ -52,16 +58,16 @@ const Home = ({t}) => {
                         </FadeComponent>
                     </Col>
 
-                    <Col xs={24} md={12} lg={8} xxl={6} className='banner-image'>
+                    <Col xs={24} md={12} lg={8} xxl={8} className='banner-image'>
                         <FadeComponent right>
                             <div className='img'>
-                                <img src={ImageHomeBannerPc} alt='r' width={'100%'} className='' />
+                                {/*<img src={ImageHomeBannerPc} alt='r' width={'100%'} className='' />*/}
+                                <ImageHomeBannerPc />
                             </div>
                         </FadeComponent>
 
                     </Col>
                 </Row>
-            </div>
 
             {/* Section des statistics */}
 
@@ -137,6 +143,9 @@ const Home = ({t}) => {
                 </FadeComponent>
                 <Partenaires />
             </section>
+
+
+            {/* FAQ */}
 
             <section className="faq">
                 <Row justify='center'>

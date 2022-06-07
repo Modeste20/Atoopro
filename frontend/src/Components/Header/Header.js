@@ -1,7 +1,6 @@
 import { Col, Dropdown, Menu, Popover, Row } from 'antd'
 import React, { useCallback, useEffect, useState } from 'react'
 import Flags from 'country-flag-icons/react/3x2'
-import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
 import NavBar from './Components/NavBar/NavBar'
 import {ReactComponent as AnyDesk} from './../../File/images/AnyDesk/anydesk.svg'
@@ -10,10 +9,10 @@ import { useContext } from 'react'
 import { ThemeContext } from '../Shared/Context/ThemeContext/ThemeContext'
 import i18n from './../../i18n'
 import { LangContext } from '../Shared/Context/LangContext/LangContext'
+import {withTranslation} from 'react-i18next'
 
 
-
-const Meenu = ({lang,setLang}) => {
+const Meenu = ({lang,setLang,t}) => {
 
     console.log('lang',lang)
 
@@ -35,15 +34,15 @@ const Meenu = ({lang,setLang}) => {
         <Menu>
             <Menu.Item key={'france'} onClick={(e) => changeLanguage(e,'fr')} className={lang === 'fr' ? 'active-menu' : ''}>
                 <a href='#' className='flag-link' style={{display:'flex',alignItems:'center'}}>
-                    <Flags.FR  title={'Français'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
-                    <span style={{ paddingLeft: 8 }}>Français</span>
+                    <Flags.FR  title={t('lang.french')} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
+                    <span style={{ paddingLeft: 8 }}>{t('lang.french')}</span>
                 </a>
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item key={'anglais'} onClick={(e) => changeLanguage(e,'en')}  className={lang === 'en' ? 'active-menu' : ''}>
                 <a href='#' className='flag-link' style={{display:'flex',alignItems:'center'}}>
-                    <Flags.GB  title={'Anglais'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
-                    <span style={{ paddingLeft: 8 }}>Anglais</span>
+                    <Flags.GB  title={t('lang.english')} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
+                    <span style={{ paddingLeft: 8 }}>{t('lang.english')}</span>
                 </a>
             </Menu.Item>
         </Menu>
@@ -52,7 +51,7 @@ const Meenu = ({lang,setLang}) => {
 
 
 
-const Header = () => {
+const Header = ({t}) => {
 
 
     const {lang,setLang} = useContext(LangContext)
@@ -86,22 +85,22 @@ const Header = () => {
                     </a>
                 </div>
                 <div className='change-langue'>
-                    <Popover placement="bottom" visible={visible} onVisibleChange={onVisibleChange} content={<Meenu lang={lang} setLang={setLang} />}>
+                    <Popover placement="bottom" visible={visible} onVisibleChange={onVisibleChange} content={<Meenu lang={lang} t={t} setLang={setLang} />}>
                     {
-                            lang === 'en' ? <span  className='pb-2' style={{cursor:'pointer',display:'flex',alignItems:'center'}}>
-                                <Flags.GB title={'Anglais'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
-                                <span style={{ paddingLeft: 8,color: colorLangLink}}>Anglais</span>
-                            </span> : <span className='pb-2' style={{cursor:'pointer',display:'flex',alignItems:'center'}}>
-                                <Flags.FR title={'Français'} className="flag-header" style={{ width: '30px',borderRadius:3 }} />
-                                <span style={{ paddingLeft: 8,color:colorLangLink}}>Français</span>
+                            lang === 'en' ? <span title={t('lang.english')}  className='pb-2' style={{cursor:'pointer',display:'flex',alignItems:'center'}}>
+                                <Flags.GB  className="flag-header" style={{ width: '30px',borderRadius:3 }} />
+                                <span style={{ paddingLeft: 8,color: colorLangLink}}>{t('lang.english')}</span>
+                            </span> : <span  title={t('lang.french')} className='pb-2' style={{cursor:'pointer',display:'flex',alignItems:'center'}}>
+                                <Flags.FR className="flag-header" style={{ width: '30px',borderRadius:3 }} />
+                                <span style={{ paddingLeft: 8,color:colorLangLink}}>{t('lang.french')}</span>
                             </span>
                     }
                     </Popover>
                 </div>
             </div>
-            <NavBar />
+            <NavBar t={t} />
         </header>
     )
 }
 
-export default Header
+export default withTranslation('header')(Header)

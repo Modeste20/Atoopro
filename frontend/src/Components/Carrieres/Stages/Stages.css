@@ -1,11 +1,11 @@
+/*
+    Bannière
+*/
 
 .atoopro-alternances .banner{
     height:auto;
     position:relative;
     margin-bottom:50px;
-}
-.atoopro-alternances .banner .banner-section .banner-section-image img{
-    margin-top: 50px;
 }
 
 .atoopro-alternances .banner .banner-section{
@@ -16,6 +16,12 @@
 .atoopro-alternances .banner .banner-section-image{
     margin:auto
 }
+
+.atoopro-alternances .banner .banner-section .banner-section-image img{
+    margin-top: 50px;
+}
+
+
 
 @media all and (max-width:768px){
     .atoopro-alternances .banner .banner-section{
@@ -31,9 +37,10 @@
     }
 }
 
-/*atoopro def*/
+/*Définition de atoopro et atoopro mission*/
 
-.atoopro-alternances .atoopro-def,.atoopro-alternances .atoopro-mission{
+.atoopro-alternances .atoopro-def,
+.atoopro-alternances .atoopro-mission{
     padding:25px 0;
     margin-bottom: 25px;
 }
@@ -44,6 +51,21 @@
 .atoopro-alternances .history-atoopro h2{
     font-size: 22px;
     font-weight:700;
+}
+
+/*Grands écrans*/
+
+@media all and (min-width:1550px){
+    .atoopro-alternances .atoopro-def .atoopro-def-content h2,
+.atoopro-alternances .atoopro-mission .atoopro-mission-content h2,
+.atoopro-alternances .atoopro-engagement h2,
+.atoopro-alternances .history-atoopro h2{
+    font-size: 32px;
+}
+.atoopro-alternances .atoopro-def .atoopro-def-content p,
+.atoopro-alternances .atoopro-mission .atoopro-mission-content p{
+    font-size: 19px !important;
+}
 }
 
 .atoopro-alternances .atoopro-def .atoopro-def-content,

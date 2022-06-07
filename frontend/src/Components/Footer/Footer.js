@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import SwitchThemeComponent from './SwitchThemeComponent/SwitchThemeComponent'
 import * as FaIcons from 'react-icons/fa'
 import { AtooproLinks, CarriereLinks, ServiceLinks } from '../Header/Components/NavBar/NavBar.data'
+import { withTranslation } from 'react-i18next'
 
-function Footer(props) {
+function Footer({t}) {
 
     const [date, setDate] = useState(new Date)
 
@@ -24,37 +25,12 @@ function Footer(props) {
                         <div>
                             <h3>ATOOPRO</h3>
                             <p style={{ paddingTop: 14 }}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque atque dolores adipisci velit fugit distinctio odit est ut architecto deserunt consectetur quasi, voluptatem.
+                            {t('atoopro.paragraphe')}
                             </p>
-                            <Link to='/qui-sommes-nous' className='btn-footer-more link'>En savoir plus <FaIcons.FaArrowRight /></Link>
+                            <Link to='/qui-sommes-nous' className='btn-footer-more link'>{t('atoopro.link')} <FaIcons.FaArrowRight /></Link>
                         </div>
                         <div className="footer-contact-link">
                             <Menu className='footer-contact-menu'>
-                            {/*}
-                                <Menu.Item key={'map-link'}>
-                                    <Link to='/' title={'21 Revolution StreetParis France'} className='icn-link'>
-                                        <span className='icn'>
-                                            <FaIcons.FaMapMarked className='map-icn' />
-                                        </span>
-                                    </Link>
-                                </Menu.Item>
-
-                                <Menu.Item key={'tel'}>
-                                    <Link to='tel:0791107290' title={'+1 555 123456'} className='icn-link'>
-                                        <span className="icn">
-                                            <FaIcons.FaPhoneAlt className='phone-icn' />
-                                        </span>
-                                    </Link>
-                                </Menu.Item>
-
-                                <Menu.Item key={'mail'} >
-                                    <Link to='/contactez-nous' className='icn-link'>
-                                        <span className='icn'>
-                                            <FaIcons.FaEnvelope className='mail-icn' />
-                                        </span>
-                                    </Link>
-                                </Menu.Item>
-*/}
                                 <Menu.Item key={'linkedin'} >
                                     <a href='http://www.linkedin.com' title={"Linkedin"} className='icn-link'>
                                         <span className='icn'>
@@ -70,14 +46,14 @@ function Footer(props) {
 
                     <div className="atoopro-footer">
                         <div>
-                            <h3>Notre société</h3>
+                            <h3>{t('atoopro_label')}</h3>
                             <AtooproLinks footer />
                         </div>
                     </div>
 
                     <div className="atoopro-footer">
                         <div>
-                            <h3>Nos services</h3>
+                            <h3>{t('services_label')}</h3>
                             <ServiceLinks footer />
                         </div>
 
@@ -85,7 +61,7 @@ function Footer(props) {
 
                     <div className="atoopro-footer">
                         <div>
-                            <h3>Carriéres</h3>
+                            <h3>{t('carrieres_label')}</h3>
                             <CarriereLinks footer />
                         </div>
 
@@ -98,19 +74,19 @@ function Footer(props) {
                 <div className="links-footer-atoopro">
                     <ul>
                         <li>
-                            <Link to={'/'}>Mentions légales</Link>
+                            <Link to={'/'}>{t('bottom.legales')}</Link>
                         </li>
 
                         <li>
-                            <Link to={'/'}>Politiques de confidentialités</Link>
+                            <Link to={'/'}>{t('bottom.confidentiality')}</Link>
                         </li>
 
                         <li>
-                            <Link to={'/'}>Conditions d'utilisation</Link>
+                            <Link to={'/'}>{t('bottom.conditions')}</Link>
                         </li>
                         <li>
                             <SwitchThemeComponent />
-                            <div className={"top "+(visible ? 'visible' : '')} title='Retourner en haut' onClick={() => window.scrollTo(0,0)}>
+                            <div className={"top "+(visible ? 'visible' : '')} title={t('title.top')} onClick={() => window.scrollTo(0,0)}>
                                 <FaIcons.FaArrowUp />
                             </div>
                         </li>
@@ -118,7 +94,7 @@ function Footer(props) {
                 </div>
 
                 <div className="copyright-atoopro" style={{ paddingTop: 10 }}>
-                    &copy;<strong><span style={{fontFamily:'Lato !important',fontSize:15}} className='year'> {date.getFullYear()}</span> ATOO PRO </strong> Tous droits réservés
+                    &copy;<strong><span style={{fontFamily:'Lato !important',fontSize:15}} className='year'> {date.getFullYear()}</span> ATOO PRO </strong> {t('bottom.copyright')}
                 </div>
             </div>
         </footer>
@@ -126,5 +102,5 @@ function Footer(props) {
 }
 
 
-export default Footer
+export default withTranslation('footer')(Footer)
 

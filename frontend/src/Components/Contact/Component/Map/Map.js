@@ -24,7 +24,7 @@ const Map = () => {
 
     return (
         <div className="map-google">
-            <MapContainer placeholder className='google-map' style={{ height: '100% !important' }} center={position} zoom={15} scrollWheelZoom={false}>
+            <MapContainer placeholder className='google-map' center={position} zoom={15}>{/* scrollWheelZoom={false}>*/}
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

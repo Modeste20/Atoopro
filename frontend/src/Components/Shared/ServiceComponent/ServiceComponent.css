@@ -1,3 +1,55 @@
+/*
+    Les styles touchant les sections de la description
+    ou de la section spécifique du service 
+    seront dans le fichier css de la page
+*/
+
+
+/*
+    bannière
+*/
+
+@media all and (max-width:768px){
+
+    .service-cmp .banner,
+    .service-cmp section.other-services .service{
+        display: flex;
+    }
+    .service-cmp .banner .banner-image{
+        order:1 !important;
+        margin-bottom:50px !important;
+        margin-left:auto !important;
+        margin-right:auto !important
+    }
+
+    .service-cmp .banner .banner-content{
+        order:2 !important;
+        margin:auto !important
+    }
+}
+
+/*
+    Autres services
+*/
+
+.service-cmp section.other-services .service h2{
+    font-weight:700;
+    font-size: 25px;
+}
+
+
+.service-cmp section.other-services .service .more{
+    position:relative
+}
+
+/*Grands écrans*/
+
+@media all and (min-width:1550px){
+    .service-cmp section.other-services .service .more{
+        font-size:19px;
+    }
+}
+
 .service-cmp section.other-services .service .more::before{
     position:absolute;
     top:0;
@@ -20,15 +72,7 @@ body.body-dark .service-cmp section.other-services .service .more::before{
     right:-2px
 }
 
-.service-cmp section.other-services .service h2{
-    font-weight:700;
-    font-size: 25px;
-}
 
-.service-cmp section.other-services .service .more{
-    position:relative
-
-}
 .service-cmp section.other-services .service.service-hebergement.right,
 .service-cmp section.other-services .service.service-communications.image-left {
     display: flex;
@@ -52,11 +96,10 @@ body.body-dark .service-cmp section.other-services .service .more::before{
         order:2 !important;
     }
 
-    .service-cmp .banner,
     .service-cmp section.other-services .service{
         display: flex;
     }
-    .service-cmp .banner .banner-image,
+
     .service-cmp section.other-services .service.left .service-image{
         order:1 !important;
         margin-bottom:50px !important;
@@ -64,11 +107,11 @@ body.body-dark .service-cmp section.other-services .service .more::before{
         margin-right:auto !important
     }
 
-    .service-cmp .banner .banner-content,
     .service-cmp section.other-services .service.left .service-content{
         order:2 !important;
         margin:auto !important
     }
+    
     .service-cmp .service-description {
         width:100% !important;
     }

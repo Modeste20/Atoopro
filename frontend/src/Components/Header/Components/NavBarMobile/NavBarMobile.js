@@ -1,13 +1,12 @@
 import { Button, Menu } from "antd";
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
 import { AtooproLinks, CarriereLinks, ServiceLinks } from "../NavBar/NavBar.data";
 import './NavBarMobile.css'
 
 
 const { SubMenu } = Menu
 
-const NavBarMobile = ({ setVisible, logout, deleteCVFolder, isAdmin , canDeleteCVFolder}) => {
+const NavBarMobile = ({ t,setVisible, logout, deleteCVFolder, isAdmin , canDeleteCVFolder}) => {
 
 
     return (
@@ -58,7 +57,7 @@ const NavBarMobile = ({ setVisible, logout, deleteCVFolder, isAdmin , canDeleteC
             }
             {
                 !isAdmin && <div className="nav-button" style={{ margin: '45px auto', textAlign: 'center' }}>
-                <a href="/contactez-nous?option=devis" className="btn-link-primary" style={{ borderRadius: '40px', height: '40px' }}>Obtenir un devis</a>
+                <a href="/contactez-nous?option=devis" className="btn-link-primary" style={{ borderRadius: '40px', height: '40px' }}>{t('button')}</a>
             </div>
             }
             

@@ -10,6 +10,10 @@ import { FadeComponent } from '../FadeComponent/FadeComponent'
 const ServiceComponent = ({ className, title, banniere, content, children }) => {
     return (
         <div className={"service-cmp service-" + className}>
+
+        {/*
+            Bannière
+        */}
             <Row justify='space-between' align='center' className='banner' style={{ alignItems: 'center', marginTop: 70, marginBottom: 150 }}>
 
                 <Col xs={22} sm={19} md={12} className="banner-content">
@@ -30,6 +34,12 @@ const ServiceComponent = ({ className, title, banniere, content, children }) => 
                     </FadeComponent>
                 </Col>
             </Row>
+
+            {/*
+                Description du service (style dans le fichier css
+                de la page concernée)
+            */}
+
             <section className='service-description' style={{ width: '75%', margin: '0 auto 70px auto' }}>
                 <FadeComponent left>
                     <h2>Description du service</h2>
@@ -41,6 +51,13 @@ const ServiceComponent = ({ className, title, banniere, content, children }) => 
                 </div>
 
             </section>
+
+            {
+                /*
+                    Contact Section
+                */
+            }
+
             <SectionContact title={"Avez-vous des points d'ombres ? des préoccupations ?"}>
                 <FadeComponent bottom>
                     <p>
@@ -49,11 +66,21 @@ const ServiceComponent = ({ className, title, banniere, content, children }) => 
                 </FadeComponent>
 
             </SectionContact>
+
+            {/*
+                Section spécifique à la section (style dans le fichier css
+                de la page concernée)
+            */}
+
             <section>
                 <h2>Section spécifique au service</h2>
                 {children}
             </section>
+
+            {/* Autres Services */}
+
             <SessionServices />
+
         </div>
     )
 }

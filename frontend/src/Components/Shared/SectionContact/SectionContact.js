@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FadeComponent } from '../FadeComponent/FadeComponent'
 import './SectionContact.css'
 
@@ -14,7 +14,9 @@ const SectionContact = ({title,children,option}) => {
           {title}
         </h3>
       </FadeComponent>
+
         {children}
+        
       <FadeComponent left>
         <Link to={option ? '/contactez-nous?option='+option : '/contactez-nous'} className='btn-link-primary' style={{ height: 45, borderRadius: 3 }}>
           Contactez-nous

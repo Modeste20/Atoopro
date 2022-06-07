@@ -1,7 +1,6 @@
 import { Tabs } from 'antd';
 import React, { useState } from 'react'
 import { useContext } from 'react';
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { AdminContext } from '../Shared/Context/AdminContext/AdminContext';
 import './Admin.css'

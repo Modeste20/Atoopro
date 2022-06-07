@@ -21,6 +21,18 @@
     background:#1a52bb !important;
 }
 
-.atoopro-home .faq{
-    margin-bottom: 60px;
+.atoopro-home .faq .ant-collapse p.accordeon-content{
+    font-size:15px;
+}
+
+/*Grands écrans*/
+
+@media all and (min-width:1550px){
+    .atoopro-home .faq .ant-collapse p.accordeon-content{
+        font-size:18px;
+    }
+
+    .atoopro-home .faq .ant-collapse .ant-collapse-header{
+        font-size:20px !important;
+    }
 }

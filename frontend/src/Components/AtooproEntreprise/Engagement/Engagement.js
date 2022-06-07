@@ -7,7 +7,7 @@ const Engagement = () => {
   return (
     <>
       <Row gutter={[20, 50]} style={{ background: 'transparent !important' }}>
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng1'}>
+        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng1'}>
           <Card title={
             <Row style={{ alignItems: 'center' }}>
               <FadeComponent left>
@@ -31,7 +31,7 @@ const Engagement = () => {
           </Card>
         </Col>
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng1'}>
+        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng2'}>
           <Card title={
             <Row style={{ alignItems: 'center' }}>
               <FadeComponent left>
@@ -55,7 +55,7 @@ const Engagement = () => {
           </Card>
         </Col>
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng1'}>
+        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng3'}>
           <Card title={
             <Row style={{ alignItems: 'center' }}>
               <FadeComponent left>
@@ -79,7 +79,7 @@ const Engagement = () => {
           </Card>
         </Col>
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng1'}>
+        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng4'}>
           <Card title={
             <Row style={{ alignItems: 'center' }}>
               <FadeComponent left>
@@ -103,7 +103,7 @@ const Engagement = () => {
           </Card>
         </Col>
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng1'}>
+        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng5'}>
           <Card title={
             <Row style={{ alignItems: 'center' }}>
               <FadeComponent left>
@@ -112,22 +112,22 @@ const Engagement = () => {
                 </Col>
               </FadeComponent>
               <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }}>
-                  <p>This is a title of a component</p>
+                <Col style={{ marginLeft: '5px' }} className='title'>
+                  This is a title of a component
                 </Col>
               </FadeComponent>
 
             </Row>
           } bordered={false}>
             <FadeComponent bottom delay={500}>
-              <p>
+              <p className='content'>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
               </p>
             </FadeComponent>
           </Card>
         </Col>
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng1'}>
+        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng6'}>
           <Card title={
             <Row style={{ alignItems: 'center' }}>
               <FadeComponent left>

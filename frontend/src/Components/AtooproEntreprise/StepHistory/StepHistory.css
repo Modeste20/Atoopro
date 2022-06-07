@@ -72,9 +72,7 @@ body.body-dark .vertical-timeline .vertical-timeline-element--work.active .icn-t
 
 
 @media all and (max-width:1170px){
-    .icn-timeline {
-    }
-
+    
     .vertical-timeline  .vertical-timeline-element--work.left .vertical-timeline-element-content .vertical-timeline-element-title,
     .vertical-timeline  .vertical-timeline-element--work.left .vertical-timeline-element-content .vertical-timeline-element-subtitle,
     .vertical-timeline  .vertical-timeline-element--work.left,
@@ -135,3 +133,18 @@ body.body-dark .vertical-timeline  .vertical-timeline-element--work .vertical-ti
 .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{
     color:#7c9eda !important
 }
+
+/*Grands écrans*/
+
+@media all and (min-width:1550px){
+    .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-title{
+            font-size:29px !important;
+        }
+        .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content .vertical-timeline-element-subtitle{
+            font-size:22px !important;
+        }
+    
+        .vertical-timeline  .vertical-timeline-element--work .vertical-timeline-element-content p{
+            font-size:20px !important;
+        }
+    }

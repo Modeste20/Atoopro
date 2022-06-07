@@ -1,19 +1,7 @@
 .section-contact{
     position: relative;
-    padding: 65px 0;
+    padding: 65px 0px;
     margin:50px 0;
-}
-body.body-dark .section-contact{
-    color: #020f25ec !important;
-}
-
-.section-contact h3{
-    font-size: 25px;
-    font-weight: 600;
-}
-
-.section-contact p{
-    margin:15px 0 20px 0 !important
 }
 
 .section-contact::before{
@@ -29,6 +17,32 @@ body.body-dark .section-contact{
     z-index:-4 !important;
 }
 
+
 body.body-dark .section-contact::before{
     background:#aae4fdd5;
+}
+
+body.body-dark .section-contact{
+    color: #020f25ec !important;
+}
+
+.section-contact h3{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+/*Grands écrans*/
+
+@media all and (min-width:1550px){
+    .section-contact{
+        padding-left:15px;
+        padding-right: 15px;
+    }
+    .section-contact h3{
+        font-size: 22px !important;
+    }
+}
+
+.section-contact p{
+    margin:15px 0 20px 0 !important
 }

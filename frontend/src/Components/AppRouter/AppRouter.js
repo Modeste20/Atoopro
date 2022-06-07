@@ -58,7 +58,6 @@ const AppRouter = () => {
                 {
                     isAdmin ? <Admin /> : <ConnexionAdmin />
                 }
-                
             </Route>
 
 

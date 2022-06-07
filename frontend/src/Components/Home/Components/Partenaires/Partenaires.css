@@ -5,6 +5,21 @@
     position:relative;
 }
 
+@media all and (max-width:450px){
+    .caroussel{
+        padding-right: 40px;
+        padding-left: 40px;
+    }
+}
+
+
+
+@media all and (max-width:740px){
+    .caroussel{
+        width:100%;
+    }
+}
+
 
 .caroussel .chevron{
     position:absolute;
@@ -24,14 +39,6 @@
     cursor:pointer
 }
 
-.caroussel .images{
-    width:100% !important;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height:150px;
-}
-
 .caroussel .chevron.prev{
     left: 50px;
 }
@@ -40,53 +47,35 @@
     right:0;
 }
 
-.atoopro-home .partenaires {
-    position:relative;
-    width:100%;
-    padding:25px 0;
-    margin-top:40px;
-}
-
-body.body-dark .atoopro-home .partenaires .caroussel .chevron {
-    color:#75c4e6b4 !important;
-    background: #465a63b9;
-}
-body.body-dark .atoopro-home .partenaires::before{
-    background:#abd7eb27 !important;
-}
-.atoopro-home .partenaires::before {
-    position:absolute;
-    background: #e9f7fdd2;
-    z-index:5;
-    content:'';
-    height:420px;
-    display:block;
-    z-index:-2;
-    top:-25px;
-    left:-300px;
-    right:-300px;
-    width:200%;
-}
-
-.caroussel .ok-only{
-    justify-content: center !important;
-    display: flex;
-    align-items: center;
-}
-
-
-@media all and (max-width:740px){
-    .caroussel{
-        width:100%;
-    }
-}
-
 @media all and (max-width:600px){
     .caroussel .chevron.next{
         right:-20px;
     }
     .caroussel .chevron.prev{
         left: 30px;
+    }
+}
+
+@media all and (max-width:450px){
+    .caroussel .chevron.next{
+        right:-40px;
+    }
+    .caroussel .chevron.prev{
+        left: 10px;
+    }
+}
+
+.caroussel .images{
+    width:100% !important;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height:150px;
+}
+
+@media all and (max-width:380px){
+    .caroussel .images img{
+        width:95px
     }
 }
 
@@ -100,26 +89,14 @@ body.body-dark .atoopro-home .partenaires::before{
     }
 }
 
-@media all and (max-width:380px){
-    .caroussel .images img{
-        width:95px
-    }
+body.body-dark .atoopro-home .partenaires .caroussel .chevron {
+    color:#75c4e6b4 !important;
+    background: #465a63b9;
 }
 
-@media all and (max-width:450px){
-    .atoopro-home .partenaires::before {
-        left:-100px;
-        right:-100px;
-        width:200%;
-    }
-    .caroussel .chevron.next{
-        right:-40px;
-    }
-    .caroussel .chevron.prev{
-        left: 10px;
-    }
-    .caroussel{
-        padding-right: 40px;
-        padding-left: 40px;
-    }
+.caroussel .ok-only{
+    justify-content: center !important;
+    display: flex;
+    align-items: center;
 }
+

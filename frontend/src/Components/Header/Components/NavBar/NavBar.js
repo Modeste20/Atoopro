@@ -15,7 +15,7 @@ import axios from "axios";
 
 
 
-const NavBar = () => {
+const NavBar = ({t}) => {
 
     //Is it current visitor a admin
 
@@ -146,7 +146,7 @@ const NavBar = () => {
                             </div>} trigger="click">
                             <Avatar size={40} style={{ color: '#06152dd3', backgroundColor: '#8ac2dc', fontWeight: 'bold', cursor: 'pointer' }}>A</Avatar>
                         </Popover>
-                    </div> : <a href='/contactez-nous?option=devis' type='primary' className='btn-link-primary' style={{ borderRadius: '40px', height: '40px' }} /*onClick={()=> window.location.href = '/contactez-nous?option=devis'}*/>Obtenir un devis</a>
+                    </div> : <a href='/contactez-nous?option=devis' type='primary' className='btn-link-primary' style={{ borderRadius: '40px', height: '40px' }} /*onClick={()=> window.location.href = '/contactez-nous?option=devis'}*/>{t('button')}</a>
                 }
             </Col>
             <div className='mobile-navbar'>
@@ -159,7 +159,7 @@ const NavBar = () => {
                         color: theme === 'dark' && 'red'
                     }
                 } className='menu-mobile' title="" placement="right" onClose={onClose} visible={visible}>
-                    <NavBarMobile setVisible={setVisible} logout={logout} isAdmin={isAdmin} deleteCVFolder={deleteCVFolder} canDeleteCVFolder={canDeleteCVFolder} />
+                    <NavBarMobile t={t} setVisible={setVisible} logout={logout} isAdmin={isAdmin} deleteCVFolder={deleteCVFolder} canDeleteCVFolder={canDeleteCVFolder} />
                 </Drawer>
             </div>
 

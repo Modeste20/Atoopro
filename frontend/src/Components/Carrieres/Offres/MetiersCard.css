@@ -4,13 +4,6 @@
     margin:15px auto !important
 }
 
-.metier-card .card-content{
-    font-weight:500 !important;
-    font-size:14px !important;
-    font-style: normal;
-    color: #051124f3 !important;
-}
-
 .metier-card .ant-card{
     background-color: transparent !important;
 }
@@ -23,3 +16,23 @@
     font-size:20px;
     margin:0 !important;
 }
+
+.metier-card .card-content{
+    font-weight:500 !important;
+    font-size:14px !important;
+    font-style: normal;
+    color: #051124f3 !important;
+}
+
+/*Grands écrans*/
+
+@media all and (min-width:1550px){
+    .metier-card .ant-card .ant-card-body h3{
+        font-weight:1000 !important;
+        font-size:22px !important;
+    }
+    .metier-card .card-content{
+        font-size:19px !important;
+    }
+}
+

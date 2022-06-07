@@ -9,12 +9,17 @@ import {Helmet} from 'react-helmet'
 import MetiersCard from './OffresCard'
 
 const Offres = () => {
+
     return (
         <div className="atoopro-jobs">
             <Helmet>
                 <title>Nos métiers | Atoopro</title>
                 <meta name="description" content="Contenu de la page des métiers" />
             </Helmet>
+            {/*
+                Bannière
+            */}
+
             <Col xs={24} sm={20} md={16} className='banner-jobs'>
                 <FadeComponent top>
                     <h1>Nos métiers</h1>
@@ -26,6 +31,10 @@ const Offres = () => {
                 </FadeComponent>
             </Col>
 
+            {/*
+                Jobs
+            */}
+
             <section className='all-jobs'>
 
                 <Row justify='space-between' gutter={[20, 50]}>
@@ -35,6 +44,10 @@ const Offres = () => {
                 </Row>
 
             </section>
+
+            {/*
+                Pourquoi nous rejoindre
+            */}
 
             <section className='reasons-join'>
                 <h2>Pourquoi nous rejoindre ?</h2>
@@ -58,6 +71,7 @@ const Offres = () => {
                     </JoinCard>
                 </Row>
             </section>
+            
         </div>
     )
 }

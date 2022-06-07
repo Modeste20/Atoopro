@@ -7,11 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Atoopro from "./Atoopro/Atoopro";
 import ErrorBoundary from "./Components/Shared/ErrorBoundary/ErrorBoundary";
 import { ThemeProvider } from "./Components/Shared/Context/ThemeContext/ThemeContext";
-import { AdminContext, AdminProvider } from "./Components/Shared/Context/AdminContext/AdminContext";
+import {AdminProvider } from "./Components/Shared/Context/AdminContext/AdminContext";
 import { ParallaxProvider } from "react-scroll-parallax";
 import axios from 'axios'
 import { Suspense } from "react";
-import i18n from './i18n'
 import { LangProvider } from "./Components/Shared/Context/LangContext/LangContext";
 
 

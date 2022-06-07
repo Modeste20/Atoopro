@@ -1,5 +1,5 @@
 import { Alert, Button, Checkbox, Col, Form, Input, Radio, Row, Select } from 'antd';
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -257,6 +257,7 @@ const FormContact = ({ t }) => {
                     <Col>
 
                     {/* Status du visiteur , recherche d'emploi ou a une entreprise */}
+
                         <Form.Item
                             name='status'
                             rules={[({ }) => ({
@@ -344,7 +345,7 @@ const FormContact = ({ t }) => {
                                     if (!value) {
                                         return Promise.reject('Veuillez entrer votre numero de téléphone')
                                     } else {
-                                        if (!value.match(/^\+[0-9]{1,4} [0-9]{6,10}$/)) {
+                                        if (!value.match(/^\+[0-9]{1,4}[0-9]{6,13}$/)) {
                                             return Promise.reject('Numero de téléphone invalide')
                                         } else {
                                             if (isNaN(value.replace('+', '').replace(' ', ''))) {

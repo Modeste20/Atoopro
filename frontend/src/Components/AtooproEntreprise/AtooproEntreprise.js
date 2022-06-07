@@ -11,7 +11,9 @@ import {Helmet} from 'react-helmet'
 
 
 const AtooproEntreprise = () => {
+
   return (
+
     <div className="atoopro-entreprise">
 
       <Helmet>
@@ -19,8 +21,13 @@ const AtooproEntreprise = () => {
         <meta name="description" content="Des informations utiles sur l'entreprise Atoopro" />
       </Helmet>
 
+      {
+        /*bannière*/
+      }
+
       <div className="banner">
         <Row gutter={[15, 30]} justify='space-between' align='center' className="banner-section">
+          
           <Col xs={24} md={12} lg={12} className='banner-section-content'>
             <FadeComponent left>
               <h1 className='banner-section-title'>
@@ -34,15 +41,18 @@ const AtooproEntreprise = () => {
               </p>
             </FadeComponent>
           </Col>
+
           <Col xs={24} sm={18} md={12} lg={8} className='banner-section-image'>
             <img alt='' src={ImageHomeBannerPc} width='100%' />
           </Col>
-
 
         </Row>
 
       </div>
 
+      {
+        /* Définition de Atoopro */
+      }
 
       <section className="atoopro-def">
         <Row justify='center'>
@@ -64,7 +74,9 @@ const AtooproEntreprise = () => {
         </Row>
       </section>
 
-
+      {
+        /* Mission de Atoopro */
+      }
 
       <section className="atoopro-mission">
         <Row justify='center'>
@@ -88,15 +100,20 @@ const AtooproEntreprise = () => {
         </Row>
       </section>
 
-
+      {/*
+        Les engagements
+       */}
 
       <section className='atoopro-engagement'>
         <FadeComponent bottom>
           <h2>Nos engagements</h2>
-
         </FadeComponent>
         <Engagement />
       </section>
+
+      {/*
+          Section de contact
+       */}
 
       <SectionContact title={'Avez-vous un projet'}>
         <p>
@@ -105,6 +122,7 @@ const AtooproEntreprise = () => {
         </p>
       </SectionContact>
 
+       {/* L'histoire de Atoopro */}
 
       <section id='history-atoopro' className='history-atoopro'>
         <FadeComponent bottom>

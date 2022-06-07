@@ -8,12 +8,20 @@ import {Helmet} from 'react-helmet'
 import './Stages.css'
 
 const Stages = () => {
+
     return (
+
         <div className="atoopro-alternances">
+
             <Helmet>
                 <title>Stages et Alternaces | Atoopro</title>
                 <meta name="description" content="Contenu de la page de stages et alternances" />
             </Helmet>
+
+            {
+                /* Bannière */
+            }
+
             <div className="banner">
                 <Row gutter={[15, 30]} justify='space-between' align='center' className="banner-section">
                     <Col xs={24} md={12} lg={12} className='banner-section-content'>
@@ -34,6 +42,10 @@ const Stages = () => {
                     </Col>
                 </Row>
             </div>
+
+            {
+                /* Définition de Atoopro  */
+            }
             
             <section className="atoopro-def">
                 <Row justify='center'>
@@ -54,6 +66,10 @@ const Stages = () => {
                     </Col>
                 </Row>
             </section>
+
+            {
+                /* Mission  */
+            }
 
             <section className="atoopro-mission">
                 <Row justify='center'>
@@ -76,11 +92,21 @@ const Stages = () => {
 
                 </Row>
             </section>
+
+            {
+                /* Section de contact */
+            }
+
             <SectionContact title={'Déposer ma candidature'} option={'cv'}>
                 <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, consequuntur aut? Eius fuga aspernatur delectus sed hic, a, quo omnis, corrupti recusandae inventore dolor voluptates id voluptatibus enim dolorum eligendi.
                 </p>
             </SectionContact>
+
+            {
+                /*last section*/
+            }
+            
             <section className="atoopro-def">
                 <Row justify='center'>
                     <Col xs={24} sm={22} md={12} className='atoopro-def-image'>

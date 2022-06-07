@@ -32,6 +32,12 @@ const Contact = ({t}) => {
                 <meta name="description" content="Contenu de la page de contact" />
             </Helmet>
 
+            {/*
+            
+                Formulaire de contact + map
+
+            */}
+
             <Row justify='space-between' className='form-map'>
                 <Col xs={24} md={15} lg={12} className='form-contact'>
                     <div className="contact-head">
@@ -52,6 +58,13 @@ const Contact = ({t}) => {
                     <Map />
                 </Col>
             </Row>
+
+
+            {/*
+            
+                Recrutement
+
+            */}
 
             <section className="recrutement">
                 <FadeComponent top>
