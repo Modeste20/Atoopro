@@ -1,157 +1,48 @@
 import { Card, Col, Row } from 'antd'
 import React from 'react'
-import { FaAffiliatetheme, FaPlus, FaSpider, FaUser } from 'react-icons/fa'
 import { FadeComponent } from '../../Shared/FadeComponent/FadeComponent'
+import Markdown from '../../Shared/Markdown/Markdown'
+import delve from "dlv"
 
-const Engagement = () => {
+const Engagement = ({ data }) => {
   return (
     <>
       <Row gutter={[20, 50]} style={{ background: 'transparent !important' }}>
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng1'}>
-          <Card title={
-            <Row style={{ alignItems: 'center' }}>
-              <FadeComponent left>
-                <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FaUser />
-                </Col>
-              </FadeComponent>
-              <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }}>
-                  <p>This is a title of a component</p>
-                </Col>
-              </FadeComponent>
 
-            </Row>
-          } bordered={false}>
-            <FadeComponent bottom delay={500}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
-              </p>
-            </FadeComponent>
-          </Card>
-        </Col>
+        {
+          data ? data.map(({svg,description,title}) => {
+            return (
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng2'}>
-          <Card title={
-            <Row style={{ alignItems: 'center' }}>
-              <FadeComponent left>
-                <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FaPlus />
-                </Col>
-              </FadeComponent>
-              <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }}>
-                  <p>This is a title of a component</p>
-                </Col>
-              </FadeComponent>
+              <Col xs={24} sm={22} md={12} xl={8} className={'eng'} key={title}>
+                <Card title={
+                  <Row style={{ alignItems: 'center' }}>
+                    <FadeComponent left>
+                      <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <img src={svg && process.env.STRAPI_APP_URL+delve(svg,"data.attributes.url")} width={18} height={18} />
+                      </Col>
+                    </FadeComponent>
+                    <FadeComponent right delay={400}>
+                      <Col style={{ marginLeft: '5px' }}>
+                        <p>{title}</p>
+                      </Col>
+                    </FadeComponent>
 
-            </Row>
-          } bordered={false}>
-            <FadeComponent bottom delay={500}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
-              </p>
-            </FadeComponent>
-          </Card>
-        </Col>
+                  </Row>
+                } bordered={false}>
+                  <FadeComponent bottom delay={500}>
+                    <Markdown>
+                      {
+                        description
+                      }
+                    </Markdown>
+                  </FadeComponent>
+                </Card>
+              </Col>
 
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng3'}>
-          <Card title={
-            <Row style={{ alignItems: 'center' }}>
-              <FadeComponent left>
-                <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FaAffiliatetheme />
-                </Col>
-              </FadeComponent>
-              <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }}>
-                  <p>This is a title of a component</p>
-                </Col>
-              </FadeComponent>
+            )
+          }) : null
+        }
 
-            </Row>
-          } bordered={false}>
-            <FadeComponent bottom delay={500}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
-              </p>
-            </FadeComponent>
-          </Card>
-        </Col>
-
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng4'}>
-          <Card title={
-            <Row style={{ alignItems: 'center' }}>
-              <FadeComponent left>
-                <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FaSpider />
-                </Col>
-              </FadeComponent>
-              <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }}>
-                  <p>This is a title of a component</p>
-                </Col>
-              </FadeComponent>
-
-            </Row>
-          } bordered={false}>
-            <FadeComponent bottom delay={500}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
-              </p>
-            </FadeComponent>
-          </Card>
-        </Col>
-
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng5'}>
-          <Card title={
-            <Row style={{ alignItems: 'center' }}>
-              <FadeComponent left>
-                <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FaPlus />
-                </Col>
-              </FadeComponent>
-              <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }} className='title'>
-                  This is a title of a component
-                </Col>
-              </FadeComponent>
-
-            </Row>
-          } bordered={false}>
-            <FadeComponent bottom delay={500}>
-              <p className='content'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
-              </p>
-            </FadeComponent>
-          </Card>
-        </Col>
-
-        <Col xs={24} sm={22} md={12} xl={8} className={'eng eng6'}>
-          <Card title={
-            <Row style={{ alignItems: 'center' }}>
-              <FadeComponent left>
-                <Col style={{ width: 40, height: 40, borderRadius: '50%', background: '#97dcfa', color: '#06183a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <FaPlus />
-                </Col>
-              </FadeComponent>
-              <FadeComponent right delay={400}>
-                <Col style={{ marginLeft: '5px' }}>
-                  <p>This is a title of a component</p>
-                </Col>
-              </FadeComponent>
-
-            </Row>
-          } bordered={false}>
-            <FadeComponent bottom delay={500}>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque est harum quos veritatis! Iure non corporis dolor perspiciatis aspernatur dignissimos quia sapiente, nulla praesentium doloribus. Repellat commodi similique iure nesciunt?
-              </p>
-            </FadeComponent>
-          </Card>
-        </Col>
-
-        
       </Row>
     </>
   )

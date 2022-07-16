@@ -9,6 +9,7 @@
     bannière
 */
 
+
 @media all and (max-width:768px){
 
     .service-cmp .banner,
@@ -38,61 +39,31 @@
 }
 
 
-.service-cmp section.other-services .service .more{
-    position:relative
-}
-
 /*Grands écrans*/
 
 @media all and (min-width:1550px){
-    .service-cmp section.other-services .service .more{
+    .service-cmp section.other-services .service .btn-link-primary{
         font-size:19px;
     }
 }
 
-.service-cmp section.other-services .service .more::before{
-    position:absolute;
-    top:0;
-    left:-1px;
-    right:-1px;
-    bottom:0;
-    display: block;
-    content: '';
-    background-color: #dfeff7;
-    width:0;
-    transition: .5s;
-}
-
-body.body-dark .service-cmp section.other-services .service .more::before{
-    background-color: #71a2fc4f !important;
-}
-
-.service-cmp section.other-services .service .more:hover:before{
-    width:101%;
-    right:-2px
-}
-
-
-.service-cmp section.other-services .service.service-hebergement.right,
-.service-cmp section.other-services .service.service-communications.image-left {
+.service-cmp section.other-services .service.right{
     display: flex;
 }
 
-.service-cmp section.other-services .service.service-hebergement.right .service-image,
-.service-cmp section.other-services .service.service-communications.image-left .service-content{
+.service-cmp section.other-services .service.right .service-image{
     order:2 !important
 }
-.service-cmp section.other-services .service.service-hebergement.right .service-content,
-.service-cmp section.other-services .service.service-communications.image-left .service-image{
+.service-cmp section.other-services .service.right .service-content{
     order:1 !important;
 }
 
 @media all and (max-width:768px){
 
-    .service-cmp section.other-services .service.service-hebergement.right .service-image{
+    .service-cmp section.other-services .service.right .service-image{
         order:1 !important
     }
-    .service-cmp section.other-services .service.service-hebergement.right .service-content{
+    .service-cmp section.other-services .service.right .service-content{
         order:2 !important;
     }
 
@@ -100,7 +71,7 @@ body.body-dark .service-cmp section.other-services .service .more::before{
         display: flex;
     }
 
-    .service-cmp section.other-services .service.left .service-image{
+    /*.service-cmp section.other-services .service .service-image{
         order:1 !important;
         margin-bottom:50px !important;
         margin-left:auto !important;
@@ -114,5 +85,5 @@ body.body-dark .service-cmp section.other-services .service .more::before{
     
     .service-cmp .service-description {
         width:100% !important;
-    }
+    }*/
 }

@@ -78,7 +78,9 @@ const ConnexionFetch = async (values,setError,setLoading)=>{
             }
         } else{
             if(data && data.token){
-                sessionStorage.setItem('token',data.token);
+                if(navigator.cookieEnabled && window.sessionStorage){
+                    sessionStorage.setItem('token',data.token);
+                }
                 window.location.reload()
             }
         }

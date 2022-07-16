@@ -1,28 +1,41 @@
 import { Radio } from 'antd';
-import React, { useContext, useState } from 'react'
-import ReCAPTCHA from "react-google-recaptcha";
+import React, { useContext, useMemo} from 'react'
 import { FaHeart, FaKey, FaPlane } from 'react-icons/fa';
+import { LangContext } from '../../../Shared/Context/LangContext/LangContext';
 import { ThemeContext } from '../../../Shared/Context/ThemeContext/ThemeContext';
 import './Recpatcha.css'
 
 
 
 
-const Recpatcha = ({ elmt, value, onChange }) => {
+const Recpatcha = ({ elmt, value, onChange , error_recpatcha }) => {
 
     const { theme } = useContext(ThemeContext)
 
+    const {lang} = useContext(LangContext)
 
     console.log('theme', theme)
 
+    const label = useMemo(() => {
+        if(lang ==='en'){
+            return (
+                <span>
+                    English Veuillez prouver que vous êtes un humain en sélectionnant
+                </span> 
+            )
+        } else{
+            return (
+                <span>
+                    Veuillez prouver que vous êtes un humain en sélectionnant
+                </span> 
+            )
+        }
+    },[lang])
+
     return (
         <div className="recaptcha">
-            {/*<ReCAPTCHA
-                sitekey='AIzaSyCBooTzoZlsFvb9U9zy_ofAFB96vNbcCEg'
-                theme={theme === 'dark' ? 'dark' : 'light'}
-            />*/}
             <p>
-                Veuillez prouver que vous êtes un humain en sélectionnant : <b>' {elmt} '</b>
+                {label} : <b>' {elmt} '</b>
             </p>
             <Radio.Group size="large" name='recaptcha' className='recaptcha-radio-group' onChange={onChange}>
 
@@ -40,6 +53,11 @@ const Recpatcha = ({ elmt, value, onChange }) => {
                 </RadioButton>
 
             </Radio.Group>
+            <div className="ant-form-item-explain-error">
+                {
+                    error_recpatcha
+                }
+            </div>
         </div>
 
     )

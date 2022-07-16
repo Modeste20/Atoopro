@@ -6,15 +6,13 @@
     height:auto;
     position:relative;
     margin-bottom:50px;
+    padding-top:50px;
+    padding-bottom:50px;
 }
 
 .atoopro-alternances .banner .banner-section{
     display: flex;
     align-items: center;
-}
-
-.atoopro-alternances .banner .banner-section-image{
-    margin:auto
 }
 
 .atoopro-alternances .banner .banner-section .banner-section-image img{
@@ -24,8 +22,17 @@
 
 
 @media all and (max-width:768px){
+    
+
+.atoopro-alternances .banner .banner-section-image,
+.atoopro-alternances .banner .banner-section-image img{
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
+}
     .atoopro-alternances .banner .banner-section{
         display: flex;
+        justify-content:center !important;
     }
 
     .atoopro-alternances .banner .banner-section .banner-section-image{
@@ -43,6 +50,13 @@
 .atoopro-alternances .atoopro-mission{
     padding:25px 0;
     margin-bottom: 25px;
+}
+
+.atoopro-alternances .atoopro-def img,
+.atoopro-alternances .atoopro-mission img{
+    margin-left:auto;
+    margin-right:auto;
+    text-align: center;
 }
 
 .atoopro-alternances .atoopro-def .atoopro-def-content h2,
@@ -86,6 +100,13 @@
 .atoopro-alternances .atoopro-def .atoopro-def-content p,
 .atoopro-alternances .atoopro-mission .atoopro-mission-content p{
     font-size: 15px;
+}
+
+@media only screen and (min-width:1200px){
+    .atoopro-alternances .atoopro-def .atoopro-def-image,
+    .atoopro-alternances .atoopro-mission .atoopro-mission-image{
+        max-width:490px
+    }
 }
 
 @media all and (max-width:1056px){

@@ -1,13 +1,19 @@
 import { Col, Row } from 'antd'
-import React from 'react'
+import React, { useContext } from 'react'
 import SessionServices from './SectionServices/Sessionservices'
 import SectionContact from './../../Shared/SectionContact/SectionContact.js'
 import './ServiceComponent.css'
 import { FadeComponent } from '../FadeComponent/FadeComponent'
+import Markdown from '../Markdown/Markdown'
+import { LangContext } from '../Context/LangContext/LangContext'
+import delve from 'dlv'
 
 //Composant templates pour les pages de services 
 
-const ServiceComponent = ({ className, title, banniere, content, children }) => {
+const ServiceComponent = ({ className, banniere, content,image , section_contact, children }) => {
+
+    const {lang} = useContext(LangContext)
+    
     return (
         <div className={"service-cmp service-" + className}>
 
@@ -18,19 +24,20 @@ const ServiceComponent = ({ className, title, banniere, content, children }) => 
 
                 <Col xs={22} sm={19} md={12} className="banner-content">
                     <FadeComponent top>
-                        <h1>{title}</h1>
+                        <h1>{delve(banniere,"title")}</h1>
                     </FadeComponent>
                     <FadeComponent delay={300} bottom>
-                        <p>
-                            {banniere.description}
-                        </p>
+                        <Markdown>
+                            {delve(banniere,"description")}
+                        </Markdown>
+                        
                     </FadeComponent>
 
                 </Col>
 
                 <Col xs={22} sm={19} md={7} className="banner-image">
                     <FadeComponent right>
-                        <img src={banniere.img} alt={title} width='100%' />
+                            {image}
                     </FadeComponent>
                 </Col>
             </Row>
@@ -42,12 +49,14 @@ const ServiceComponent = ({ className, title, banniere, content, children }) => 
 
             <section className='service-description' style={{ width: '75%', margin: '0 auto 70px auto' }}>
                 <FadeComponent left>
-                    <h2>Description du service</h2>
+                    <h2>{lang === 'fr' ? "Description du service" : "Description of service" }</h2>
                 </FadeComponent>
                 <div className="description-content" >
-                    {
-                        content
-                    }
+                    <Markdown>
+                        {
+                            content
+                        }
+                    </Markdown>
                 </div>
 
             </section>
@@ -58,13 +67,8 @@ const ServiceComponent = ({ className, title, banniere, content, children }) => 
                 */
             }
 
-            <SectionContact title={"Avez-vous des points d'ombres ? des préoccupations ?"}>
-                <FadeComponent bottom>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis similique, quod commodi nemo officiis cum. Molestiae veniam alias distinctio, in accusamus illum modi vitae quibusdam, doloremque nemo soluta, expedita ad!
-                    </p>
-                </FadeComponent>
-
+            <SectionContact title={delve(section_contact,"title")}>
+                {delve(section_contact,"description")}
             </SectionContact>
 
             {/*

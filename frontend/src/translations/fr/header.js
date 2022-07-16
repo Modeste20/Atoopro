@@ -3,5 +3,5 @@ export const Header_FR = {
         french:'Français',
         english:'Anglais'
     },
-    button:'Obtenir un devis'
+    button:'Contactez-nous'
 };

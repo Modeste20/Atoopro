@@ -9,6 +9,9 @@ import Page404 from './../Page404/Page404'
 import ConnexionAdmin from '../ConnexionAdmin/ConnexionAdmin'
 import {AdminContext} from './../Shared/Context/AdminContext/AdminContext'
 import Admin from '../Admin/Admin'
+import { ContentContext } from '../Shared/Context/ContentContext/ContentContext'
+import { Alert } from 'antd'
+import { LangContext } from '../Shared/Context/LangContext/LangContext'
 
 const AppRouter = () => {
 
@@ -16,8 +19,26 @@ const AppRouter = () => {
 
     const isAdmin = useContext(AdminContext)
 
-    console.log('isadmin',isAdmin)
+    //Get Page Content
 
+    const pageData = useContext(ContentContext)
+
+    const {lang} = useContext(LangContext)
+
+    console.log('isadmin',isAdmin)
+    /*
+        Si la récupération du contenu de page a échoué , on affiche un message d'alerte
+    */
+
+    console.log('page',pageData)
+
+    if(pageData === null){
+        return (
+          <div className="alert-danger">
+            <Alert message={lang === 'fr' ? "une erreure s'est produite lors du chargement du contenu de la page" : "Error find"} type="error" />
+          </div>
+        )
+    }
     return (
         <Switch>
             {/* Page d'accueil */}

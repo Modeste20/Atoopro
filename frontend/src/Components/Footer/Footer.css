@@ -166,6 +166,7 @@ footer .copyright-and-others .links-footer-atoopro ul li:last-child .top{
     bottom:45px;
     right:-70px;
     transition: .4s;
+    z-index:2;
 }
 
 

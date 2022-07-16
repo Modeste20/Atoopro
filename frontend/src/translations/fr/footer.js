@@ -12,7 +12,7 @@ export const Footer_FR = {
     title:{
         top:'Retourner en haut'
     },
-    atoopro_label:'Notre société',
+    atoopro_label:'Notre sociétdteyyt',
     carrieres_label:'Carrières',
     services_label:'Nos services'
 };

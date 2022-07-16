@@ -271,14 +271,22 @@ body.body-dark .ant-input::placeholder ,body.body-dark .ant-select .ant-select-s
 #atoopro{
     display: flex;
     flex-direction: column;
+    min-height:100vh
 }
 
 #atoopro main{
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 1;
-    height:100%;
+    flex-grow: 1;
+    min-height:450px;
+    position:relative;
 }
+
+.alert-danger{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-80%);
+}
+
 
 /*
     Pour des écrans supérieures à 1550px , plus grandes

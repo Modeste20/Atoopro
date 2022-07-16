@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import i18n from '../../../../i18n'
+import { CookieHandlerContext } from '../CookieHandler/CookieHandler'
 
 
 export const LangContext = React.createContext({
@@ -10,7 +11,12 @@ export const LangContext = React.createContext({
 })
 
 export const LangProvider = ({children}) => {
-    const langue = localStorage.getItem('lang')
+
+    //Accept cookie or reject
+
+    const refuseCookie = useContext(CookieHandlerContext)
+
+    const langue = refuseCookie === false &&  navigator.cookieEnabled && window.localStorage ? localStorage.getItem('lang') : i18n.language
     const [lang,setLang] = useState(i18n.language)
 
     useEffect(() => {

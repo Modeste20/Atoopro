@@ -1,30 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ServiceComponent from '../../Shared/ServiceComponent/ServiceComponent'
-import AssistanceSvg from './../../../File/images/hebergement.svg'
+import {ReactComponent as AssistanceSvg} from './../../../File/images/hebergement.svg'
 import {Helmet} from 'react-helmet'
-
-const banniere = {
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis sequi laudantium pariatur mollitia, blanditiis quasi necessitatibus nesciunt, velit nisi placeat hic quidem aut itaque! Voluptatem suscipit non laudantium inventore provident?",
-    img: AssistanceSvg
-}
+import { ContentContext } from '../../Shared/Context/ContentContext/ContentContext'
 
 const Assistance = () => {
+
+    const {banner,section_contact,description,className} = useContext(ContentContext)
+
     return (
-        <ServiceComponent banniere={banniere} title='Assistance' className={'assistance'}
-            content={<>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut voluptatum quisquam assumenda amet, aliquid odit! Nulla, sint dolore adipisci ex sapiente itaque nobis earum atque minima cupiditate rem obcaecati eos.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis nulla doloribus laudantium adipisci debitis atque reprehenderit deserunt sed quam suscipit minus totam sit minima quia reiciendis, ea quas aperiam ut.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. <b>Ut voluptatum quisquam assumenda amet </b>, aliquid odit! Nulla, sint dolore adipisci ex sapiente itaque nobis earum atque minima cupiditate rem obcaecati eos.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veritatis nulla doloribus laudantium adipisci debitis atque reprehenderit deserunt sed quam suscipit minus totam sit minima quia reiciendis, ea quas aperiam ut.
-                </p>
-            </>}
+        <ServiceComponent section_contact={section_contact} banniere={banner} image={<AssistanceSvg />} className={className} 
+        content={description}
         >
             <Helmet>
                 <title>Assistance | Atoopro</title>
-                <meta name="description" content="Contenu de la page Assistance" />
+                <meta name="description" content="Contenu de la page assistance" />
             </Helmet>
         </ServiceComponent>
     )

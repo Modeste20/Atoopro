@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { FadeComponent } from '../../../Shared/FadeComponent/FadeComponent'
 import './ServiceCard.css'
 
-const ServiceCard = ({ className, image, title, children, alt,url='/',...rest }) => {
+const ServiceCard = ({ className, srcSet , image, title, children, alt,url='/',...rest }) => {
 
     //Composant de carte pour les services
     
@@ -13,7 +13,7 @@ const ServiceCard = ({ className, image, title, children, alt,url='/',...rest })
             <div className="service-card">
                 <FadeComponent top delay={300}>
                     <div className="image-round">
-                        <img src={image} alt={alt} />
+                        <img src={image} srcSet={srcSet} alt={alt} />
                     </div>
                 </FadeComponent>
 

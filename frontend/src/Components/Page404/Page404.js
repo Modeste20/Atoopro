@@ -6,11 +6,12 @@ import { ReactComponent as Astronaute } from './astronaute.svg';
 import { ReactComponent as AstronauteDark } from './astronaute-dark.svg';
 import { Link } from 'react-router-dom'
 import Helmet from 'react-helmet'
+import { withTranslation } from 'react-i18next';
 
 
 //Page 404
 
-const Page404 = () => {
+const Page404 = ({t}) => {
 
     const { theme } = useContext(ThemeContext)
 
@@ -26,7 +27,7 @@ const Page404 = () => {
     })
 
     return (
-        <Row justify='space-around' style={{ height: '100%' }} className='section-404'>
+        <Row justify='space-around' className='section-404'>
             
             <Helmet>
                 <title>Page 404</title>
@@ -44,13 +45,15 @@ const Page404 = () => {
             <Col xs={24} sm={20} md={12} lg={12} className='content'>
                 <h1>404</h1>
                 <h3>
-                    Désolé la page que vous demandez est introuvable
+                    {
+                        t('message')
+                    }
                 </h3>
-                <Link to='/' className='btn-link-primary' style={{ height: 42, marginTop: 15 }}>Retour à l'acceuil</Link>
+                <Link to='/' className='btn-link-primary' style={{ height: 42, marginTop: 15 }}>{t('home')}</Link>
             </Col>
             
         </Row>
     )
 }
 
-export default Page404
+export default withTranslation('page404')(Page404)

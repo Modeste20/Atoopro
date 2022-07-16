@@ -8,7 +8,8 @@ export const AdminProvider = ({children}) => {
 
     const [isAdmin,setIsAdmin] = useState(false)
 
-    const token = sessionStorage.getItem('token')
+
+    const token =  navigator.cookieEnabled && window.sessionStorage ? sessionStorage.getItem('token') : null
 
     useEffect(async () => {
         try{

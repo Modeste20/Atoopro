@@ -1,0 +1,79 @@
+.modal {
+    position:fixed;
+    bottom:-30px;
+    right:0;
+    opacity:0;
+    width:0px;
+    background: #abe1fa;
+    z-index:1;
+    padding:30px 10px;
+    font-size:14px;
+    transition:bottom .8s;
+}
+
+.modal.modal-visible{
+    opacity:1;
+    bottom:0;
+    width:100%;
+}
+/*
+.modal .modal-close{
+    position:absolute;
+    top:0;
+    right:0;
+    width:35px;
+    height:35px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    font-size:1.7rem;
+    margin:10px 10px;
+    font-weight:500 !important;
+    cursor:pointer
+}
+*/
+.modal.modal-dark{
+    background: #22304d;
+    box-shadow: 2px 2px 65px rgba(0,0,0,.5);
+}
+
+@media only screen and (min-width:780px){
+    .modal{
+        bottom:25px !important;
+        right:-25px;
+        border-radius:35px;
+        padding: 20px;
+        transition:right .8s;
+    }
+    .modal.modal-visible{
+        right:25px;
+        bottom:25px !important;
+        width:650px;
+    }
+}
+
+.modal .modal-button {
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top:25px !important;
+}
+
+.modal .modal-button div:last-child{
+    margin-left:0;
+    margin-top:18px;
+}
+
+.modal .modal-button div:last-child button{
+    color:inherit !important;
+}
+
+@media only screen and (min-width:400px){
+    .modal .modal-button div:last-child{
+        margin-left:25px;
+        margin-top:0;
+    }
+    .modal .modal-button {
+        flex-direction: row;
+    }
+}

@@ -5,6 +5,8 @@ import Header from '../Components/Header/Header'
 import { ThemeContext } from '../Components/Shared/Context/ThemeContext/ThemeContext'
 import { ConfigProvider} from "antd";
 import {useLocation } from 'react-router-dom'
+import { ContentProvider } from '../Components/Shared/Context/ContentContext/ContentContext'
+import Loading from '../Components/Shared/Loading/Loading'
 
 
 const Atoopro = () => {
@@ -18,7 +20,7 @@ const Atoopro = () => {
 
     ConfigProvider.config({
         theme: {
-            primaryColor: themeValue.theme === 'light' ? '#25A8E0' : '#1a52bb',
+            primaryColor: themeValue.theme === 'light' ? '#25A8E0' : '#1a52bb'
         },
     
     });
@@ -49,7 +51,9 @@ const Atoopro = () => {
         <>
             <Header />
             <main className="main" id="main">
+            <ContentProvider>
                 <AppRouter />
+            </ContentProvider>
             </main>
             <Footer />
         </>

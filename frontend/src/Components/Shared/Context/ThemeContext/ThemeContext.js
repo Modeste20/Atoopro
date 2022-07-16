@@ -1,4 +1,5 @@
 import React,{ createContext, useContext, useEffect, useState } from "react";
+import { CookieHandlerContext } from "../CookieHandler/CookieHandler";
 
 
 export const ThemeContext = createContext();
@@ -6,22 +7,32 @@ export const ThemeContext = createContext();
 const useTheme = () => {
     const [theme,setTheme] = useState('light')
 
+    //Accept cookie or reject
+
+    const refuseCookie = useContext(CookieHandlerContext)
+
     useEffect(() => {
-        const storageTheme = localStorage.getItem('theme');
+        const storageTheme = (refuseCookie === false && navigator.cookieEnabled && window.localStorage) ? localStorage.getItem('theme') : 'light';
         if(storageTheme){
             setTheme(storageTheme)
         } else{
-            localStorage.setItem('theme','light')
+            if(refuseCookie === false && navigator.cookieEnabled && window.localStorage){
+                localStorage.setItem('theme','light')
+            }
         }
-    })
+    },[refuseCookie])
 
     const changeTheme = () => {
         setTheme(c =>{
             if(c==='light'){
-                localStorage.setItem('theme','dark')
+                if(refuseCookie === false && navigator.cookieEnabled && window.localStorage){
+                    localStorage.setItem('theme','dark')
+                }
                 return 'dark'
             } else{
-                localStorage.setItem('theme','light')
+                if(refuseCookie === false && navigator.cookieEnabled && window.localStorage){
+                    localStorage.setItem('theme','light')
+                }
                 return 'light'
             }
         })

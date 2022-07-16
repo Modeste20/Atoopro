@@ -1,14 +1,26 @@
 import { Col, Row } from 'antd'
 import React from 'react'
 import { FadeComponent } from '../../Shared/FadeComponent/FadeComponent'
-import OffresData from './Offres.data'
 import './Offres.css'
 import JoinCard from './Join/JoinCard'
-import { FaShoppingBasket } from 'react-icons/fa'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import MetiersCard from './OffresCard'
+import { useContext } from 'react'
+import { ContentContext } from '../../Shared/Context/ContentContext/ContentContext'
+import { ThemeContext } from '../../Shared/Context/ThemeContext/ThemeContext'
+import delve from 'dlv'
+import Markdown from '../../Shared/Markdown/Markdown'
 
 const Offres = () => {
+
+    const { banner, joinUs, offres } = useContext(ContentContext)
+
+    //Get Current Theme
+
+    const {theme} = useContext(ThemeContext)
+
+
+    const card_join = delve(joinUs,'card_join')
 
     return (
         <div className="atoopro-jobs">
@@ -22,12 +34,12 @@ const Offres = () => {
 
             <Col xs={24} sm={20} md={16} className='banner-jobs'>
                 <FadeComponent top>
-                    <h1>Nos métiers</h1>
+                    <h1>{delve(banner,"title")}</h1>
                 </FadeComponent>
                 <FadeComponent bottom delay={200}>
-                    <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, quis, natus expedita porro beatae voluptates optio nulla quasi odio, ut hic suscipit laborum ab dignissimos quas temporibus illum deleniti sequi.
-                    </p>
+                        <Markdown>
+                            {delve(banner,"description")}
+                        </Markdown>
                 </FadeComponent>
             </Col>
 
@@ -39,7 +51,7 @@ const Offres = () => {
 
                 <Row justify='space-between' gutter={[20, 50]}>
                     {
-                        OffresData.map(offres => <MetiersCard  {...offres} key={offres.key} />)
+                        offres && offres.map(offre => <MetiersCard title={offre.title} content={offre.description} key={offre.id} />)
                     }
                 </Row>
 
@@ -50,28 +62,34 @@ const Offres = () => {
             */}
 
             <section className='reasons-join'>
-                <h2>Pourquoi nous rejoindre ?</h2>
+                <h2>{delve(joinUs,"title")}</h2>
                 <Row justify='space-between' className='reasons'>
-                    <JoinCard icon={<FaShoppingBasket size={20} />} title={'This is my title'}>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit magni voluptates voluptatem facilis eaque ex quidem fugiat unde quo. Maxime qui voluptatum repellendus ut iusto modi dolorem animi debitis quae.
-                        </p>
-                    </JoinCard>
+                    {
+                        card_join ? card_join.map(({id,title,description,icon_alt,icon,icon_dark}) => {
 
-                    <JoinCard icon={<FaShoppingBasket size={20} />} title={'This is my title'}>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit magni voluptates voluptatem facilis eaque ex quidem fugiat unde quo. Maxime qui voluptatum repellendus ut iusto modi dolorem animi debitis quae.
-                        </p>
-                    </JoinCard>
+                            // Afficher différents icon ( blanc sur le thème sombre , noir sur le thème clair ) suivanr le thème !
 
-                    <JoinCard icon={<FaShoppingBasket size={20} />} title={'This is my title'}>
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit magni voluptates voluptatem facilis eaque ex quidem fugiat unde quo. Maxime qui voluptatum repellendus ut iusto modi dolorem animi debitis quae.
-                        </p>
-                    </JoinCard>
+                            const light_url = delve(icon,'data.attributes.url')
+                            const dark_url = delve(icon_dark,'data.attributes.url')
+
+                            console.log('dark',icon_dark)
+
+                            //image 20*20
+
+
+                            return (
+                                <JoinCard icon={<img src={process.env.STRAPI_APP_URL+(theme === 'light' ? light_url : dark_url)} alt={icon_alt} width={20} height={20} />} key={id} title={title}>
+                                    <Markdown>
+                                        {description}
+                                    </Markdown>
+                                </JoinCard>
+                            )
+
+                        }) : null
+                    }
                 </Row>
             </section>
-            
+
         </div>
     )
 }

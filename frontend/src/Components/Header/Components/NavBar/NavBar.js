@@ -24,7 +24,7 @@ const NavBar = ({t}) => {
     //Vérification si le dossier des cv sur le serveur est vide ou pas , si non on affiche un bouton pour supprimer les fichiers de ce dossier
     const [canDeleteCVFolder, setCanDeleteCVFolder] = useState(false)
 
-    const token = sessionStorage.getItem('token');
+    const token = navigator.cookieEnabled && window.sessionStorage ? sessionStorage.getItem('token') : null;
 
 
     useEffect(async () => {
@@ -111,7 +111,9 @@ const NavBar = ({t}) => {
 
     const logout = (e) => {
         e.preventDefault();
-        sessionStorage.removeItem('token');
+        if(navigator.cookieEnabled && window.sessionStorage){
+            sessionStorage.removeItem('token');
+        }
         window.location.reload()
     }
 

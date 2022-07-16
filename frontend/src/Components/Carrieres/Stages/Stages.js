@@ -1,13 +1,61 @@
 import { Col, Row } from 'antd'
 import React from 'react'
 import { FadeComponent } from '../../Shared/FadeComponent/FadeComponent'
-import ImageHomeBannerPc from './../../../File/images/home-banner-pc.svg'
-import AtooProImage from './../../../File/images/banner.jpg'
 import SectionContact from '../../Shared/SectionContact/SectionContact'
 import {Helmet} from 'react-helmet'
 import './Stages.css'
+import { useContext } from 'react'
+import { ContentContext } from '../../Shared/Context/ContentContext/ContentContext'
+import {getSrcSet} from './../../Shared/getSrcSet/getSrcSet'
+import delve from 'dlv'
+import Markdown from '../../Shared/Markdown/Markdown'
+
+
+const getImageSrcSet = (objet,string) => {
+    if(objet){
+        const attributes = delve(objet,string)
+
+        const {url,width,formats} = attributes ? attributes : {url:null,width:null,formats:null};
+        return {url,srcset:getSrcSet(url,width,{url:formats && formats.thumbnail ? formats.thumbnail.url : null,width:formats && formats.thumbnail ?formats.thumbnail.width : null})}
+    } else{
+        return {
+            url:null,
+            srcset:null
+        }
+    }
+   }
 
 const Stages = () => {
+
+
+    const {banner,section,section_contact,bannerImage} = useContext(ContentContext)
+
+    //450*295 pour les images
+
+
+    /* srcset de l'image de  banniere */
+
+    const banner_srcset = getImageSrcSet(bannerImage,'image.data.attributes')
+
+    /*
+        info sur l'image de la section 1 
+    */
+
+    const section1_info_image = getImageSrcSet(section ? section[0] : null,'image.data.attributes')
+
+    /*
+        info sur l'image de la section 2
+    */
+
+        const section2_info_image = getImageSrcSet(section ? section[1] : null,'image.data.attributes')
+
+    
+    /*
+        info sur l'image de la section 1 
+    */
+
+        const section3_info_image = getImageSrcSet(section ? section[2] : null,'image.data.attributes')
+
 
     return (
 
@@ -24,69 +72,69 @@ const Stages = () => {
 
             <div className="banner">
                 <Row gutter={[15, 30]} justify='space-between' align='center' className="banner-section">
-                    <Col xs={24} md={12} lg={12} className='banner-section-content'>
+                    <Col xs={24} md={12} lg={12} xxl={14} className='banner-section-content'>
                         <FadeComponent left>
                             <h1 className='banner-section-title'>
-                                Stages et Alternances
+                                {delve(banner,"title")}
                             </h1>
                         </FadeComponent>
                         <FadeComponent bottom delay={500}>
-                            <p className='banner-section-content'>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla explicabo nihil, exercitationem, illo officia sit, qui eos vero sapiente totam facilis mollitia soluta. Consectetur laboriosam illo laborum dignissimos, veritatis ea.
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex natus aliquam, laborum modi enim eum eveniet repellendus suscipit nesciunt in. In sequi iste maiores voluptas, tempora eum vero corrupti optio.
-                            </p>
+                                <Markdown>
+                                    {
+                                        delve(banner,"description")
+                                    }
+                                </Markdown>
                         </FadeComponent>
                     </Col>
                     <Col xs={24} sm={18} md={12} lg={8} className='banner-section-image'>
-                        <img alt='' src={ImageHomeBannerPc} width='100%' />
+                        <img alt={delve(bannerImage,"alt")} srcSet={delve(banner_srcset,"srcset")} src={process.env.STRAPI_APP_URL+banner_srcset.url} height={280}/>
                     </Col>
                 </Row>
             </div>
 
             {
-                /* Définition de Atoopro  */
+                /* section 1 */
             }
             
             <section className="atoopro-def">
                 <Row justify='center'>
                     <Col xs={24} sm={22} md={12} className='atoopro-def-image'>
                         <FadeComponent left>
-                            <img src={AtooProImage} style={{ borderRadius: 10 }} width='80%' alt="Qu'est ce que Atoo Pro" />
+                            <img src={process.env.STRAPI_APP_URL+section1_info_image.url} width='100%' srcSet={section1_info_image.srcset} style={{ borderRadius: 10 }} alt={section && section[0] ? section[0].image_alt : null} />
                         </FadeComponent>
                     </Col>
                     <Col xs={24} sm={22} md={12} className='atoopro-def-content'>
                         <FadeComponent top delay={500}>
-                            <h2>Stages et autres</h2>
+                            <h2>{delve(section,"0.title")}</h2>
                         </FadeComponent>
                         <FadeComponent right>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, vel quaerat inventore recusandae ducimus repudiandae ratione nulla eaque, molestiae cupiditate sit illo. Corrupti ipsa, aliquam ea ullam minus consectetur voluptatem.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt aspernatur dolore, hic beatae perferendis, amet labore, assumenda doloremque ipsam quas veniam ad repudiandae totam nemo ratione obcaecati suscipit optio. Hic!</p>
+                                <Markdown>
+                                {delve(section,"0.description")}
+                                </Markdown>
                         </FadeComponent>
                     </Col>
                 </Row>
             </section>
 
             {
-                /* Mission  */
+                /* Mission (section 2) */
             }
 
             <section className="atoopro-mission">
                 <Row justify='center'>
                     <Col xs={24} sm={22} md={12} className='atoopro-mission-content'>
                         <FadeComponent bottom>
-                            <h2>Alternances et autres</h2>
+                            <h2>{delve(section,"1.title")}</h2>
                         </FadeComponent>
                         <FadeComponent top delay={500}>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, vel quaerat inventore recusandae ducimus repudiandae ratione nulla eaque, molestiae cupiditate sit illo. Corrupti ipsa, aliquam ea ullam minus consectetur voluptatem.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt aspernatur dolore, hic beatae perferendis, amet labore, assumenda doloremque ipsam quas veniam ad repudiandae totam nemo ratione obcaecati suscipit optio. Hic!</p>
-
+                            <Markdown>
+                            {delve(section,"1.description")}
+                            </Markdown>
                         </FadeComponent>
                     </Col>
                     <Col xs={24} sm={22} md={12} className='atoopro-mission-image'>
                         <FadeComponent right>
-                            <img src={AtooProImage} style={{ borderRadius: 10 }} width='80%' alt="Qu'est ce que Atoo Pro" />
+                            <img src={process.env.STRAPI_APP_URL+section2_info_image.url} srcSet={section2_info_image.srcset} style={{ borderRadius: 10 }} width='100%' alt={section && section[1] ? section[1].image_alt : null} />
                         </FadeComponent>
                     </Col>
 
@@ -97,31 +145,31 @@ const Stages = () => {
                 /* Section de contact */
             }
 
-            <SectionContact title={'Déposer ma candidature'} option={'cv'}>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Excepturi, consequuntur aut? Eius fuga aspernatur delectus sed hic, a, quo omnis, corrupti recusandae inventore dolor voluptates id voluptatibus enim dolorum eligendi.
-                </p>
+            <SectionContact title={delve(section_contact,"title")} link={delve(section_contact,"button_url")} option={'cv'}>
+                        {
+                            delve(section_contact,"description")
+                        }
             </SectionContact>
 
             {
-                /*last section*/
+                /* section 3*/
             }
             
             <section className="atoopro-def">
                 <Row justify='center'>
                     <Col xs={24} sm={22} md={12} className='atoopro-def-image'>
                         <FadeComponent left>
-                            <img src={AtooProImage} style={{ borderRadius: 10 }} width='80%' alt="Qu'est ce que Atoo Pro" />
+                            <img src={process.env.STRAPI_APP_URL+section3_info_image.url} srcSet={section3_info_image.srcset} style={{ borderRadius: 10 }} width='100%' alt={section && section[2] ? section[2].image_alt : null} />
                         </FadeComponent>
                     </Col>
                     <Col xs={24} sm={22} md={12} className='atoopro-def-content'>
                         <FadeComponent top delay={500}>
-                            <h2>Stages et autres</h2>
+                            <h2>{delve(section,"2.title")}</h2>
                         </FadeComponent>
                         <FadeComponent right>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam, vel quaerat inventore recusandae ducimus repudiandae ratione nulla eaque, molestiae cupiditate sit illo. Corrupti ipsa, aliquam ea ullam minus consectetur voluptatem.
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt aspernatur dolore, hic beatae perferendis, amet labore, assumenda doloremque ipsam quas veniam ad repudiandae totam nemo ratione obcaecati suscipit optio. Hic!</p>
+                            <Markdown>
+                                {delve(section,"2.title")}
+                            </Markdown>
                         </FadeComponent>
                     </Col>
                 </Row>

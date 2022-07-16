@@ -14,15 +14,15 @@ export const AtooproLinks = withTranslation('menu')(({ t, footer = false, onClic
     return (
         <Menu className={footer ? 'footer-societe' : "popover-atoopro"}>
             <Menu.Item key={'atoopro'} >
-                <Link to='/qui-sommes-nous' className='popover-link' onClick={onClick}>{t('atoopro.atoopro')}</Link>
+                <Link to='/qui-sommes-nous' className='popover-link' onClick={onClick}>{t('menu_atoopro.atoopro')}</Link>
             </Menu.Item>
 
             <Menu.Item key={'partenaires'} >
-                <NavHashLink to='/#partenaires' className='popover-link' onClick={onClick}>{t('atoopro.partenaires')}</NavHashLink>
+                <NavHashLink to='/#partenaires' className='popover-link' onClick={onClick}>{t('menu_atoopro.partenaires')}</NavHashLink>
             </Menu.Item>
 
             <Menu.Item key={'contact'} >
-                <Link to='/contactez-nous' className='popover-link' onClick={onClick}>{t('atoopro.contact')}</Link>
+                <Link to='/contactez-nous' className='popover-link' onClick={onClick}>{t('menu_atoopro.contact')}</Link>
             </Menu.Item>
         </Menu>
     )
@@ -78,7 +78,7 @@ export const CarriereLinks = withTranslation('menu')(({ t, footer = false, onCli
 
 const NavbarTable = [
     {
-        id: 'atoopro',
+        id: 'menu_atoopro',
         content: ({ onClick }) => <AtooproLinks onClick={onClick} />,
     },
     {

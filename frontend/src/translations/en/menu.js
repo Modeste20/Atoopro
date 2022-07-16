@@ -1,5 +1,5 @@
 export const Menu_EN = {
-    atoopro:{
+    menu_atoopro:{
         atoopro:'Who are we ?',
         partenaires:'Our patners',
         contact:'Contact us',

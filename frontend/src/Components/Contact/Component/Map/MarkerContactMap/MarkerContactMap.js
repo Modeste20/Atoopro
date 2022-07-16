@@ -1,9 +1,13 @@
 import L from 'leaflet';
-import MarkerIcon from './../../../../../File/images/MarkerContactMap.png'
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import icon from './../../../../../File/images/marker-icon.png'
 
 const MarkerContactMap = new L.Icon({
-    iconUrl: MarkerIcon,
-    className: 'leaflet-div-icon'
+    iconSize: [25, 41],
+    iconAnchor: [10, 41],
+    popupAnchor: [2, -40],
+    iconUrl: icon,
+    shadowUrl: iconShadow
 });
 
 export { MarkerContactMap };

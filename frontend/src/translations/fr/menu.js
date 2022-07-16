@@ -1,9 +1,9 @@
 export const Menu_FR = {
-    atoopro:{
+    menu_atoopro:{
         atoopro:'Qui sommes-nous ?',
         partenaires:'Nos partenaires',
         contact:'Contactez-nous',
-        label:'Notre société'
+        label:'Notressssss sociétés'
     },
     services:{
         hebergement:'Hébergement',

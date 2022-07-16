@@ -1,5 +1,5 @@
 import { Alert, Button, Checkbox, Col, Form, Input, Radio, Row, Select } from 'antd';
-import React, { useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -8,7 +8,9 @@ import Recpatcha from '../GoogleRecpatcha/recpatcha';
 import { ThemeContext } from './../../../Shared/Context/ThemeContext/ThemeContext'
 import queryString from 'query-string'
 import { withTranslation } from 'react-i18next';
+import delve from 'dlv'
 import './FormContact.css'
+
 
 //Les différentes erreures possibles dans le formulaire de contact à utiliser si la traduction n'a pas pu être faite
 
@@ -22,55 +24,65 @@ const errorDefault = {
 
 /* Données du recpatcha */
 
-const recaptchaData = [{
-    key: 'key',
-    label: 'Une clé'
-},
-{
-    key: 'airplane',
-    label: 'Un avion'
-},
-{
-    key: 'heart',
-    label: 'Un coeur'
-},
-]
+const recaptchaTable = (lang) => {
+    return (
+        [{
+            key: 'key',
+            label: lang === "en" ? "A key" : 'Une clé'
+        },
+        {
+            key: 'airplane',
+            label: lang === "en" ? "A airplane" :'Un avion'
+        },
+        {
+            key: 'heart',
+            label: lang === "en" ? 'a heart' : 'Un coeur'
+        },
+        ]
+    )
+} 
 
 /* Composant formulaire de contact */
 
-const FormContact = ({ t }) => {
+const FormContact = ({ t , lang , placeholder:{radio,placeholder,selection} , err}) => {
+
+    console.log("selection",selection)
+
+    /* get Recpatha data for recpatchaTable above */
+
+    const recaptchaData = recaptchaTable(lang)
+    const [recpatchaError,setRecpatchaError] = useState(null)
+
 
     //Changer le radio du recpatcha
 
     const changeRecpatchaRadio = (e) => {
         setValue(e.target.value)
-        if (key && e.target.value === recaptchaData[key]['label']) {
-            setReloadRecpatchakey(true)
+        if (e.target.value === recaptchaData[key]['key']) {
+            setRecpatchaError(false)
+        } else{
+            setRecpatchaError(true)
         }
     }
 
-    //Actualiser la clé de recpatcha après 10sec lorsque le visiteur a bien choisi le recpatcha
+    //Actualiser la clé de recpatcha après 20sec lorsque le visiteur a bien choisi le recpatcha ( recpatchaError === false )
 
-
-    const [reloadRecpatchakey, setReloadRecpatchakey] = useState(false)
 
     useEffect(() => {
-        if (reloadRecpatchakey) {
-            console.log('key1')
+        if (recpatchaError === false) {
             setTimeout(() => {
                 setKey(() => Math.round(Math.random() * 2))
-                setReloadRecpatchakey(false)
-            }, 10000)
+            }, 20000)
         }
-    }, [reloadRecpatchakey])
+    }, [recpatchaError])
 
     // States 
 
     //Valeur du champ radio choisi pour le recaptcha
     const [value, setValue] = useState('')
 
-    //La clé pour changer si nécessaire l'élément à choir par l'utilisateur au niveau du recptacha
-    const [key, setKey] = useState(null)
+    //La clé pour changer si nécessaire l'élément à choisir par l'utilisateur au niveau du recptacha
+    const [key, setKey] = useState(Math.round(Math.random()*2))
 
     //valeur du checkbox du formulaire
     const [checked, setChecked] = useState(false)
@@ -82,7 +94,7 @@ const FormContact = ({ t }) => {
     //Gestion du status radio
     const [statut, setStatut] = useState('entreprise')
 
-    //Loading
+    //Loading pour l'envoi du mail
 
     const [loading, setLoading] = useState(false)
 
@@ -97,21 +109,32 @@ const FormContact = ({ t }) => {
 
 
 
-    //Onchange pour le checkbox
+    //On change pour le checkbox
+
     const changeCheckbox = (e) => {
         setChecked(e.target.checked)
     }
 
 
     //Une clé aléatoire lorsque le composant est monté : pour le recaptcha
+
     useEffect(() => {
         setKey(() => Math.round(Math.random() * 2))
-        return () => setKey(null)
+        return () => setKey(() => Math.round(Math.random() * 2))
     }, [])
 
 
     //Soumission du formulaire 
     const onFinish = async (values) => {
+
+        //Vérifions si le recpatcha est correct
+
+        if(!value || value !== recaptchaData[key]['key']){
+            setRecpatchaError(true)
+            return ;
+        }
+        setRecpatchaError(null)
+
         setSuccess(false)
         delete values.check;
         delete values.recpatcha;
@@ -121,6 +144,9 @@ const FormContact = ({ t }) => {
 
         if (values.status === undefined) {
             values.status = 'entreprise'
+            setStatut('entreprise')
+        } else{
+            setStatut(values.status)
         }
         console.log('values', values)
         if (values.status !== 'emploi') {
@@ -134,25 +160,45 @@ const FormContact = ({ t }) => {
         //Lancer le chargement
         setLoading(true)
 
-        //Utilisation de formdata parcequ'il y a possibilité d'envoi de fichier sur le serveur
-        const formElement = document.querySelector('.atoopro-contact form.contact-form')
-        console.log('Success:', values);
-        const formdata = new FormData(formElement)
-        for (const i in values) {
-            formdata.append(i, values[i])
-        }
-        console.log(formdata)
+        
         try {
             //Envoi de la requête sur le serveur
-            const res = await fetch('http://localhost:5000/' + `contact`, {
+
+            delete values.status
+            
+            const res = await fetch(process.env.STRAPI_APP_URL + `/api/contact-message`, {
                 method: "POST",
-                body: formdata
+                body: JSON.stringify(values),
+                headers:{
+                    "Content-Type":"application/json"
+                }
             });
             const data = await res.json()
 
             setLoading(false)
-            console.log('data', data)
-            if (data.error) {
+            console.log(data)
+            if(data.data.id){
+                //Utilisation de formdata parcequ'il y a possibilité d'envoi de fichier sur le serveur
+                const formElement = document.querySelector('.atoopro-contact form.contact-form')
+                const formdata = new FormData(formElement)
+        /*for (const i in values) {
+            formdata.append(i, values[i])
+        }*/
+        formdata.append('files',values['files'])
+        formdata.append('field','cv')
+        formdata.append('ref',values['api::contact-message.contact-message'])
+        formdata.append('refId',data.data.id)
+
+        const res = await fetch(process.env.STRAPI_APP_URL + `/api/upload`, {
+            method: "POST",
+            body: formdata
+        });
+        const datae = await res.json()
+
+        console.log(formdata,datae)
+
+            }
+            {/*if (data.error) {
                 //S'il y a une erreure on retourne l'erreur dans l'état des erreurs
                 setStatut(values.status)
                 window.scrollTo(0, 0)
@@ -169,7 +215,7 @@ const FormContact = ({ t }) => {
                 //Réinitialiser les informations du formulaire
                 setValue('')
                 setChecked(false)
-                setSelectValue('demo1')
+                setSelectValue('option1')
                 form.setFieldsValue({
                     name: '',
                     status: 'entreprise',
@@ -177,10 +223,10 @@ const FormContact = ({ t }) => {
                     email: '',
                     tel: '',
                     message: '',
-                    objet: 'demo1',
+                    objet: 'option1',
                     file: '',
                 });
-            }
+            }*/}
         } catch (error) {
             console.log(error, error.message)
             setLoading(false)
@@ -192,10 +238,16 @@ const FormContact = ({ t }) => {
     };
 
     const onFinishFailed = (errorInfo) => {
+        console.log('recaptcha',value)
+        if(!value || value !== recaptchaData[key]['key']){
+            setRecpatchaError(true)
+        } else{
+            setRecpatchaError(false)
+        }
         console.log('Failed:', errorInfo);
     };
 
-    //Courant thème
+    //thème courant
 
     const { theme } = useContext(ThemeContext)
 
@@ -223,10 +275,30 @@ const FormContact = ({ t }) => {
             if (queryString.parse(search).option === 'cv') {
                 return 'cv'
             } else {
-                return 'demo1'
+                return 'option1'
             }
         }
     }, [search])
+
+    {/* Check Label Component  */}
+
+    const Check_Label_Component = useMemo(() => {
+
+        if(lang === 'en'){
+            return (
+                <span>
+                    I read and accepte <Link to='/' className='link'>la politique de confidentialité</Link>
+                </span>
+            )
+        } else {
+            return (
+                <span>
+                    J'ai lu et j'accepte <Link to='/' className='link'>la politique de confidentialité</Link> de ce site
+                </span>
+            )
+        }
+
+    },[lang])
 
     return (
         <Form
@@ -244,13 +316,13 @@ const FormContact = ({ t }) => {
             style={{ marginTop: 35 }}
         >
             {
-                /* Message d'erreur et de succès */
+                /* Message d'erreur et de succès lors de l'envoi du mail */
             }
             {
                 !success && error && <Alert style={{ marginBottom: "10px !important" }} message={t('error.' + error, errorDefault[error])} type="error" />
             }
             {
-                success && <Alert style={{ marginBottom: "10px !important" }} message={"Votre message a été envoyé avec succès"} type="success" />
+                success && <Alert style={{ marginBottom: "10px !important" }} message={t('success.message')} type="success" />
             }
             <FadeComponent right distance='10px'>
                 <Row justify='space-between' style={{ margin: error || success ? '25px 0' : '12px 0' }}>
@@ -260,6 +332,7 @@ const FormContact = ({ t }) => {
 
                         <Form.Item
                             name='status'
+                            initialValue={'entreprise'}
                             rules={[({ }) => ({
                                 validator(_, value) {
                                     console.log('tel', value)
@@ -267,12 +340,12 @@ const FormContact = ({ t }) => {
                                     setStatut(value)
 
                                     if (value === 'entreprise' && form.getFieldValue('objet') === 'cv') {
-                                        form.setFieldsValue({ objet: 'demo1' })
-                                        setSelectValue('demo1')
+                                        form.setFieldsValue({ objet: 'option1' })
+                                        setSelectValue('option1')
                                     }
 
                                     if (value && !['emploi', 'entreprise'].includes(value)) {
-                                        return Promise.reject("Veuillez choisir l'un des statuts proposés")
+                                        return Promise.reject(delve(err,"required.status"))
                                     } else {
                                         return Promise.resolve()
                                     }
@@ -280,13 +353,14 @@ const FormContact = ({ t }) => {
                             })]}
                         >
                             <Radio.Group defaultValue={'entreprise'}>
-                                <Radio value='entreprise'>Avez-vous une entreprise ?</Radio>
-                                <Radio style={{ margin: '15px 0 0 0' }} value='emploi'>Recherchez-vous un emploi ?</Radio>
+                                <Radio value='entreprise'>{delve(radio,"entreprise")}</Radio>
+                                <Radio style={{ margin: '15px 0 0 0' }} value='emploi'>{delve(radio,"emploi")}</Radio>
                             </Radio.Group>
                         </Form.Item>
                     </Col>
 
                     {/* Nom de l'utilisateur */}
+
                     <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
                             name="name"
@@ -294,10 +368,10 @@ const FormContact = ({ t }) => {
                                 validator(_, value) {
                                     console.log('name', form.getFieldValue('status'))
                                     if (!value) {
-                                        return Promise.reject('Veuillez entrer votre nom')
+                                        return Promise.reject(delve(err,"required.name"))
                                     } else {
                                         if (value.toString().match(/^[0-9]/)) {
-                                            return Promise.reject(' Votre nom doit commencer par une lettre ')
+                                            return Promise.reject(delve(err,"other_errors.name_begin_with_letter"))
                                         } else {
                                             return Promise.resolve()
                                         }
@@ -305,18 +379,19 @@ const FormContact = ({ t }) => {
                                 }
                             })]}
                         >
-                            <Input placeholder='Votre nom' />
+                            <Input placeholder={delve(placeholder,"name")} />
                         </Form.Item>
                     </Col>
 
                     {/* Societe si le visiteur travaille dans une entreprise */}
+
                     {
-                        statut === 'entreprise' && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
+                        (statut === 'entreprise') && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                             <Form.Item
                                 name="societe"
-                                rules={[{ required: true, message: 'Veuillez entrer votre nom de société !' }]}
+                                rules={[{ required: true, message:delve(err,"required.societe")}]}
                             >
-                                <Input placeholder='Votre société' />
+                                <Input placeholder={delve(placeholder,"societe")} />
                             </Form.Item>
                         </Col>
                     }
@@ -328,14 +403,18 @@ const FormContact = ({ t }) => {
     /* Email et téléphone champ */
 }
                 <Row justify='space-between' style={{ margin: '12px 0' }}>
+
+
                     <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
                             name="email"
-                            rules={[{ type: 'email', message: 'Veuillez entrer un email correct' }, { required: true, message: 'Veuillez entrer votre email' }]}
+                            rules={[{ type: 'email', message: delve(err,"other_errors.valid_email")}, { required: true, message: delve(err,"required.email") }]}
                         >
-                            <Input type='email' placeholder='Votre email' />
+                            <Input type='email' placeholder={delve(placeholder,"email")} />
                         </Form.Item>
                     </Col>
+
+
                     <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }}>
                         <Form.Item
                             name="tel"
@@ -343,13 +422,13 @@ const FormContact = ({ t }) => {
                                 validator(_, value) {
                                     console.log('tel', value)
                                     if (!value) {
-                                        return Promise.reject('Veuillez entrer votre numero de téléphone')
+                                        return Promise.reject(delve(err,"required.tel"))
                                     } else {
                                         if (!value.match(/^\+[0-9]{1,4}[0-9]{6,13}$/)) {
-                                            return Promise.reject('Numero de téléphone invalide')
+                                            return Promise.reject(delve(err,"required.tel"))
                                         } else {
                                             if (isNaN(value.replace('+', '').replace(' ', ''))) {
-                                                return Promise.reject('Numero de téléphone invalide')
+                                                return Promise.reject(delve(err,"other_errors.valid_tel"))
                                             }
                                             return Promise.resolve()
                                         }
@@ -357,7 +436,7 @@ const FormContact = ({ t }) => {
                                 }
                             })]}
                         >
-                            <Input type='tel' placeholder='Tel (+xxxx xxxxxxx)' />
+                            <Input type='tel' placeholder={delve(placeholder,"tel")} />
                         </Form.Item>
                     </Col>
                 </Row>
@@ -366,28 +445,34 @@ const FormContact = ({ t }) => {
                     /* Objet du message et téléchargement de cv s'il s'agit d'un visiteur en quête d'emploi */
                 }
                 <Row style={{ margin: '12px 0' }}>
+
+
+
                     <Col xs={24} sm={selectValue === 'cv' ? 12 : 24} lg={24} xl={selectValue === 'cv' ? 12 : 24} style={{ padding: '0 5px' }} >
-                        <Form.Item name={'objet'} rules={[{ required: true, message: "Quel est l'objet de votre message ?" }]}>
-                            <Select placeholder='Veuillez sélectionner une option' value={selectValue} onChange={(value) => setSelectValue(value)} className='select-objet'>
-                                <Select.Option value="demo1">Demo</Select.Option>
-                                <Select.Option value="devis">Obtenez un devis</Select.Option>
+                        <Form.Item name={'objet'} rules={[{ required: true, message: delve(err,"required.objet")}]}>
+                            <Select value={selectValue} onChange={(value) => setSelectValue(value)} className='select-objet'>
                                 {
-                                    statut === 'emploi' ? <Select.Option value="cv">Déposez votre CV</Select.Option> : null
+                                    selection ? selection.map(({value,label}) => {
+                                        if(value === 'cv'){
+                                            return (statut === 'emploi' ? <Select.Option key={value} value={value}>{label}</Select.Option> : null)
+                                        } else{
+                                            return <Select.Option key={value} value={value}>{label}</Select.Option>
+                                        }
+                                    }) : null
                                 }
-                                <Select.Option value="demo">Demo 345</Select.Option>
                             </Select>
                         </Form.Item>
                     </Col>
                     {
                         selectValue === 'cv' && statut === 'emploi' && <Col xs={24} sm={12} lg={24} xl={12} style={{ padding: '0 5px' }} >
-                            <Form.Item name={'file'} rules={[({ }) => ({
+                            <Form.Item name={'files'} rules={[({ }) => ({
                                 validator(_, value) {
                                     console.log('tel', value)
                                     if (!value) {
-                                        return Promise.reject(' Veuillez télécharger un document pdf ')
+                                        return Promise.reject(delve(err,required.file))
                                     } else {
                                         if (!value.trim().endsWith('.pdf')) {
-                                            return Promise.reject(' Veuillez télécharger un document pdf ')
+                                            return Promise.reject(delve(err,"other_errors.file_pdf"))
                                         } else {
                                             return Promise.resolve()
                                         }
@@ -405,12 +490,15 @@ const FormContact = ({ t }) => {
 }
                 <Row style={{ margin: '12px 0' }}>
                     <Col xs={24} sm={24} lg={24} xl={24} style={{ padding: '0 5px' }} >
-                        <Form.Item name={'message'} rules={[{ required: true, message: "Veuillez entrer votre message !" }]}>
-                            <Input.TextArea placeholder='Entrez votre message' style={{ height: 150 }} />
+                        <Form.Item name={'message'} rules={[{ required: true, message:delve(err,"required.message")}]}>
+                            <Input.TextArea placeholder={delve(placeholder,"message")} style={{ height: 150 }} />
                         </Form.Item>
                     </Col>
                 </Row>
+
             </FadeComponent>
+
+
             <FadeComponent bottom>
                 <Form.Item
                     name={'check'}
@@ -419,12 +507,12 @@ const FormContact = ({ t }) => {
                     initialValue={false}
                     rules={[{
                         validator: () => {
-                            if (!checked) return Promise.reject(' Veuillez accepter notre politique ')
+                            if (!checked) return Promise.reject(delve(err,"required.check"))
                             return Promise.resolve()
                         }
                     }]}
                 >
-                    <Checkbox checked={checked} onChange={e => changeCheckbox(e)}>J'ai lu et j'accepte <Link to='/' className='link'>la politique de confidentialité</Link> de ce site</Checkbox>
+                    <Checkbox checked={checked} onChange={e => changeCheckbox(e)}>{Check_Label_Component}</Checkbox>
                 </Form.Item>
             </FadeComponent>
 
@@ -434,28 +522,8 @@ const FormContact = ({ t }) => {
                 <Form.Item
                     style={{ marginTop: 8 }}
                     name={'recpatcha'}
-                    rules={[
-                        ({ }) => ({
-                            validator(_) {
-                                console.log(value)
-                                if (!value) {
-                                    setReloadRecpatchakey(false)
-                                    return Promise.reject('Recpatha error')
-                                } else {
-                                    if (value !== recaptchaData[key]['key']) {
-                                        setReloadRecpatchakey(false)
-                                        setKey(() => Math.round(Math.random() * 2))
-                                        return Promise.reject('Recpatha error')
-                                    } else {
-                                        setReloadRecpatchakey(true)
-                                        return Promise.resolve()
-                                    }
-                                }
-                            }
-                        })
-                    ]}
                 >
-                    <Recpatcha onChange={changeRecpatchaRadio} value={value} elmt={key ? recaptchaData[key]['label'] : recaptchaData[Math.round(Math.random() * 2)]['label']} />
+                    <Recpatcha onChange={changeRecpatchaRadio} value={value} elmt={recaptchaData[key]['label']} error_recpatcha={recpatchaError && delve(err,"required.recaptcha")} />
                 </Form.Item>
             </FadeComponent>
 
@@ -463,7 +531,7 @@ const FormContact = ({ t }) => {
                 <Form.Item wrapperCol={{ span: 10 }}>
                     <Button type="primary" htmlType="submit" style={{ margin: '15px 0', width: 130, height: 40, pointerEvents: loading ? 'none' : '' }}>
                         {
-                            loading ? 'Patienter ...' : 'Envoyer'
+                            loading ? delve(placeholder,"submit_button_loading") : delve(placeholder,"submit_button_text")
                         }
                     </Button>
                 </Form.Item>

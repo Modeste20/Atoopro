@@ -4,6 +4,8 @@
 
 .atoopro-entreprise .banner{
     height:auto;
+    padding-top:50px;
+    padding-bottom:50px;
     margin-bottom:50px;
 }
 
@@ -136,7 +138,7 @@
     }
 }
 
-@media all and (max-width:767px){
+@media all and (max-width:768px){
     .atoopro-entreprise .atoopro-def .atoopro-def-content,
     .atoopro-entreprise .atoopro-mission .atoopro-mission-content{
         padding-top:30px !important ;

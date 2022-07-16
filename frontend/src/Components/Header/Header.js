@@ -10,11 +10,14 @@ import { ThemeContext } from '../Shared/Context/ThemeContext/ThemeContext'
 import i18n from './../../i18n'
 import { LangContext } from '../Shared/Context/LangContext/LangContext'
 import {withTranslation} from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 
 
 const Meenu = ({lang,setLang,t}) => {
 
     console.log('lang',lang)
+
+    const {search} = useLocation()
 
     // Function to change language
 
@@ -23,7 +26,9 @@ const Meenu = ({lang,setLang,t}) => {
         if(lang !== language){
             i18n.changeLanguage(language)
             setLang(language)
-            localStorage.setItem('lang',language)
+            if(navigator.cookieEnabled && window.localStorage){
+                localStorage.setItem('lang',language)
+            }
         }
     }
 

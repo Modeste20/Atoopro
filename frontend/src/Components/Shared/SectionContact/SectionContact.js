@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FadeComponent } from '../FadeComponent/FadeComponent'
+import ReactMarkdown from 'react-markdown'
 import './SectionContact.css'
+import Markdown from '../Markdown/Markdown'
 
 /* Composant templates pour les sections de contact sur le site */
 
-const SectionContact = ({title,children,option}) => {
+const SectionContact = ({title,children,link}) => {
 
   return (
     <section className="section-contact">
@@ -15,10 +17,14 @@ const SectionContact = ({title,children,option}) => {
         </h3>
       </FadeComponent>
 
-        {children}
-        
+      <FadeComponent bottom>
+        <Markdown>
+          {children}
+        </Markdown>
+      </FadeComponent>
+
       <FadeComponent left>
-        <Link to={option ? '/contactez-nous?option='+option : '/contactez-nous'} className='btn-link-primary' style={{ height: 45, borderRadius: 3 }}>
+        <Link to={link} className='btn-link-primary' style={{ height: 45, borderRadius: 3 }}>
           Contactez-nous
         </Link>
       </FadeComponent>

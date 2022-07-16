@@ -2,18 +2,20 @@ import {Carousel} from 'antd'
 import React from 'react'
 import { useRef } from 'react';
 import * as FaIcons from 'react-icons/fa'
-import Google from './../../../../File/images/Google.png'
-import Microsoft from './../../../../File/images/Microsoft.png'
-import Netgate from './../../../../File/images/Netgate.png'
-import Veeam from './../../../../File/images/Veeam.png'
-import Vmware from './../../../../File/images/Vmware.png'
+import delve from "dlv"
 import './Partenaires.css'
 
-const Partenaires = () => {
+const Partenaires = ({data}) => {
 
     // Ref pour comander les botons next et prev du caroussel
 
     const slider = useRef()
+
+    const getUrl_images = (index,image_alt=false) => {
+
+        return delve(data,index.toString()+".image.data.attributes."+(image_alt ? "image_alt" : "url"))
+
+    }
 
 
     return (
@@ -31,21 +33,10 @@ const Partenaires = () => {
                 <div>
                     <div className='images'>
                         <div>
-                            <img src={Google} alt='' width={'160px'} />
+                            <img src={process.env.STRAPI_APP_URL+getUrl_images(0)} alt={getUrl_images(0,true)} width={'160px'} />
                         </div>
                         <div>
-                            <img src={Netgate} alt='' width={'160px'} />
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div className='images'>
-                        <div>
-                            <img src={Microsoft} alt='' width={'160px'} />
-                        </div>
-                        <div>
-                            <img src={Veeam} alt='' width={'160px'} />
+                            <img src={process.env.STRAPI_APP_URL+getUrl_images(1)} alt={getUrl_images(1,true)} width={'160px'} />
                         </div>
                     </div>
                 </div>
@@ -53,11 +44,22 @@ const Partenaires = () => {
                 <div>
                     <div className='images'>
                         <div>
-                            <img src={Veeam} alt='' width={'160px'} />
+                            <img src={process.env.STRAPI_APP_URL+getUrl_images(2)} alt={getUrl_images(2,true)} width={'160px'} />
+                        </div>
+                        <div>
+                            <img src={process.env.STRAPI_APP_URL+getUrl_images(3)} alt={getUrl_images(3,true)} width={'160px'} />
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div className='images'>
+                        <div>
+                            <img src={process.env.STRAPI_APP_URL+getUrl_images(4)} alt={getUrl_images(4,true)} width={'160px'} />
                         </div>
 
                         <div>
-                            <img src={Vmware} alt='' width={'160px'} />
+                            <img src={process.env.STRAPI_APP_URL+getUrl_images(5)} alt={getUrl_images(5,true)} width={'160px'} />
                         </div>
                     </div>
                 </div>
