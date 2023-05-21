@@ -84,7 +84,7 @@ const AppRouter = () => {
 
             {/* Page 404 */}
 
-            <Route path='*'>
+            <Route path='404'>
                 <Page404 />
             </Route>
         </Switch>
